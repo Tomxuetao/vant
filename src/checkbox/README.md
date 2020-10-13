@@ -55,7 +55,7 @@ export default {
 
 ### Custom Icon
 
-Use icon slot to custom icon
+Use icon slot to custom icon.
 
 ```html
 <van-checkbox v-model="checked">
@@ -184,7 +184,11 @@ export default {
       @click="toggle(index)"
     >
       <template #right-icon>
-        <van-checkbox :name="item" :ref="el => checkboxes[index] = el" />
+        <van-checkbox
+          :name="item"
+          :ref="el => checkboxes[index] = el"
+          @click.stop
+        />
       </template>
     </van-cell>
   </van-cell-group>
@@ -265,7 +269,7 @@ export default {
 
 ### CheckboxGroup Methods
 
-Use [ref](https://vuejs.org/v2/api/#ref) to get CheckboxGroup instance and call instance methods
+Use [ref](https://vuejs.org/v2/api/#ref) to get CheckboxGroup instance and call instance methods.
 
 | Name | Description | Attribute | Return value |
 | --- | --- | --- | --- |
@@ -273,7 +277,7 @@ Use [ref](https://vuejs.org/v2/api/#ref) to get CheckboxGroup instance and call 
 
 ### Checkbox Methods
 
-Use [ref](https://vuejs.org/v2/api/#ref) to get Checkbox instance and call instance methods
+Use [ref](https://vuejs.org/v2/api/#ref) to get Checkbox instance and call instance methods.
 
 | Name   | Description         | Attribute           | Return value |
 | ------ | ------------------- | ------------------- | ------------ |

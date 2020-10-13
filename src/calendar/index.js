@@ -1,10 +1,8 @@
 import { ref, watch, reactive, computed, onMounted, onActivated } from 'vue';
 
 // Utils
-import { pick } from '../utils';
-import { raf } from '../utils/dom/raf';
+import { pick, getScrollTop } from '../utils';
 import { isDate } from '../utils/validate/date';
-import { getScrollTop } from '../utils/dom/scroll';
 import {
   t,
   bem,
@@ -19,8 +17,8 @@ import {
 } from './utils';
 
 // Composition
+import { raf, useRect } from '@vant/use';
 import { useRefs } from '../composition/use-refs';
-import { useRect } from '../composition/use-rect';
 import { useExpose } from '../composition/use-expose';
 
 // Components

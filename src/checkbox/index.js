@@ -1,8 +1,8 @@
 import { computed, watch } from 'vue';
 import { createNamespace, pick } from '../utils';
+import { useParent } from '@vant/use';
 import { useExpose } from '../composition/use-expose';
 import { useLinkField } from '../composition/use-link-field';
-import { useParent } from '../composition/use-relation';
 import Checker, { checkerProps } from './Checker';
 
 const [createComponent, bem] = createNamespace('checkbox');
@@ -46,31 +46,19 @@ export default createComponent({
       }
     };
 
-    const checked = computed({
-      get() {
-        if (parent) {
-          return parent.props.modelValue.indexOf(props.name) !== -1;
-        }
-        return props.modelValue;
-      },
-      set(value) {
-        if (parent) {
-          setParentValue(value);
-        } else {
-          emit('update:modelValue', value);
-        }
-      },
+    const checked = computed(() => {
+      if (parent) {
+        return parent.props.modelValue.indexOf(props.name) !== -1;
+      }
+      return props.modelValue;
     });
 
-    let toggleTimer;
     const toggle = (newValue = !checked.value) => {
-      // When toggle method is called multiple times at the same time,
-      // only the last call is valid.
-      // This is a hack for usage inside Cell.
-      clearTimeout(toggleTimer);
-      toggleTimer = setTimeout(() => {
-        checked.value = newValue;
-      });
+      if (parent) {
+        setParentValue(newValue);
+      } else {
+        emit('update:modelValue', newValue);
+      }
     };
 
     watch(

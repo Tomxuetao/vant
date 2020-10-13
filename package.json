@@ -1,6 +1,6 @@
 {
   "name": "vant",
-  "version": "3.0.0-beta.0",
+  "version": "3.0.0-beta.3",
   "description": "Mobile UI Components built on Vue",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -12,10 +12,13 @@
     "types",
     "vetur"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "bootstrap": "yarn || npm i",
     "dev": "vant-cli dev",
-    "lint": "vant-cli lint && ls-lint",
+    "lint": "vant-cli lint",
     "test": "vant-cli test",
     "build": "vant-cli build",
     "release": "vant-cli release --tag next",
@@ -28,7 +31,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && ls-lint",
+      "pre-commit": "lint-staged",
       "commit-msg": "vant-cli commit-lint"
     }
   },
@@ -54,16 +57,15 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "7.x",
-    "@vant/icons": "1.3.0",
-    "@vant/use": "^0.0.2",
+    "@vant/icons": "1.3.1",
+    "@vant/use": "^0.0.9",
     "vue-lazyload": "1.2.3"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@ls-lint/ls-lint": "^1.8.0",
-    "@vant/cli": "^3.0.0-beta.0",
+    "@vant/cli": "^3.0.0-beta.7",
     "@vue/compiler-sfc": "^3.0.0",
     "prettier": "^2.0.4",
     "vue": "^3.0.0"

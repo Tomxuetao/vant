@@ -287,15 +287,15 @@ Following props are supported when the type is time
 
 ### Events
 
-| Event   | Description                         | Arguments               |
-| ------- | ----------------------------------- | ----------------------- |
-| change  | Triggered when value changed        | picker: Picker instance |
-| confirm | Triggered when click confirm button | value: current value    |
-| cancel  | Triggered when click cancel button  | -                       |
+| Event   | Description                         | Arguments            |
+| ------- | ----------------------------------- | -------------------- |
+| change  | Triggered when value changed        | value: current value |
+| confirm | Triggered when click confirm button | value: current value |
+| cancel  | Triggered when click cancel button  | -                    |
 
 ### Methods
 
-Use [ref](https://vuejs.org/v2/api/#ref) to get DatetimePicker instance and call instance methods
+Use [ref](https://vuejs.org/v2/api/#ref) to get DatetimePicker instance and call instance methods.
 
 | Name               | Description         | Attribute | Return value |
 | ------------------ | ------------------- | --------- | ------------ |

@@ -1,5 +1,5 @@
 import { createNamespace } from '../utils';
-import { useParent } from '../composition/use-relation';
+import { useParent } from '@vant/use';
 import { useRoute, routeProps } from '../composition/use-route';
 import { SIDEBAR_KEY } from '../sidebar';
 import Badge from '../badge';
@@ -38,10 +38,9 @@ export default createComponent({
 
       return (
         <a class={bem({ select: selected, disabled })} onClick={onClick}>
-          <div class={bem('text')}>
+          <Badge dot={dot} content={badge} class={bem('text')}>
             {slots.title ? slots.title() : title}
-            <Badge dot={dot} badge={badge} class={bem('badge')} />
-          </div>
+          </Badge>
         </a>
       );
     };

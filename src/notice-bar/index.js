@@ -1,8 +1,10 @@
-import { ref, reactive, nextTick, onActivated, watch } from 'vue';
-import { createNamespace, isDef } from '../utils';
-import { doubleRaf } from '../utils/dom/raf';
-import { useRect } from '../composition/use-rect';
-import { useEventListener } from '@vant/use';
+import { ref, watch, reactive, nextTick, onActivated } from 'vue';
+import { isDef, createNamespace } from '../utils';
+
+// Composition
+import { useRect, doubleRaf, useEventListener } from '@vant/use';
+
+// Components
 import Icon from '../icon';
 
 const [createComponent, bem] = createNamespace('notice-bar');
@@ -170,8 +172,8 @@ export default createComponent({
       const { color, wrapable, background } = props;
       return (
         <div
+          v-show={state.show}
           role="alert"
-          vShow={state.show}
           class={bem({ wrapable })}
           style={{ color, background }}
         >

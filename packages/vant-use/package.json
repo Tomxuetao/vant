@@ -1,7 +1,7 @@
 {
   "name": "@vant/use",
-  "version": "0.0.2",
-  "description": "Vant composition api",
+  "version": "0.0.9",
+  "description": "Vant Composition API",
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "es/index.d.ts",
@@ -10,17 +10,21 @@
     "dev": "tsc -m esNext --outDir es --watch",
     "clean": "rm -rf ./es && rm -rf ./lib",
     "build": "yarn clean && tsc && tsc -m esNext --outDir es",
-    "release": "yarn build && release-it"
+    "release": "yarn build && release-it",
+    "docs:dev": "vuepress dev",
+    "docs:build": "vuepress build && gh-pages -d dist --add --dest vant-use"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "license": "MIT",
   "repository": "https://github.com/youzan/vant/tree/dev/packages/vant-use",
   "devDependencies": {
+    "gh-pages": "^3.1.0",
     "release-it": "^14.0.2",
     "typescript": "^4.0.2",
-    "vue": "^3.0.0-rc.10"
+    "vuepress": "^1.6.0"
   },
   "release-it": {
     "git": {

@@ -1,14 +1,11 @@
 import { ref, reactive, computed } from 'vue';
 
 // Utils
-import { createNamespace } from '../utils';
-import { range } from '../utils/format/number';
-import { preventDefault } from '../utils/dom/event';
+import { range, createNamespace, preventDefault } from '../utils';
 import { callInterceptor } from '../utils/interceptor';
 
 // Composition
-import { useClickAway } from '@vant/use';
-import { useRect } from '../composition/use-rect';
+import { useRect, useClickAway } from '@vant/use';
 import { useTouch } from '../composition/use-touch';
 import { useExpose } from '../composition/use-expose';
 

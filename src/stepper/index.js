@@ -1,11 +1,16 @@
-import { ref, computed, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 // Utils
 import { isNaN } from '../utils/validate/number';
-import { formatNumber } from '../utils/format/number';
-import { resetScroll } from '../utils/dom/reset-scroll';
-import { preventDefault } from '../utils/dom/event';
-import { createNamespace, isDef, addUnit, getSizeStyle } from '../utils';
+import {
+  isDef,
+  addUnit,
+  resetScroll,
+  formatNumber,
+  getSizeStyle,
+  preventDefault,
+  createNamespace,
+} from '../utils';
 
 // Composition
 import { useLinkField } from '../composition/use-link-field';
@@ -275,7 +280,7 @@ export default createComponent({
     return () => (
       <div class={bem([props.theme])}>
         <button
-          vShow={props.showMinus}
+          v-show={props.showMinus}
           type="button"
           style={buttonStyle.value}
           class={bem('minus', { disabled: minusDisabled.value })}
@@ -301,7 +306,7 @@ export default createComponent({
           onBlur={onBlur}
         />
         <button
-          vShow={props.showPlus}
+          v-show={props.showPlus}
           type="button"
           style={buttonStyle.value}
           class={bem('plus', { disabled: plusDisabled.value })}

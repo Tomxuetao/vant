@@ -1,21 +1,25 @@
 import { ref, computed, watch, nextTick } from 'vue';
 
 // Utils
-import { createNamespace, isDef } from '../utils';
-import { isHidden } from '../utils/dom/style';
-import { preventDefault } from '../utils/dom/event';
 import {
+  isDef,
+  isHidden,
   getScrollTop,
   getElementTop,
+  preventDefault,
+  createNamespace,
   getRootScrollTop,
   setRootScrollTop,
-} from '../utils/dom/scroll';
+} from '../utils';
 
 // Composition
-import { useScrollParent, useEventListener } from '@vant/use';
-import { useRect } from '../composition/use-rect';
+import {
+  useRect,
+  useChildren,
+  useScrollParent,
+  useEventListener,
+} from '@vant/use';
 import { useTouch } from '../composition/use-touch';
-import { useChildren } from '../composition/use-relation';
 
 export const INDEX_BAR_KEY = 'vanIndexBar';
 
@@ -50,7 +54,7 @@ export default createComponent({
     },
   },
 
-  emits: ['select'],
+  emits: ['select', 'change'],
 
   setup(props, { emit, slots }) {
     const root = ref();
@@ -167,6 +171,12 @@ export default createComponent({
         nextTick(onScroll);
       }
     );
+
+    watch(activeAnchor, (value) => {
+      if (value) {
+        emit('change', value);
+      }
+    });
 
     const renderIndexes = () =>
       props.indexList.map((index) => {

@@ -14,6 +14,61 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 - 次版本号：每隔一至二个月发布，包含新特性和较大的功能更新，向下兼容。
 - 主版本号：发布时间不定，包含不兼容更新。
 
+### [v3.0.0-beta.3](https://github.com/youzan/vant/compare/v2.10.9...v3.0.0-beta.3)
+
+`2020-10-03`
+
+**breaking changes**
+
+- Checkbox: 在 Cell 内部使用时，现在需要手动添加 `@click.stop` 来阻止事件冒泡 [#7023](https://github.com/youzan/vant/issues/7023)
+
+**Feature**
+
+- 新增 Badge 徽标组件 [#6573](https://github.com/youzan/vant/issues/6573)
+- Tab: 增加滑动切换动画 [#1174](https://github.com/youzan/vant/issues/1174)
+- 包含 `v2.10.9` 版本的所有改动
+
+### [v3.0.0-beta.2](https://github.com/youzan/vant/compare/v3.0.0-beta.1...v3.0.0-beta.2)
+
+`2020-09-28`
+
+**Bug Fixes**
+
+- 修复引入 Vant 时提示 'global is not defined' 的问题 [7007fc](https://github.com/youzan/vant/commit/7007fcf9eaea239f5e680068d59d8e9f8202ec3b)
+
+### [v3.0.0-beta.1](https://github.com/youzan/vant/compare/v2.10.8...v3.0.0-beta.1)
+
+`2020-09-28`
+
+**breaking changes**
+
+- DatetimePicker: change 事件的第一个参数调整为当前选中值 [058665](https://github.com/youzan/vant/commit/05866514dbdac098d8210f8b08e2fbc8d3479ada)
+
+**refactor**
+
+使用 Composition API 重构以下组件：
+
+- AddressEdit [749e4a](https://github.com/youzan/vant/commit/749e4ae73b9c07265e81237493b5e7d37afc6255)
+- Calendar [fc50e2](https://github.com/youzan/vant/commit/fc50e26416feb1cbc3d07de23cd39bf6ba57eefc)
+- Checkbox [278ea6](https://github.com/youzan/vant/commit/278ea6a439b65c1bf1ce420ab7619858a739486c)
+- ContactEdit [4f0921](https://github.com/youzan/vant/commit/4f0921cbdffe1f654ce75222027f8b85120ab67b)
+- DatetimePicker [638842](https://github.com/youzan/vant/commit/6388423c9609e099565e51423271e333fab38a55)
+- Field [00dbf2](https://github.com/youzan/vant/commit/00dbf2cc50c44d0ac45bc43daeaa91730b1a6e23)
+- Form [92aac9](https://github.com/youzan/vant/commit/92aac941fc25e028a7631be301ed895edff53487)
+- Radio [aafbcf](https://github.com/youzan/vant/commit/aafbcfcf04e7c0a4b4f5da83291e9b158f2503c3)
+- Tabs [882e3e](https://github.com/youzan/vant/commit/882e3ef5e787e587909bde1064f5dabe3d66ad72)
+
+**Feature**
+
+- Locale: 新增德语语言包 [#7245](https://github.com/youzan/vant/issues/7245)
+- Pagination: 新增多个插槽 [#7222](https://github.com/youzan/vant/issues/7222)
+
+**Bug Fixes**
+
+- Picker: 修复 setIndex 方法无效的问题 [d2a542](https://github.com/youzan/vant/commit/d2a54279766acca3981403c4fb9eb34d3d586643)
+- Dialog: 修复最小高度错误的问题 [bf1f0f](https://github.com/youzan/vant/commit/bf1f0f57eb16e2308b388c4e2ccab46c65f76196)
+- 包含 `v2.10.8` 版本的所有改动
+
 ### [v3.0.0-beta.0](https://github.com/youzan/vant/compare/v2.10.7...v3.0.0-beta.0)
 
 `2020-09-18`
@@ -38,7 +93,7 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 - AddressEdit: 修复 emits 未声明导致 warning 的问题 [1e6a12](https://github.com/youzan/vant/commit/1e6a120b2e48f7262062729260d362c96355eca6)
 - AddressEdit: 修复点击省市区弹窗的蒙层时无法关闭的问题 [02e89a](https://github.com/youzan/vant/commit/02e89a73c57af1e59429ab320c2a13395abc0520)
 - Field: 修复在 iOS 上中文输入过程中触发 input 事件的问题 [#7035](https://github.com/youzan/vant/issues/7035)
-- 包含 `v2.10.7` 版本的所有修复
+- 包含 `v2.10.7` 版本的所有改动
 
 ### [v3.0.0-alpha.5](https://github.com/youzan/vant/compare/v2.10.6...v3.0.0-alpha.5)
 

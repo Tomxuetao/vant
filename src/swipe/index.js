@@ -10,18 +10,18 @@ import {
 } from 'vue';
 
 // Utils
-import { createNamespace } from '../utils';
-import { range } from '../utils/format/number';
-import { isHidden } from '../utils/dom/style';
-import { doubleRaf } from '../utils/dom/raf';
-import { preventDefault } from '../utils/dom/event';
+import { range, isHidden, preventDefault, createNamespace } from '../utils';
 
 // Composition
-import { usePageVisibility, useWindowSize } from '@vant/use';
-import { useRect } from '../composition/use-rect';
+import {
+  useRect,
+  doubleRaf,
+  useChildren,
+  useWindowSize,
+  usePageVisibility,
+} from '@vant/use';
 import { useTouch } from '../composition/use-touch';
 import { useExpose } from '../composition/use-expose';
-import { useChildren } from '../composition/use-relation';
 
 const [createComponent, bem] = createNamespace('swipe');
 
@@ -366,6 +366,7 @@ export default createComponent({
     useExpose({
       prev,
       next,
+      state,
       resize,
       swipeTo,
     });

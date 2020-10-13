@@ -5,7 +5,7 @@ import { TABBAR_KEY } from '../tabbar';
 import { createNamespace, isObject, isDef } from '../utils';
 
 // Composition
-import { useParent } from '../composition/use-relation';
+import { useParent } from '@vant/use';
 import { routeProps, useRoute } from '../composition/use-route';
 
 // Components
@@ -73,10 +73,9 @@ export default createComponent({
           style={{ color }}
           onClick={onClick}
         >
-          <div class={bem('icon')}>
+          <Badge dot={dot} content={badge} class={bem('icon')}>
             {renderIcon()}
-            <Badge dot={dot} badge={badge} />
-          </div>
+          </Badge>
           <div class={bem('text')}>
             {slots.default?.({ active: active.value })}
           </div>

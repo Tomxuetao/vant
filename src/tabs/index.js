@@ -9,25 +9,31 @@ import {
 } from 'vue';
 
 // Utils
-import { createNamespace, isDef, addUnit } from '../utils';
-import { scrollLeftTo, scrollTopTo } from './utils';
-import { route } from '../composition/use-route';
-import { isHidden } from '../utils/dom/style';
-import { unitToPx } from '../utils/format/unit';
-import { BORDER_TOP_BOTTOM } from '../utils/constant';
-import { callInterceptor } from '../utils/interceptor';
 import {
+  isDef,
+  addUnit,
+  isHidden,
+  unitToPx,
   getVisibleTop,
   getElementTop,
+  createNamespace,
   getVisibleHeight,
   setRootScrollTop,
-} from '../utils/dom/scroll';
+} from '../utils';
+import { scrollLeftTo, scrollTopTo } from './utils';
+import { BORDER_TOP_BOTTOM } from '../utils/constant';
+import { callInterceptor } from '../utils/interceptor';
 
 // Composition
-import { useWindowSize, useScrollParent, useEventListener } from '@vant/use';
+import {
+  useChildren,
+  useWindowSize,
+  useScrollParent,
+  useEventListener,
+} from '@vant/use';
+import { route } from '../composition/use-route';
 import { useRefs } from '../composition/use-refs';
 import { useExpose } from '../composition/use-expose';
-import { useChildren } from '../composition/use-relation';
 
 // Components
 import Sticky from '../sticky';
@@ -85,7 +91,6 @@ export default createComponent({
   emits: ['click', 'change', 'scroll', 'disabled', 'rendered', 'update:active'],
 
   setup(props, { emit, slots }) {
-    let inited;
     let tabHeight;
     let lockScroll;
     let stickyFixed;
@@ -100,6 +105,7 @@ export default createComponent({
     const { children, linkChildren } = useChildren(TABS_KEY);
 
     const state = reactive({
+      inited: false,
       position: '',
       currentIndex: -1,
       lineStyle: {
@@ -153,7 +159,7 @@ export default createComponent({
 
     const init = () => {
       nextTick(() => {
-        inited = true;
+        state.inited = true;
         tabHeight = getVisibleHeight(wrapRef.value);
         scrollIntoView(true);
       });
@@ -161,7 +167,7 @@ export default createComponent({
 
     // update nav bar style
     const setLine = () => {
-      const shouldAnimate = inited;
+      const shouldAnimate = state.inited;
 
       nextTick(() => {
         const titles = titleRefs.value;
@@ -430,9 +436,11 @@ export default createComponent({
         )}
         <TabsContent
           count={children.length}
+          inited={state.inited}
           animated={props.animated}
           duration={props.duration}
           swipeable={props.swipeable}
+          lazyRender={props.lazyRender}
           currentIndex={state.currentIndex}
           onChange={setCurrentIndex}
         >

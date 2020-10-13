@@ -1,15 +1,13 @@
 import { ref, watch, computed } from 'vue';
-import { pickerProps, PICKER_KEY, DEFAULT_ITEM_HEIGHT } from './shared';
+import { pickerProps, PICKER_KEY } from './shared';
 
 // Utils
-import { createNamespace } from '../utils';
-import { preventDefault } from '../utils/dom/event';
+import { unitToPx, preventDefault, createNamespace } from '../utils';
 import { BORDER_UNSET_TOP_BOTTOM } from '../utils/constant';
-import { unitToPx } from '../utils/format/unit';
 
 // Composition
+import { useChildren } from '@vant/use';
 import { useExpose } from '../composition/use-expose';
-import { useChildren } from '../composition/use-relation';
 
 // Components
 import Loading from '../loading';
@@ -47,9 +45,7 @@ export default createComponent({
 
     linkChildren();
 
-    const itemHeight = computed(() =>
-      props.itemHeight ? unitToPx(props.itemHeight) : DEFAULT_ITEM_HEIGHT
-    );
+    const itemHeight = computed(() => unitToPx(props.itemHeight));
 
     const dataType = computed(() => {
       const { columns } = props;

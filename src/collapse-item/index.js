@@ -2,10 +2,10 @@ import { ref, watch, computed, nextTick } from 'vue';
 
 // Utils
 import { createNamespace } from '../utils';
-import { raf, doubleRaf } from '../utils/dom/raf';
 
 // Composition
-import { useParent } from '../composition/use-relation';
+import { raf, doubleRaf, useParent } from '@vant/use';
+import { useExpose } from '../composition/use-expose';
 import { useLazyRender } from '../composition/use-lazy-render';
 
 // Components
@@ -83,9 +83,13 @@ export default createComponent({
       });
     });
 
+    const toggle = (value = !expanded.value) => {
+      parent.toggle(currentName.value, value);
+    };
+
     const onClickTitle = () => {
       if (!props.disabled) {
-        parent.toggle(currentName.value, !expanded.value);
+        toggle();
       }
     };
 
@@ -116,8 +120,8 @@ export default createComponent({
 
     const renderContent = lazyRender(() => (
       <div
+        v-show={show.value}
         ref={wrapperRef}
-        vShow={show.value}
         class={bem('wrapper')}
         onTransitionend={onTransitionEnd}
       >
@@ -126,6 +130,8 @@ export default createComponent({
         </div>
       </div>
     ));
+
+    useExpose({ toggle });
 
     return () => (
       <div class={[bem({ border: index.value && props.border })]}>

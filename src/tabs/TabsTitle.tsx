@@ -1,4 +1,4 @@
-import { computed } from 'vue';
+import { computed, CSSProperties } from 'vue';
 import { createNamespace, isDef } from '../utils';
 import Badge from '../badge';
 
@@ -21,7 +21,7 @@ export default createComponent({
 
   setup(props) {
     const style = computed(() => {
-      const style: Record<string, string> = {};
+      const style: CSSProperties = {};
       const {
         type,
         color,
@@ -63,10 +63,9 @@ export default createComponent({
 
       if (props.dot || (isDef(props.badge) && props.badge !== '')) {
         return (
-          <span class={bem('text-wrapper')}>
+          <Badge dot={props.dot} content={props.badge}>
             {Text}
-            {<Badge dot={props.dot} badge={props.badge} />}
-          </span>
+          </Badge>
         );
       }
 

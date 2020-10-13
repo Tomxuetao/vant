@@ -6,7 +6,7 @@ import { BORDER } from '../utils/constant';
 import { GRID_KEY } from '../grid';
 
 // Composition
-import { useParent } from '../composition/use-relation';
+import { useParent } from '@vant/use';
 import { useRoute, routeProps } from '../composition/use-route';
 
 // Components
@@ -66,10 +66,9 @@ export default createComponent({
     const renderIcon = () => {
       if (slots.icon) {
         return (
-          <div class={bem('icon-wrapper')}>
+          <Badge dot={props.dot} content={props.badge}>
             {slots.icon()}
-            <Badge dot={props.dot} badge={props.badge} />
-          </div>
+          </Badge>
         );
       }
 

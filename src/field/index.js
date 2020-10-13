@@ -9,21 +9,23 @@ import {
 } from 'vue';
 
 // Utils
-import { resetScroll } from '../utils/dom/reset-scroll';
-import { formatNumber } from '../utils/format/number';
-import { trigger, preventDefault } from '../utils/dom/event';
 import {
   isDef,
+  trigger,
   addUnit,
   isObject,
   isPromise,
   isFunction,
+  resetScroll,
+  formatNumber,
+  preventDefault,
   createNamespace,
 } from '../utils';
+import { runSyncRule } from './utils';
 
 // Composition
+import { useParent } from '@vant/use';
 import { useExpose } from '../composition/use-expose';
-import { useParent } from '../composition/use-relation';
 
 // Components
 import Icon from '../icon';
@@ -132,26 +134,6 @@ export default createComponent({
         resolve(returnVal);
       });
 
-    const isEmptyValue = (value) => {
-      if (Array.isArray(value)) {
-        return !value.length;
-      }
-      if (value === 0) {
-        return false;
-      }
-      return !value;
-    };
-
-    const runSyncRule = (value, rule) => {
-      if (rule.required && isEmptyValue(value)) {
-        return false;
-      }
-      if (rule.pattern && !rule.pattern.test(value)) {
-        return false;
-      }
-      return true;
-    };
-
     const getRuleMessage = (value, rule) => {
       const { message } = rule;
 
@@ -239,10 +221,15 @@ export default createComponent({
     const updateValue = (value, trigger = 'onChange') => {
       value = isDef(value) ? String(value) : '';
 
-      // native maxlength not work when type is number
-      const { maxlength } = props;
+      // native maxlength have incorrect line-break counting
+      // see: https://github.com/youzan/vant/issues/5033
+      const { maxlength, modelValue } = props;
       if (isDef(maxlength) && value.length > maxlength) {
-        value = value.slice(0, maxlength);
+        if (modelValue && modelValue.length === +maxlength) {
+          value = modelValue;
+        } else {
+          value = value.slice(0, maxlength);
+        }
       }
 
       if (props.type === 'number' || props.type === 'digit') {
@@ -331,7 +318,6 @@ export default createComponent({
       if (isDef(props[key])) {
         return props[key];
       }
-
       if (form && isDef(form.props[key])) {
         return form.props[key];
       }
@@ -417,7 +403,6 @@ export default createComponent({
         ref: inputRef,
         name: props.name,
         rows: props.rows,
-        style: null,
         class: bem('control', inputAlign),
         value: props.modelValue,
         disabled: props.disabled,

@@ -2,7 +2,7 @@ import { createNamespace } from '../utils';
 import { ACTION_BAR_KEY } from '../action-bar';
 
 // Composition
-import { useParent } from '../composition/use-relation';
+import { useParent } from '@vant/use';
 import { useRoute, routeProps } from '../composition/use-route';
 
 // Components
@@ -32,10 +32,9 @@ export default createComponent({
 
       if (slots.icon) {
         return (
-          <div class={bem('icon')}>
+          <Badge dot={dot} content={badge} class={bem('icon')}>
             {slots.icon()}
-            <Badge dot={dot} badge={badge} />
-          </div>
+          </Badge>
         );
       }
 

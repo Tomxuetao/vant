@@ -1,5 +1,9 @@
 # SwipeCell 滑动单元格
 
+### 介绍
+
+可以左右滑动来展示操作按钮的单元格组件。
+
 ### 引入
 
 ```js
@@ -14,7 +18,7 @@ app.use(SwipeCell);
 
 ### 基础用法
 
-`SwipeCell`组件提供了`left`和`right`两个插槽，用于定义两侧滑动区域的内容
+`SwipeCell` 组件提供了 `left` 和 `right` 两个插槽，用于定义两侧滑动区域的内容。
 
 ```html
 <van-swipe-cell>
@@ -31,7 +35,7 @@ app.use(SwipeCell);
 
 ### 自定义内容
 
-`SwipeCell`内容可以嵌套任意内容，比如嵌套一个商品卡片
+`SwipeCell` 可以嵌套任意内容，比如嵌套一个商品卡片。
 
 ```html
 <van-swipe-cell>
@@ -62,7 +66,7 @@ app.use(SwipeCell);
 
 ### 异步关闭
 
-通过传入`before-close`回调函数，可以自定义两侧滑动内容关闭时的行为
+通过传入 `before-close` 回调函数，可以自定义两侧滑动内容关闭时的行为。
 
 ```html
 <van-swipe-cell :before-close="beforeClose">
@@ -140,7 +144,7 @@ beforeClose 的第一个参数为对象，对象中包含以下属性：
 
 ### 方法
 
-通过 ref 可以获取到 SwipeCell 实例并调用实例方法，详见[组件实例方法](#/zh-CN/quickstart#zu-jian-shi-li-fang-fa)
+通过 ref 可以获取到 SwipeCell 实例并调用实例方法，详见[组件实例方法](#/zh-CN/quickstart#zu-jian-shi-li-fang-fa)。
 
 | 方法名 | 说明             | 参数                     | 返回值 |
 | ------ | ---------------- | ------------------------ | ------ |

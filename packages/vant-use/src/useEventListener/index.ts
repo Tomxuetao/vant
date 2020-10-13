@@ -6,7 +6,7 @@ import {
   onUnmounted,
   onDeactivated,
 } from 'vue';
-import { inBrowser } from '../shared';
+import { inBrowser } from '../utils';
 
 let supportsPassive = false;
 if (inBrowser) {
@@ -23,7 +23,7 @@ if (inBrowser) {
 }
 
 export type UseEventListenerOptions = {
-  target?: EventTarget | Ref<EventTarget>;
+  target?: EventTarget | Ref<EventTarget | undefined>;
   capture?: boolean;
   passive?: boolean;
 };

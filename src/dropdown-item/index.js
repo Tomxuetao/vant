@@ -5,8 +5,8 @@ import { createNamespace } from '../utils';
 import { DROPDOWN_KEY } from '../dropdown-menu';
 
 // Composition
+import { useParent } from '@vant/use';
 import { useExpose } from '../composition/use-expose';
-import { useParent } from '../composition/use-relation';
 
 // Components
 import Cell from '../cell';
@@ -138,7 +138,7 @@ export default createComponent({
 
       return (
         <div
-          vShow={state.showWrapper}
+          v-show={state.showWrapper}
           style={style}
           class={bem([direction])}
           onClick={onClickWrapper}

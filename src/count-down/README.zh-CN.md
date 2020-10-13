@@ -144,30 +144,31 @@ export default {
 
 ### Events
 
-| 事件名          | 说明             | 回调参数             |
-| --------------- | ---------------- | -------------------- |
-| finish          | 倒计时结束时触发 | -                    |
-| change `v2.4.4` | 倒计时变化时触发 | _timeData: TimeData_ |
+| 事件名          | 说明             | 回调参数                   |
+| --------------- | ---------------- | -------------------------- |
+| finish          | 倒计时结束时触发 | -                          |
+| change `v2.4.4` | 倒计时变化时触发 | _currentTime: CurrentTime_ |
 
 ### Slots
 
-| 名称    | 说明       | SlotProps            |
-| ------- | ---------- | -------------------- |
-| default | 自定义内容 | _timeData: TimeData_ |
+| 名称    | 说明       | SlotProps                  |
+| ------- | ---------- | -------------------------- |
+| default | 自定义内容 | _currentTime: CurrentTime_ |
 
-### TimeData 格式
+### CurrentTime 格式
 
-| 名称         | 说明     | 类型     |
-| ------------ | -------- | -------- |
-| days         | 剩余天数 | _number_ |
-| hours        | 剩余小时 | _number_ |
-| minutes      | 剩余分钟 | _number_ |
-| seconds      | 剩余秒数 | _number_ |
-| milliseconds | 剩余毫秒 | _number_ |
+| 名称         | 说明                   | 类型     |
+| ------------ | ---------------------- | -------- |
+| total        | 剩余总时间（单位毫秒） | _number_ |
+| days         | 剩余天数               | _number_ |
+| hours        | 剩余小时               | _number_ |
+| minutes      | 剩余分钟               | _number_ |
+| seconds      | 剩余秒数               | _number_ |
+| milliseconds | 剩余毫秒               | _number_ |
 
 ### 方法
 
-通过 ref 可以获取到 CountDown 实例并调用实例方法，详见[组件实例方法](#/zh-CN/quickstart#zu-jian-shi-li-fang-fa)
+通过 ref 可以获取到 CountDown 实例并调用实例方法，详见[组件实例方法](#/zh-CN/quickstart#zu-jian-shi-li-fang-fa)。
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |

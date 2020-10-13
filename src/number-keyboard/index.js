@@ -1,6 +1,5 @@
 import { ref, watch, computed, Teleport, Transition } from 'vue';
-import { createNamespace } from '../utils';
-import { stopPropagation } from '../utils/dom/event';
+import { createNamespace, stopPropagation } from '../utils';
 import { useClickAway } from '@vant/use';
 import Key from './Key';
 
@@ -231,8 +230,8 @@ export default createComponent({
       const Content = (
         <Transition name={props.transition ? 'van-slide-up' : ''}>
           <div
+            v-show={props.show}
             ref={root}
-            vShow={props.show}
             style={{ zIndex: props.zIndex }}
             class={bem({
               unfit: !props.safeAreaInsetBottom,

@@ -33,7 +33,7 @@ export default {
 
 ### 文件预览
 
-通过`v-model`可以绑定已经上传的文件列表，并展示文件列表的预览图。
+通过 `v-model` 可以绑定已经上传的文件列表，并展示文件列表的预览图。
 
 ```html
 <van-uploader v-model="fileList" multiple />
@@ -157,8 +157,8 @@ export default {
 <style>
   .preview-cover {
     position: absolute;
-    box-sizing: border-box;
     bottom: 0;
+    box-sizing: border-box;
     width: 100%;
     padding: 4px;
     color: #fff;
@@ -210,7 +210,7 @@ export default {
 
 ### 禁用文件上传
 
-通过 `disabled` 属性禁用文件上传
+通过 `disabled` 属性禁用文件上传。
 
 ```html
 <van-uploader disabled />
@@ -282,7 +282,7 @@ before-read、after-read、before-delete 执行时会传递以下回调参数：
 
 ### 方法
 
-通过 ref 可以获取到 Uploader 实例并调用实例方法，详见[组件实例方法](#/zh-CN/quickstart#zu-jian-shi-li-fang-fa)
+通过 ref 可以获取到 Uploader 实例并调用实例方法，详见[组件实例方法](#/zh-CN/quickstart#zu-jian-shi-li-fang-fa)。
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |

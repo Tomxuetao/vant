@@ -1,9 +1,7 @@
 import { ref, computed, watch, nextTick } from 'vue';
 
 // Utils
-import { createNamespace, addUnit } from '../../utils';
-import { unitToPx } from '../../utils/format/unit';
-import { setScrollTop } from '../../utils/dom/scroll';
+import { addUnit, unitToPx, setScrollTop, createNamespace } from '../../utils';
 import { getMonthEndDay } from '../../datetime-picker/utils';
 import {
   t,
@@ -15,10 +13,10 @@ import {
 } from '../utils';
 
 // Composition
-import { useToggle } from '@vant/use';
+import { useRect, useToggle } from '@vant/use';
 import { useRefs } from '../../composition/use-refs';
 import { useExpose } from '../../composition/use-expose';
-import { useRect, useHeight } from '../../composition/use-rect';
+import { useHeight } from '../../composition/use-height';
 
 // Components
 import Day from './Day';

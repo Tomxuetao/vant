@@ -173,7 +173,7 @@ export default {
 
 ### Loading
 
-When Picker columns data is acquired asynchronously, use `loading` prop to show loading prompt
+When Picker columns data is acquired asynchronously, use `loading` prop to show loading prompt.
 
 ```html
 <van-picker title="Title" :columns="columns" :loading="loading" />
@@ -285,7 +285,7 @@ Picker events will pass different parameters according to the columns are single
 
 ### Methods
 
-Use [ref](https://vuejs.org/v2/api/#ref) to get Picker instance and call instance methods
+Use [ref](https://vuejs.org/v2/api/#ref) to get Picker instance and call instance methods.
 
 | Name | Description | Attribute | Return value |
 | --- | --- | --- | --- |
