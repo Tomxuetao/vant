@@ -2,7 +2,7 @@
 
 ### Starter kit
 
-We recomment to use [Vue Cli](https://cli.vuejs.org/zh/) to create a project.
+We recomment to use [Vue Cli](https://cli.vuejs.org/) to create a project.
 
 ```bash
 # Install Vue Cli
@@ -35,7 +35,7 @@ yarn add vant
 
 ### 1. Import on demand
 
-Use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) to import components on demand
+Use [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) to import components on demand.
 
 ```bash
 # Install plugin
@@ -72,7 +72,7 @@ module.exports = {
 import { Button } from 'vant';
 ```
 
-> If you are using TypeScript，please use [ts-import-plugin](https://github.com/Brooooooklyn/ts-import-plugin) instead
+> If you are using TypeScript，please use [ts-import-plugin](https://github.com/Brooooooklyn/ts-import-plugin) instead.
 
 ### 2. Manually import
 
