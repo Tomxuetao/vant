@@ -1,7 +1,7 @@
 {
   "name": "vant",
-  "version": "3.5.1",
-  "description": "Mobile UI Components built on Vue",
+  "version": "3.5.3",
+  "description": "Lightweight Mobile UI Components built on Vue",
   "main": "lib/vant.cjs.js",
   "module": "es/index.mjs",
   "style": "lib/index.css",
@@ -10,8 +10,7 @@
   "jsdelivr": "lib/vant.min.js",
   "files": [
     "es",
-    "lib",
-    "vetur"
+    "lib"
   ],
   "scripts": {
     "dev": "vant-cli dev",
@@ -20,7 +19,7 @@
     "build": "vant-cli build",
     "build:site": "vant-cli build-site",
     "release": "cp ../../README.md ./ && vant-cli release && rm ./README.md",
-    "release:site": "pnpm build:site && gh-pages -d site-dist --add",
+    "release:site": "pnpm build:site && npx gh-pages -d site-dist --add",
     "test:watch": "vant-cli test --watch",
     "test:coverage": "open test/coverage/index.html"
   },
@@ -29,10 +28,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/youzan/vant.git",
+    "url": "https://github.com/vant-ui/vant.git",
     "directory": "packages/vant"
   },
-  "bugs": "https://github.com/youzan/vant/issues",
+  "bugs": "https://github.com/vant-ui/vant/issues",
   "author": "chenjiahan",
   "license": "MIT",
   "keywords": [
@@ -58,8 +57,8 @@
     "@vant/cli": "workspace:*",
     "@vant/eslint-config": "workspace:*",
     "@vue/runtime-core": "^3.2.27",
-    "@vue/test-utils": "^2.0.0-rc.16",
-    "typescript": "~4.5.2",
+    "@vue/test-utils": "^2.0.1",
+    "typescript": "^4.7.4",
     "vue": "^3.2.27",
     "vue-router": "^4.0.12"
   },
@@ -69,9 +68,5 @@
     "*.css",
     "*.less"
   ],
-  "web-types": "vetur/web-types.json",
-  "vetur": {
-    "tags": "vetur/tags.json",
-    "attributes": "vetur/attributes.json"
-  }
+  "web-types": "lib/web-types.json"
 }

@@ -103,13 +103,30 @@ module.exports = {
 - Type: `string`
 - Default: `'less'`
 
-CSS preprocess Config, support `less` and `sass`. Use `less` by default.
+CSS preprocessor config, support `less` and `sass`. Use `less` by default.
 
 ```js
 module.exports = {
   build: {
     css: {
       preprocessor: 'sass',
+    },
+  },
+};
+```
+
+### build.css.removeSourceFile
+
+- Type: `boolean`
+- Default: `'false'`
+
+Whether to remove the source style files after build.
+
+```js
+module.exports = {
+  build: {
+    css: {
+      removeSourceFile: true,
     },
   },
 };
@@ -204,6 +221,45 @@ module.exports = {
 
 `npm` package manager.
 
+### build.bundleOptions
+
+- Type: `BundleOptions[]`
+
+Specify the format of the bundled output.
+
+The type of `BundleOptions`:
+
+```ts
+type BundleOption = {
+  // Whether to minify code (Tips: es format output can't be minified by vite)
+  minify?: boolean;
+  // Formats, can be set to 'es' | 'cjs' | 'umd' | 'iife'
+  formats: LibraryFormats[];
+  // Dependencies to external (Vue is externaled by default)
+  external?: string[];
+};
+```
+
+Default value：
+
+```ts
+const DEFAULT_OPTIONS: BundleOption[] = [
+  {
+    minify: false,
+    formats: ['umd'],
+  },
+  {
+    minify: true,
+    formats: ['umd'],
+  },
+  {
+    minify: false,
+    formats: ['es', 'cjs'],
+    external: allDependencies,
+  },
+];
+```
+
 ### site.title
 
 - Type: `string`
@@ -269,7 +325,7 @@ module.exports = {
     versions: [
       {
         label: 'v1',
-        link: 'https://youzan.github.io/vant/v1/',
+        link: 'https://vant-ui.github.io/vant/v1/',
       },
     ],
   },
@@ -324,12 +380,19 @@ Customize iframe URL.
 
 Customize HTML meta tag, key means name, value means content.
 
+### site.headHtml
+
+- Type: `string`
+- Default: `undefined`
+
+Insert a custom HTML content in the `<head>` tag.
+
 ### site.enableVConsole
 
 - Type: `boolean`
 - Default: `false`
 
-Should use [vConsole](https://github.com/Tencent/vConsole) to debug when dev. For mobile.
+Whether to enable [vConsole](https://github.com/Tencent/vConsole) debugging in dev, usually used for mobile debugging.
 
 ## PostCSS
 

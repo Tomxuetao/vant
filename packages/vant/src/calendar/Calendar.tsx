@@ -214,6 +214,8 @@ export default defineComponent({
       return !currentDate.value;
     });
 
+    const getSelectedDate = () => currentDate.value;
+
     // calculate the position of the elements
     // and find the elements that needs to be rendered
     const onScroll = () => {
@@ -310,7 +312,7 @@ export default defineComponent({
 
       raf(() => {
         // add Math.floor to avoid decimal height issues
-        // https://github.com/youzan/vant/issues/5640
+        // https://github.com/vant-ui/vant/issues/5640
         bodyHeight = Math.floor(useRect(bodyRef).height);
       });
       scrollToCurrentDate();
@@ -554,6 +556,7 @@ export default defineComponent({
     useExpose<CalendarExpose>({
       reset,
       scrollToDate,
+      getSelectedDate,
     });
 
     onMountedOrActivated(init);

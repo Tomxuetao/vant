@@ -8,17 +8,16 @@
 
 <p align="center">
     <img src="https://img.shields.io/npm/v/vant?style=flat-square" alt="npm version" />
-    <img src="https://img.shields.io/github/workflow/status/youzan/vant/CI/dev?style=flat-square" alt="CI Status" />
-    <img src="https://img.shields.io/codecov/c/github/youzan/vant/dev.svg?style=flat-square&color=#4fc08d" alt="Coverage Status" />
+    <img src="https://img.shields.io/github/workflow/status/vant-ui/vant/CI/dev?style=flat-square" alt="CI Status" />
+    <img src="https://img.shields.io/codecov/c/github/vant-ui/vant/dev.svg?style=flat-square&color=#4fc08d" alt="Coverage Status" />
     <img src="https://img.shields.io/npm/dm/vant.svg?style=flat-square&color=#4fc08d" alt="downloads" />
-    <img src="https://img.shields.io/jsdelivr/npm/hm/vant?style=flat-square" alt="Jsdelivr Hits">
     <img src="https://img.badgesize.io/https://unpkg.com/vant@3/lib/vant.min.js?compression=gzip&style=flat-square&label=gzip%20size&color=#4fc08d" alt="Gzip Size" />
 </p>
 
 <p align="center">
   🔥 <a href="https://vant-contrib.gitee.io/vant">文档网站（国内）</a>
   &nbsp;
-  🌈 <a href="https://youzan.github.io/vant">文档网站（GitHub）</a>
+  🌈 <a href="https://vant-ui.github.io/vant">文档网站（GitHub）</a>
 </p>
 
 ---
@@ -33,6 +32,7 @@ Vant 是一个**轻量、可靠的移动端组件库**，于 2017 年开源。
 
 - 🚀 性能极佳，组件平均体积小于 1KB（min+gzip）
 - 🚀 70+ 个高质量组件，覆盖移动端主流场景
+- 🚀 零外部依赖，不依赖三方 npm 包
 - 💪 使用 TypeScript 编写，提供完整的类型定义
 - 💪 单元测试覆盖率超过 90%，提供稳定性保障
 - 📖 提供丰富的中英文文档和组件示例
@@ -92,11 +92,11 @@ Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一�
 
 | 项目 | 描述 |
 | --- | --- |
-| [vant-weapp](https://github.com/youzan/vant-weapp) | Vant 微信小程序版 |
+| [vant-weapp](https://github.com/vant-ui/vant-weapp) | Vant 微信小程序版 |
 | [vant-demo](https://github.com/vant-ui/vant-demo) | Vant 官方示例合集 |
-| [vant-cli](https://github.com/youzan/vant/tree/dev/packages/vant-cli) | 开箱即用的组件库搭建工具 |
-| [vant-icons](https://github.com/youzan/vant/tree/dev/packages/vant-icons) | Vant 图标库 |
-| [vant-touch-emulator](https://github.com/youzan/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Vant 的辅助库 |
+| [vant-cli](https://github.com/vant-ui/vant/tree/dev/packages/vant-cli) | 开箱即用的组件库搭建工具 |
+| [vant-icons](https://github.com/vant-ui/vant/tree/dev/packages/vant-icons) | Vant 图标库 |
+| [vant-touch-emulator](https://github.com/vant-ui/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Vant 的辅助库 |
 
 ## 社区生态
 
@@ -136,7 +136,7 @@ Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一�
 
 感谢以下小伙伴们为 Vant 发展做出的贡献：
 
-<a href="https://github.com/youzan/vant/graphs/contributors">
+<a href="https://github.com/vant-ui/vant/graphs/contributors">
   <img src="https://opencollective.com/vant/contributors.svg?width=890&button=false" alt="contributors">
 </a>
 
@@ -144,7 +144,7 @@ Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一�
 
 修改代码请阅读我们的 [贡献指南](https://vant-contrib.gitee.io/vant/#/zh-CN/contribution)。
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/youzan/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/youzan/vant/pulls)。
+使用过程中发现任何问题都可以提 [Issue](https://github.com/vant-ui/vant/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/vant-ui/vant/pulls)。
 
 ## 开源协议
 

@@ -17,16 +17,15 @@
     "build": "vant-cli build",
     "build:site": "vant-cli build-site",
     "release": "vant-cli release --tag next",
-    "release:site": "pnpm build:site && gh-pages -d site-dist",
+    "release:site": "pnpm build:site && npx gh-pages -d site-dist",
     "test:watch": "vant-cli test --watch",
     "test:coverage": "open test/coverage/index.html"
   },
   "author": "",
-  "lint-staged": {
+  "nano-staged": {
     "*.md": "prettier --write",
     "*.{ts,tsx,js,vue,less,scss}": "prettier --write",
-    "*.{ts,tsx,js,vue}": "eslint --fix",
-    "*.{vue,css,less,scss}": "stylelint --fix"
+    "*.{ts,tsx,js,vue}": "eslint --fix"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
@@ -40,11 +39,6 @@
     "root": true,
     "extends": [
       "@vant"
-    ]
-  },
-  "stylelint": {
-    "extends": [
-      "@vant/stylelint-config"
     ]
   },
   "prettier": {

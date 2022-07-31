@@ -6,14 +6,11 @@ export default {
     skipInstall: ['lazyload'],
     packageManager: 'pnpm',
     extensions: {
-      esm: '.mjs'
+      esm: '.mjs',
     },
     site: {
       publicPath:
         (typeof window === 'undefined' && process.env.PUBLIC_PATH) || '/vant/',
-    },
-    vetur: {
-      tagPrefix: 'van-',
     },
   },
   site: {
@@ -24,7 +21,7 @@ export default {
       { label: 'v4', link: '/vant/v4/' },
     ],
     baiduAnalytics: {
-      seed: 'ad6b5732c36321f2dafed737ac2da92f',
+      seed: 'af5d41bc4e446e76665dbe3ec18d55c3',
     },
     htmlMeta: {
       'docsearch:version': 'v3',
@@ -43,7 +40,7 @@ export default {
           },
           {
             logo: 'https://fastly.jsdelivr.net/npm/@vant/assets/github.svg',
-            url: 'https://github.com/youzan/vant',
+            url: 'https://github.com/vant-ui/vant',
           },
         ],
         nav: [
@@ -461,13 +458,13 @@ export default {
       'en-US': {
         title: 'Vant 3',
         subtitle: ' (for Vue 3)',
-        description: 'Mobile UI Components built on Vue',
+        description: 'Lightweight Mobile UI Components built on Vue',
         logo: 'https://fastly.jsdelivr.net/npm/@vant/assets/logo.png',
         langLabel: 'EN',
         links: [
           {
             logo: 'https://fastly.jsdelivr.net/npm/@vant/assets/github.svg',
-            url: 'https://github.com/youzan/vant',
+            url: 'https://github.com/vant-ui/vant',
           },
         ],
         nav: [

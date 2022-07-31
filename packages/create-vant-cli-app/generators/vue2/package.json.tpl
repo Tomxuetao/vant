@@ -15,18 +15,17 @@
     "build": "vant-cli build",
     "release": "vant-cli release",
     "test:coverage": "open test/coverage/index.html",
-    "build-site": "vant-cli build-site && gh-pages -d site-dist"
+    "build-site": "vant-cli build-site && npx gh-pages -d site-dist"
   },
   "author": "",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "nano-staged",
       "commit-msg": "vant-cli commit-lint"
     }
   },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx,vue}": "eslint --fix",
-    "*.{vue,css,less,scss}": "stylelint --fix"
+  "nano-staged": {
+    "*.{ts,tsx,js,jsx,vue}": "eslint --fix"
   },
   "peerDependencies": {
     "vue": "^2.6.11",
@@ -41,11 +40,6 @@
     "root": true,
     "extends": [
       "@vant"
-    ]
-  },
-  "stylelint": {
-    "extends": [
-      "@vant/stylelint-config"
     ]
   },
   "prettier": {

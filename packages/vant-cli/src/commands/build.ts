@@ -3,7 +3,7 @@ import execa from 'execa';
 import { join, relative } from 'path';
 import { clean } from './clean.js';
 import { CSS_LANG } from '../common/css.js';
-import { ora, consola } from '../common/logger.js';
+import { createSpinner, consola } from '../common/logger.js';
 import { installDependencies } from '../common/manager.js';
 import { compileSfc } from '../compiler/compile-sfc.js';
 import { compileStyle } from '../compiler/compile-style.js';
@@ -14,7 +14,7 @@ import { genStyleDepsMap } from '../compiler/gen-style-deps-map.js';
 import { genComponentStyle } from '../compiler/gen-component-style.js';
 import { SRC_DIR, LIB_DIR, ES_DIR } from '../common/constant.js';
 import { genPackageStyle } from '../compiler/gen-package-style.js';
-import { genVeturConfig } from '../compiler/gen-vetur-config.js';
+import { genWebStormTypes } from '../compiler/web-types/index.js';
 import {
   isDir,
   isSfc,
@@ -137,7 +137,7 @@ async function buildPackageStyleEntry() {
 async function buildBundledOutputs() {
   setModuleEnv('esmodule');
   await compileBundles();
-  genVeturConfig();
+  genWebStormTypes();
 }
 
 const tasks = [
@@ -178,14 +178,14 @@ const tasks = [
 async function runBuildTasks() {
   for (let i = 0; i < tasks.length; i++) {
     const { task, text } = tasks[i];
-    const spinner = ora(text).start();
+    const spinner = createSpinner(text).start();
 
     try {
       /* eslint-disable no-await-in-loop */
       await task();
-      spinner.succeed(text);
+      spinner.success({ text });
     } catch (err) {
-      spinner.fail(text);
+      spinner.error({ text });
       console.log(err);
       throw err;
     }
