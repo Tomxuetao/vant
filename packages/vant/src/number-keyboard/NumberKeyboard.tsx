@@ -41,7 +41,7 @@ type KeyConfig = {
   wider?: boolean;
 };
 
-const numberKeyboardProps = {
+export const numberKeyboardProps = {
   show: Boolean,
   title: String,
   theme: makeStringProp<NumberKeyboardTheme>('default'),
@@ -280,10 +280,8 @@ export default defineComponent({
               unfit: !props.safeAreaInsetBottom,
               'with-title': !!Title,
             })}
-            onTouchstart={stopPropagation}
             onAnimationend={onAnimationEnd}
-            // @ts-ignore
-            onWebkitAnimationEnd={onAnimationEnd}
+            onTouchstartPassive={stopPropagation}
           >
             {Title}
             <div class={bem('body')}>

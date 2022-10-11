@@ -167,7 +167,7 @@ test('lazy-render prop', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
-test('month-show event', async () => {
+test('monthShow event', async () => {
   const wrapper = mount(Calendar, {
     props: {
       show: true,
@@ -175,7 +175,7 @@ test('month-show event', async () => {
   });
   await later(200);
 
-  expect(wrapper.emitted('month-show')).toBeTruthy();
+  expect(wrapper.emitted('monthShow')).toBeTruthy();
 });
 
 test('first day of week', async () => {
@@ -248,7 +248,7 @@ test('should disabled prompt when using show-range-prompt prop', async () => {
   expect(document.querySelector('.van-toast')).toBeFalsy();
 });
 
-test('should emit over-range when exceeded max range', async () => {
+test('should emit overRange when exceeded max range', async () => {
   const onOverRange = jest.fn();
   const wrapper = mount(Calendar, {
     props: {
@@ -269,4 +269,42 @@ test('should emit over-range when exceeded max range', async () => {
   days[18].trigger('click');
 
   expect(onOverRange).toHaveBeenCalledTimes(1);
+});
+
+test('should allow default date to be minDate when using allowSameDay prop', () => {
+  const minDate = new Date(1800, 0, 1);
+  const maxDate = new Date(1800, 0, 29);
+  const wrapper = mount(Calendar, {
+    props: {
+      type: 'range',
+      poppable: false,
+      minDate,
+      maxDate,
+      defaultDate: [minDate, minDate],
+      lazyRender: false,
+      allowSameDay: true,
+    },
+  });
+
+  wrapper.find('.van-calendar__confirm').trigger('click');
+  expect(wrapper.emitted<[Date]>('confirm')![0][0]).toEqual([minDate, minDate]);
+});
+
+test('should allow default date to be maxDate when using allowSameDay prop', () => {
+  const minDate = new Date(1800, 0, 1);
+  const maxDate = new Date(1800, 0, 29);
+  const wrapper = mount(Calendar, {
+    props: {
+      type: 'range',
+      poppable: false,
+      minDate,
+      maxDate,
+      defaultDate: [maxDate, maxDate],
+      lazyRender: false,
+      allowSameDay: true,
+    },
+  });
+
+  wrapper.find('.van-calendar__confirm').trigger('click');
+  expect(wrapper.emitted<[Date]>('confirm')![0][0]).toEqual([maxDate, maxDate]);
 });

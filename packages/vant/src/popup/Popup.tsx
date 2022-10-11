@@ -31,6 +31,7 @@ import { useExpose } from '../composables/use-expose';
 import { useLockScroll } from '../composables/use-lock-scroll';
 import { useLazyRender } from '../composables/use-lazy-render';
 import { POPUP_TOGGLE_KEY } from '../composables/on-popup-reopen';
+import { useGlobalZIndex } from '../composables/use-global-z-index';
 
 // Components
 import { Icon } from '../icon';
@@ -39,7 +40,7 @@ import { Overlay } from '../overlay';
 // Types
 import type { PopupPosition, PopupCloseIconPosition } from './types';
 
-const popupProps = extend({}, popupSharedProps, {
+export const popupProps = extend({}, popupSharedProps, {
   round: Boolean,
   position: makeStringProp<PopupPosition>('center'),
   closeIcon: makeStringProp('cross'),
@@ -56,8 +57,6 @@ export type PopupProps = ExtractPropTypes<typeof popupProps>;
 
 const [name, bem] = createNamespace('popup');
 
-let globalZIndex = 2000;
-
 export default defineComponent({
   name,
 
@@ -72,8 +71,8 @@ export default defineComponent({
     'closed',
     'keydown',
     'update:show',
-    'click-overlay',
-    'click-close-icon',
+    'clickOverlay',
+    'clickCloseIcon',
   ],
 
   setup(props, { emit, attrs, slots }) {
@@ -103,12 +102,10 @@ export default defineComponent({
 
     const open = () => {
       if (!opened) {
-        if (props.zIndex !== undefined) {
-          globalZIndex = +props.zIndex;
-        }
-
         opened = true;
-        zIndex.value = ++globalZIndex;
+
+        zIndex.value =
+          props.zIndex !== undefined ? +props.zIndex : useGlobalZIndex();
 
         emit('open');
       }
@@ -127,7 +124,7 @@ export default defineComponent({
     };
 
     const onClickOverlay = (event: MouseEvent) => {
-      emit('click-overlay', event);
+      emit('clickOverlay', event);
 
       if (props.closeOnClickOverlay) {
         close();
@@ -144,6 +141,8 @@ export default defineComponent({
             zIndex={zIndex.value}
             duration={props.duration}
             customStyle={props.overlayStyle}
+            role={props.closeOnClickOverlay ? 'button' : undefined}
+            tabindex={props.closeOnClickOverlay ? 0 : undefined}
             onClick={onClickOverlay}
           />
         );
@@ -151,7 +150,7 @@ export default defineComponent({
     };
 
     const onClickCloseIcon = (event: MouseEvent) => {
-      emit('click-close-icon', event);
+      emit('clickCloseIcon', event);
       close();
     };
 
@@ -185,6 +184,8 @@ export default defineComponent({
           v-show={props.show}
           ref={popupRef}
           style={style.value}
+          role="dialog"
+          tabindex={0}
           class={[
             bem({
               round,

@@ -29,8 +29,8 @@ test('should change z-index when using z-index prop', async () => {
   });
 
   await nextTick();
-  expect(wrapper.find('.van-popup').style.zIndex).toEqual('11');
-  expect(wrapper.find('.van-overlay').style.zIndex).toEqual('11');
+  expect(wrapper.find('.van-popup').style.zIndex).toEqual('10');
+  expect(wrapper.find('.van-overlay').style.zIndex).toEqual('10');
 });
 
 test('should lock scroll when showed', async () => {
@@ -93,7 +93,7 @@ test('should not render overlay when overlay prop is false', () => {
   expect(wrapper.find('.van-overlay').exists()).toBeFalsy();
 });
 
-test('should emit click-overlay event when overlay is clicked', async () => {
+test('should emit clickOverlay event when overlay is clicked', async () => {
   wrapper = mount(Popup, {
     props: {
       show: true,
@@ -101,7 +101,7 @@ test('should emit click-overlay event when overlay is clicked', async () => {
   });
   const overlay = wrapper.find('.van-overlay');
   overlay.trigger('click');
-  expect(wrapper.emitted('click-overlay')).toHaveLength(1);
+  expect(wrapper.emitted('clickOverlay')).toHaveLength(1);
 });
 
 test('should emit open event when show prop is set to true', async () => {
@@ -182,7 +182,7 @@ test('should render close icon when using closeable prop', () => {
   expect(wrapper.emitted('update:show')[0][0]).toEqual(false);
 });
 
-test('should emit click-close-icon event when close icon is clicked', () => {
+test('should emit clickCloseIcon event when close icon is clicked', () => {
   wrapper = mount(Popup, {
     propsData: {
       show: true,
@@ -191,7 +191,7 @@ test('should emit click-close-icon event when close icon is clicked', () => {
   });
 
   wrapper.find('.van-popup__close-icon').trigger('click');
-  expect(wrapper.emitted('click-close-icon')).toHaveLength(1);
+  expect(wrapper.emitted('clickCloseIcon')).toHaveLength(1);
 });
 
 test('should render correct close icon when using close-icon prop', () => {

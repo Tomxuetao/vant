@@ -38,12 +38,13 @@ export type ImagePosition =
   | 'left'
   | string;
 
-const imageProps = {
+export const imageProps = {
   src: String,
   alt: String,
   fit: String as PropType<ImageFit>,
   position: String as PropType<ImagePosition>,
   round: Boolean,
+  block: Boolean,
   width: numericProp,
   height: numericProp,
   radius: numericProp,
@@ -191,7 +192,10 @@ export default defineComponent({
     }
 
     return () => (
-      <div class={bem({ round: props.round })} style={style.value}>
+      <div
+        class={bem({ round: props.round, block: props.block })}
+        style={style.value}
+      >
         {renderImage()}
         {renderPlaceholder()}
         {slots.default?.()}

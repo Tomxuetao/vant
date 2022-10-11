@@ -67,10 +67,14 @@ pnpm add vant
 
 ```js
 import { createApp } from 'vue';
+// 1. Import the components you need
 import { Button } from 'vant';
+// 2. Import the components style
 import 'vant/lib/index.css';
 
 const app = createApp();
+
+// 3. Register the components you need
 app.use(Button);
 ```
 
@@ -88,16 +92,15 @@ Vant 3/4 supports modern browsers and Chrome >= 51、iOS >= 10.0 (same as Vue 3)
 | --- | --- |
 | [vant-weapp](https://github.com/vant-ui/vant-weapp) | WeChat MiniProgram UI |
 | [vant-demo](https://github.com/vant-ui/vant-demo) | Collection of Vant demos |
-| [vant-cli](https://github.com/vant-ui/vant/tree/dev/packages/vant-cli) | Scaffold for UI library |
-| [vant-icons](https://github.com/vant-ui/vant/tree/dev/packages/vant-icons) | Vant icons |
-| [vant-touch-emulator](https://github.com/vant-ui/vant/tree/dev/packages/vant-touch-emulator) | Using vant in desktop browsers |
+| [vant-cli](https://github.com/vant-ui/vant/tree/main/packages/vant-cli) | Scaffold for UI library |
+| [vant-icons](https://github.com/vant-ui/vant/tree/main/packages/vant-icons) | Vant icons |
+| [vant-touch-emulator](https://github.com/vant-ui/vant/tree/main/packages/vant-touch-emulator) | Using vant in desktop browsers |
 
 ## Community Ecosystem
 
 | Project | Description |
 | --- | --- |
 | [3lang3/react-vant](https://github.com/3lang3/react-vant) | React mobile UI Components based on Vant |
-| [rc-ui-lib](https://github.com/rancui/rc-ui-lib) | React mobile UI Components based on Vant |
 | [vant-aliapp](https://github.com/ant-move/Vant-Aliapp) | Alipay MiniProgram UI |
 | [taroify](https://gitee.com/mallfoundry/taroify) | Vant Taro |
 | [vant-theme](https://github.com/Aisen60/vant-theme) | Online theme preview built on Vant UI |
@@ -108,7 +111,7 @@ Vant 3/4 supports modern browsers and Chrome >= 51、iOS >= 10.0 (same as Vue 3)
 
 - [Documentation](https://vant-ui.github.io/vant)
 - [Changelog](https://vant-ui.github.io/vant#/en-US/changelog)
-- [Gitter](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+- [Discussions](https://github.com/vant-ui/vant/discussions)
 
 ## Preview
 

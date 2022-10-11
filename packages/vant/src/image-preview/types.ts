@@ -45,3 +45,15 @@ export type ImagePreviewInstance = ComponentPublicInstance<
   ImagePreviewProps,
   ImagePreviewExpose
 >;
+
+export type ImagePreviewThemeVars = {
+  imagePreviewIndexTextColor?: string;
+  imagePreviewIndexFontSize?: string;
+  imagePreviewIndexLineHeight?: number | string;
+  imagePreviewIndexTextShadow?: string;
+  imagePreviewOverlayBackground?: string;
+  imagePreviewCloseIconSize?: string;
+  imagePreviewCloseIconColor?: string;
+  imagePreviewCloseIconMargin?: string;
+  imagePreviewCloseIconZIndex?: number | string;
+};

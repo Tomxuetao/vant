@@ -117,7 +117,7 @@ export default {
 
 ```js
 import { ref } from 'vue';
-import { Toast } from 'vant';
+import { closeToast, showLoadingToast } from 'vant';
 
 export default {
   setup() {
@@ -136,10 +136,10 @@ export default {
     // 校验函数可以返回 Promise，实现异步校验
     const asyncValidator = (val) =>
       new Promise((resolve) => {
-        Toast.loading('验证中...');
+        showLoadingToast('验证中...');
 
         setTimeout(() => {
-          Toast.clear();
+          closeToast();
           resolve(val === '1234');
         }, 1000);
       });
@@ -169,7 +169,7 @@ export default {
 ```html
 <van-field name="switch" label="开关">
   <template #input>
-    <van-switch v-model="checked" size="20" />
+    <van-switch v-model="checked" />
   </template>
 </van-field>
 ```
@@ -370,10 +370,16 @@ export default {
   setup() {
     const result = ref('');
     const showPicker = ref(false);
-    const columns = ['杭州', '宁波', '温州', '嘉兴', '湖州'];
+    const columns = [
+      { text: '杭州', value: 'Hangzhou' },
+      { text: '宁波', value: 'Ningbo' },
+      { text: '温州', value: 'Wenzhou' },
+      { text: '绍兴', value: 'Shaoxing' },
+      { text: '湖州', value: 'Huzhou' },
+    ];
 
     const onConfirm = (value) => {
-      result.value = value;
+      result.value = selectedOptions[0]?.text;
       showPicker.value = false;
     };
 
@@ -387,26 +393,22 @@ export default {
 };
 ```
 
-### 表单项类型 - 时间选择器
+### 表单项类型 - 日期选择器
 
-在表单中使用 [DatetimePicker 组件](#/zh-CN/datetime-picker)。
+在表单中使用 [DatePicker 组件](#/zh-CN/date-picker)。
 
 ```html
 <van-field
   v-model="result"
   is-link
   readonly
-  name="datetimePicker"
+  name="datePicker"
   label="时间选择"
   placeholder="点击选择时间"
   @click="showPicker = true"
 />
 <van-popup v-model:show="showPicker" position="bottom">
-  <van-datetime-picker
-    type="time"
-    @confirm="onConfirm"
-    @cancel="showPicker = false"
-  />
+  <van-date-picker @confirm="onConfirm" @cancel="showPicker = false" />
 </van-popup>
 ```
 
@@ -417,9 +419,8 @@ export default {
   setup() {
     const result = ref('');
     const showPicker = ref(false);
-
     const onConfirm = (value) => {
-      result.value = value;
+      result.value = selectedValues.join('/');
       showPicker.value = false;
     };
 
@@ -463,12 +464,9 @@ export default {
   setup() {
     const result = ref('');
     const showArea = ref(false);
-    const onConfirm = (areaValues) => {
+    const onConfirm = ({ selectedOptions }) => {
       showArea.value = false;
-      result.value = areaValues
-        .filter((item) => !!item)
-        .map((item) => item.name)
-        .join('/');
+      areaCode.value = selectedOptions.map((item) => item.text).join('/');
     };
 
     return {
@@ -526,7 +524,7 @@ export default {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | label-width | 表单项 label 宽度，默认单位为`px` | _number \| string_ | `6.2em` |
-| label-align | 表单项 label 对齐方式，可选值为 `center` `right` | _string_ | `left` |
+| label-align | 表单项 label 对齐方式，可选值为 `center` `right` `top` | _string_ | `left` |
 | input-align | 输入框对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | error-message-align | 错误提示文案对齐方式，可选值为 `center` `right` | _string_ | `left` |
 | validate-trigger | 表单校验触发时机，可选值为 `onChange`、`onSubmit`，支持通过数组同时设置多个值，具体用法见下方表格 | _string \| string[]_ | `onBlur` |
@@ -543,16 +541,17 @@ export default {
 
 ### Rule 数据结构
 
-使用 Field 的`rules`属性可以定义校验规则，可选属性如下:
+使用 Field 的 `rules` 属性可以定义校验规则，可选属性如下:
 
 | 键名 | 说明 | 类型 |
 | --- | --- | --- |
-| required | 是否为必选字段，当值为空字符串、空数组、`false`、`undefined`、`null` 时，校验不通过 | _boolean_ |
-| message | 错误提示文案 | _string \| (value, rule) => string_ |
-| validator | 通过函数进行校验 | _(value, rule) => boolean \| string \| Promise_ |
-| pattern | 通过正则表达式进行校验 | _RegExp_ |
-| trigger | 本项规则的触发时机，可选值为 `onChange`、`onBlur` | _string_ |
+| required | 是否为必选字段，当值为空值时（空字符串、空数组、`false`、`undefined`、`null` ），校验不通过 | _boolean_ |
+| message | 错误提示文案，可以设置为一个函数来返回动态的文案内容 | _string \| (value, rule) => string_ |
+| validator | 通过函数进行校验，可以返回一个 Promise 来进行异步校验 | _(value, rule) => boolean \| string \| Promise_ |
+| pattern | 通过正则表达式进行校验，正则无法匹配表示校验不通过 | _RegExp_ |
+| trigger | 设置本项规则的触发时机，优先级高于 Form 组件设置的 `validate-trigger` 属性，可选值为 `onChange`、`onBlur`、`onSubmit` | _string \| string[]_ |
 | formatter | 格式化函数，将表单项的值转换后进行校验 | _(value, rule) => any_ |
+| validateEmpty `v3.6.0` | 设置 `validator` 和 `pattern` 是否要对空值进行校验，默认值为 `true`，可以设置为 `false` 来禁用该行为 | _boolean_ |
 
 ### validate-trigger 可选值
 

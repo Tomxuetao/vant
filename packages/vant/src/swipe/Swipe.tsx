@@ -28,7 +28,12 @@ import {
 } from '../utils';
 
 // Composables
-import { doubleRaf, useChildren, usePageVisibility } from '@vant/use';
+import {
+  doubleRaf,
+  useChildren,
+  useEventListener,
+  usePageVisibility,
+} from '@vant/use';
 import { useTouch } from '../composables/use-touch';
 import { useExpose } from '../composables/use-expose';
 import { onPopupReopen } from '../composables/on-popup-reopen';
@@ -38,7 +43,7 @@ import { SwipeState, SwipeExpose, SwipeProvide, SwipeToOptions } from './types';
 
 const [name, bem] = createNamespace('swipe');
 
-const swipeProps = {
+export const swipeProps = {
   loop: truthProp,
   width: numericProp,
   height: numericProp,
@@ -66,6 +71,7 @@ export default defineComponent({
 
   setup(props, { emit, slots }) {
     const root = ref<HTMLElement>();
+    const track = ref<HTMLElement>();
     const state = reactive<SwipeState>({
       rect: null,
       width: 0,
@@ -229,7 +235,7 @@ export default defineComponent({
       });
     };
 
-    let autoplayTimer: NodeJS.Timeout;
+    let autoplayTimer: ReturnType<typeof setTimeout>;
 
     const stopAutoplay = () => clearTimeout(autoplayTimer);
 
@@ -301,8 +307,15 @@ export default defineComponent({
         touch.move(event);
 
         if (isCorrectDirection.value) {
-          preventDefault(event, props.stopPropagation);
-          move({ offset: delta.value });
+          const isEdgeTouch =
+            !props.loop &&
+            ((state.active === 0 && delta.value > 0) ||
+              (state.active === count.value - 1 && delta.value < 0));
+
+          if (!isEdgeTouch) {
+            preventDefault(event, props.stopPropagation);
+            move({ offset: delta.value });
+          }
         }
       }
     };
@@ -435,13 +448,18 @@ export default defineComponent({
     onDeactivated(stopAutoplay);
     onBeforeUnmount(stopAutoplay);
 
+    // useEventListener will set passive to `false` to eliminate the warning of Chrome
+    useEventListener('touchmove', onTouchMove, {
+      target: track,
+    });
+
     return () => (
       <div ref={root} class={bem()}>
         <div
+          ref={track}
           style={trackStyle.value}
           class={bem('track', { vertical: props.vertical })}
-          onTouchstart={onTouchStart}
-          onTouchmove={onTouchMove}
+          onTouchstartPassive={onTouchStart}
           onTouchend={onTouchEnd}
           onTouchcancel={onTouchEnd}
         >

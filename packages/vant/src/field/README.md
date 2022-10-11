@@ -241,6 +241,21 @@ Use `input-align` prop to align the input value.
 </van-cell-group>
 ```
 
+### Label Align
+
+Use `label-align` prop to align the input value.
+
+```html
+<van-cell-group inset>
+  <van-field
+    v-model="value"
+    label="Tel"
+    placeholder="Please input tel number"
+    input-align="top"
+  />
+</van-cell-group>
+```
+
 ## API
 
 ### Props
@@ -276,7 +291,7 @@ Use `input-align` prop to align the input value.
 | arrow-direction | Can be set to `left` `up` `down` | _string_ | `right` |
 | label-class | Label className | _string \| Array \| object_ | - |
 | label-width | Label width | _number \| string_ | `6.2em` |
-| label-align | Label align, can be set to `center` `right` | _FieldTextAlign_ | `left` |
+| label-align | Label align, can be set to `center` `right` `top` | _FieldTextAlign_ | `left` |
 | input-align | Input align, can be set to `center` `right` | _FieldTextAlign_ | `left` |
 | autosize | Textarea auto resize, can accept an object,<br>e.g. { maxHeight: 100, minHeight: 50 } | _boolean \| FieldAutosizeConfig_ | `false` |
 | left-icon | Left side icon name | _string_ | - |
@@ -299,7 +314,7 @@ Use `input-align` prop to align the input value.
 | click-left-icon | Emitted when the left icon is clicked | _event: MouseEvent_ |
 | click-right-icon | Emitted when the right icon is clicked | _event: MouseEvent_ |
 | start-validate `v3.5.1` | Emitted when start validation | - |
-| end-validate `v3.5.1` | Emitted when end validation | _{ status: string }_ |
+| end-validate `v3.5.1` | Emitted when end validation | _{ status: string, message: string }_ |
 
 ### Methods
 
@@ -365,7 +380,7 @@ The component provides the following CSS variables, which can be used to customi
 | Name | Default Value | Description |
 | --- | --- | --- |
 | --van-field-label-width | _6.2em_ | - |
-| --van-field-label-color | _var(--van-gray-7)_ | - |
+| --van-field-label-color | _var(--van-text-color)_ | - |
 | --van-field-label-margin-right | _var(--van-padding-sm)_ | - |
 | --van-field-input-text-color | _var(--van-text-color)_ | - |
 | --van-field-input-error-text-color | _var(--van-danger-color)_ | - |

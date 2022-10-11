@@ -26,3 +26,18 @@ export type TabsExpose = {
 };
 
 export type TabsInstance = ComponentPublicInstance<TabsProps, TabsExpose>;
+
+export type TabsThemeVars = {
+  tabTextColor?: string;
+  tabActiveTextColor?: string;
+  tabDisabledTextColor?: string;
+  tabFontSize?: string;
+  tabLineHeight?: number | string;
+  tabsDefaultColor?: string;
+  tabsLineHeight?: number | string;
+  tabsCardHeight?: string;
+  tabsNavBackground?: string;
+  tabsBottomBarWidth?: string;
+  tabsBottomBarHeight?: string;
+  tabsBottomBarColor?: string;
+};

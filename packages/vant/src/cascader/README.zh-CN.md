@@ -89,7 +89,7 @@ export default {
   v-model="cascaderValue"
   title="请选择所在地区"
   :options="options"
-  active-color="#1989fa"
+  active-color="#ee0a24"
   @close="show = false"
   @finish="onFinish"
 />
@@ -260,12 +260,12 @@ export default {
 | value | 选中项的值 | _string \| number_ | - |
 | options | 可选项数据源 | _CascaderOption[]_ | `[]` |
 | placeholder | 未选中时的提示文案 | _string_ | `请选择` |
-| active-color | 选中状态的高亮颜色 | _string_ | `#ee0a24` |
+| active-color | 选中状态的高亮颜色 | _string_ | `#1989fa` |
 | swipeable `v3.0.11` | 是否开启手势左右滑动切换 | _boolean_ | `false` |
 | closeable | 是否显示关闭图标 | _boolean_ | `true` |
 | show-header `v3.4.2` | 是否展示标题栏 | _boolean_ | `true` |
 | close-icon `v3.0.10` | 关闭图标名称或图片链接，等同于 Icon 组件的 [name 属性](#/zh-CN/icon#props) | _string_ | `cross` |
-| field-names `v3.0.4` | 自定义 `options` 结构中的字段 | _object_ | `{ text: 'text', value: 'value', children: 'children' }` |
+| field-names `v3.0.4` | 自定义 `options` 结构中的字段 | _CascaderFieldNames_ | `{ text: 'text', value: 'value', children: 'children' }` |
 
 ### CascaderOption 数据结构
 

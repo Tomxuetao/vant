@@ -26,7 +26,7 @@ pnpm add vant
 
 ### CDN
 
-The easiest way to use Vant is to include a CDN link in the html file, after which you can access all components via the global variable `vant`.
+The easiest way to use Vant is to include a CDN link in the HTML file, after which you can access all components via the global variable `vant`.
 
 ```html
 <!-- import style -->
@@ -50,7 +50,7 @@ The easiest way to use Vant is to include a CDN link in the html file, after whi
   app.use(vant.Lazyload);
 
   // Call function component
-  vant.Toast('Message');
+  vant.showToast('Message');
 
   app.mount('#app');
 </script>
@@ -92,9 +92,28 @@ In the GUI, click on 'Dependencies' -> `Install Dependencies` and add `vant` to 
 
 ## Usage
 
-### Import on demand (recommended)
+### Basic Usage
 
-If you are using vite, webpack or vue-cli, please use [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components).
+The basic usage of Vant components;
+
+```js
+import { createApp } from 'vue';
+// 1. Import the components you need
+import { Button } from 'vant';
+// 2. Import the components style
+import 'vant/lib/index.css';
+
+const app = createApp();
+
+// 3. Register the components you need
+app.use(Button);
+```
+
+> Tip: Vant supports Tree Shaking by default, so you don't need to configure any plugins, the unused JS code will be removed by Tree Shaking, but CSS styles cannot be optimized by it.
+
+### Import on demand
+
+If you are using vite, webpack or vue-cli, you can use [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components), this plugin can help you to auto importing components and reduce CSS file size.
 
 #### 1. Install Plugin
 
@@ -160,16 +179,14 @@ module.exports = {
 };
 ```
 
-#### 3. Import Components
+#### 3. Using Components
 
-Then you can import components from Vant:
+Then you can using components from Vant in the template, the `unplugin-vue-components` will automatically import the corresponding Vant components.
 
-```js
-import { createApp } from 'vue';
-import { Button } from 'vant';
-
-const app = createApp();
-app.use(Button);
+```html
+<template>
+  <van-button type="primary" />
+</template>
 ```
 
 #### 4. Style of Function Components
@@ -178,43 +195,41 @@ Some components of Vant are provided as function, including `Toast`, `Dialog`, `
 
 ```js
 // Toast
-import { Toast } from 'vant';
+import { showToast } from 'vant';
 import 'vant/es/toast/style';
 
 // Dialog
-import { Dialog } from 'vant';
+import { showDialog } from 'vant';
 import 'vant/es/dialog/style';
 
 // Notify
-import { Notify } from 'vant';
+import { showNotify } from 'vant';
 import 'vant/es/notify/style';
 
 // ImagePreview
-import { ImagePreview } from 'vant';
+import { showImagePreview } from 'vant';
 import 'vant/es/image-preview/style';
 ```
 
-> Vant supports tree shaking by default, so you don't necessarily need the webpack plugin, if you can't accept the full import of css.
+> Tip: "Full Import" and "On-demand Import" should not be used at the same time, otherwise it will lead to problems such as code duplication and style overrides.
 
-### Import all components (not recommended)
+## With Frameworks
 
-Import all components will **increase the bundle size**, so this is not recommended.
+### Use Vant in Nuxt 3
 
-```js
-import { createApp } from 'vue';
-import Vant from 'vant';
-import 'vant/lib/index.css';
+When using Vant in Nuxt 3, you should add `/vant/` to the `build.transpile`:
 
-const app = createApp();
-app.use(Vant);
+```ts
+import { defineNuxtConfig } from 'nuxt';
+
+export default defineNuxtConfig({
+  experimental: {
+    externalVue: true,
+  },
+});
 ```
 
-### Manually import (not recommended)
+Reference:
 
-```js
-// import script
-import Button from 'vant/es/button/index';
-// import style
-// if the component does not have a style file, there is no need to import
-import 'vant/es/button/style/index';
-```
+- [nuxt/framework#6761](https://github.com/nuxt/framework/issues/6761)
+- [nuxt/framework#4084](https://github.com/nuxt/framework/issues/4084)

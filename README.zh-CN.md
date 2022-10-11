@@ -71,10 +71,14 @@ pnpm add vant
 
 ```js
 import { createApp } from 'vue';
+// 1. 引入你需要的组件
 import { Button } from 'vant';
+// 2. 引入组件样式
 import 'vant/lib/index.css';
 
 const app = createApp();
+
+// 3. 注册你需要的组件
 app.use(Button);
 ```
 
@@ -94,9 +98,9 @@ Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一�
 | --- | --- |
 | [vant-weapp](https://github.com/vant-ui/vant-weapp) | Vant 微信小程序版 |
 | [vant-demo](https://github.com/vant-ui/vant-demo) | Vant 官方示例合集 |
-| [vant-cli](https://github.com/vant-ui/vant/tree/dev/packages/vant-cli) | 开箱即用的组件库搭建工具 |
-| [vant-icons](https://github.com/vant-ui/vant/tree/dev/packages/vant-icons) | Vant 图标库 |
-| [vant-touch-emulator](https://github.com/vant-ui/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Vant 的辅助库 |
+| [vant-cli](https://github.com/vant-ui/vant/tree/main/packages/vant-cli) | 开箱即用的组件库搭建工具 |
+| [vant-icons](https://github.com/vant-ui/vant/tree/main/packages/vant-icons) | Vant 图标库 |
+| [vant-touch-emulator](https://github.com/vant-ui/vant/tree/main/packages/vant-touch-emulator) | 在桌面端使用 Vant 的辅助库 |
 
 ## 社区生态
 
@@ -105,7 +109,6 @@ Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一�
 | 项目 | 描述 |
 | --- | --- |
 | [3lang3/react-vant](https://github.com/3lang3/react-vant) | 参照 Vant 打造的 React 框架移动端组件库 |
-| [rc-ui-lib](https://github.com/rancui/rc-ui-lib) | 参照 Vant 打造的 React 框架移动端组件库 |
 | [vant-aliapp](https://github.com/ant-move/Vant-Aliapp) | Vant 支付宝小程序版 |
 | [taroify](https://gitee.com/mallfoundry/taroify) | Vant Taro 版 |
 | [vant-theme](https://github.com/Aisen60/vant-theme) | Vant 在线主题预览工具 |
@@ -116,7 +119,8 @@ Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一�
 
 - [详细文档](https://vant-contrib.gitee.io/vant)
 - [更新日志](https://vant-contrib.gitee.io/vant#/zh-CN/changelog)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+- [码云镜像仓库](https://gitee.com/vant-contrib/vant)
+- [Discussions 讨论区](https://github.com/vant-ui/vant/discussions)
 
 ## 手机预览
 

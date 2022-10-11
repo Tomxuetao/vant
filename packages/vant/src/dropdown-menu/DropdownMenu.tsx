@@ -35,7 +35,7 @@ import type { DropdownMenuProvide, DropdownMenuDirection } from './types';
 
 const [name, bem] = createNamespace('dropdown-menu');
 
-const dropdownMenuProps = {
+export const dropdownMenuProps = {
   overlay: truthProp,
   zIndex: numericProp,
   duration: makeNumericProp(0.2),
@@ -145,7 +145,10 @@ export default defineComponent({
 
     linkChildren({ id, props, offset });
     useClickAway(root, onClickAway);
-    useEventListener('scroll', onScroll, { target: scrollParent });
+    useEventListener('scroll', onScroll, {
+      target: scrollParent,
+      passive: true,
+    });
 
     return () => (
       <div ref={root} class={bem()}>

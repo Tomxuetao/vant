@@ -12,7 +12,7 @@ import {
 
 const [name, bem] = createNamespace('password-input');
 
-const passwordInputProps = {
+export const passwordInputProps = {
   info: String,
   mask: truthProp,
   value: makeStringProp(''),
@@ -78,7 +78,7 @@ export default defineComponent({
         <div class={bem()}>
           <ul
             class={[bem('security'), { [BORDER_SURROUND]: !props.gutter }]}
-            onTouchstart={onTouchStart}
+            onTouchstartPassive={onTouchStart}
           >
             {renderPoints()}
           </ul>

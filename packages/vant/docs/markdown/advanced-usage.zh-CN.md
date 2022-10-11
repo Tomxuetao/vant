@@ -172,6 +172,8 @@ module.exports = {
 };
 ```
 
+> Tips: 在配置 postcss-pxtorem 时，同样应避免 ignore node_modules 目录，否则会导致 Vant 样式无法被编译。
+
 #### 其他设计稿尺寸
 
 如果设计稿的尺寸不是 375，而是 750 或其他大小，可以将 `rootValue` 配置调整为:
@@ -195,7 +197,7 @@ module.exports = {
 
 Vant 是一个面向移动端的组件库，因此默认只适配了移动端设备，这意味着组件只监听了移动端的 `touch` 事件，没有监听桌面端的 `mouse` 事件。
 
-如果你需要在桌面端使用 Vant，可以引入我们提供的 [@vant/touch-emulator](https://github.com/vant-ui/vant/tree/dev/packages/vant-touch-emulator)，这个库会在桌面端自动将 `mouse` 事件转换成对应的 `touch` 事件，使得组件能够在桌面端使用。
+如果你需要在桌面端使用 Vant，可以引入我们提供的 [@vant/touch-emulator](https://github.com/vant-ui/vant/tree/main/packages/vant-touch-emulator)，这个库会在桌面端自动将 `mouse` 事件转换成对应的 `touch` 事件，使得组件能够在桌面端使用。
 
 ```bash
 # 安装模块

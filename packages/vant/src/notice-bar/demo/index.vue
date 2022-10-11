@@ -69,6 +69,7 @@ const t = useTranslate({
         vertical
         class="notice-swipe"
         :autoplay="3000"
+        :touchable="false"
         :show-indicators="false"
       >
         <van-swipe-item>{{ t('poetry1') }}</van-swipe-item>
@@ -81,8 +82,6 @@ const t = useTranslate({
 
 <style lang="less">
 .demo-notice-bar {
-  background: var(--van-background-color-light);
-
   .van-notice-bar:not(:first-of-type) {
     margin-top: 4px;
   }

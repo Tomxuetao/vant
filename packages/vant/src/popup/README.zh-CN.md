@@ -118,6 +118,7 @@ export default {
 | overlay-class | 自定义遮罩层类名 | _string \| Array \| object_ | - |
 | overlay-style | 自定义遮罩层样式 | _object_ | - |
 | duration | 动画时长，单位秒，设置为 0 可以禁用动画 | _number \| string_ | `0.3` |
+| z-index | 将弹窗的 z-index 层级设置为一个固定值 | _number \| string_ | `2000+` |
 | round | 是否显示圆角 | _boolean_ | `false` |
 | lock-scroll | 是否锁定背景滚动 | _boolean_ | `true` |
 | lazy-render | 是否在显示弹层时才渲染节点 | _boolean_ | `true` |
@@ -172,12 +173,12 @@ import type {
 
 组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/config-provider)。
 
-| 名称 | 默认值 | 描述 |
-| --- | --- | --- |
-| --van-popup-background-color | _var(--van-background-color-light)_ | - |
-| --van-popup-transition | _transform var(--van-animation-duration-base)_ | - |
-| --van-popup-round-border-radius | _16px_ | - |
-| --van-popup-close-icon-size | _22px_ | - |
-| --van-popup-close-icon-color | _var(--van-gray-5)_ | - |
-| --van-popup-close-icon-margin | _16px_ | - |
-| --van-popup-close-icon-z-index | _1_ | - |
+| 名称                           | 默认值                               | 描述 |
+| ------------------------------ | ------------------------------------ | ---- |
+| --van-popup-background         | _var(--van-background-2)_            | -    |
+| --van-popup-transition         | _transform var(--van-duration-base)_ | -    |
+| --van-popup-round-radius       | _16px_                               | -    |
+| --van-popup-close-icon-size    | _22px_                               | -    |
+| --van-popup-close-icon-color   | _var(--van-gray-5)_                  | -    |
+| --van-popup-close-icon-margin  | _16px_                               | -    |
+| --van-popup-close-icon-z-index | _1_                                  | -    |

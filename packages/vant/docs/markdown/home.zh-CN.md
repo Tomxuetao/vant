@@ -31,7 +31,7 @@ Vant 是一个**轻量、可靠的移动端组件库**，于 2017 年开源。
 
 ### 版本提示
 
-你当前浏览的是 **Vant 3.x 版本** 的文档，适用于 Vue 3 开发。如果你在使用 Vue 2，请浏览 [Vant 2 文档](https://vant-contrib.gitee.io/vant/v2)。
+你当前浏览的是 **Vant 4.x 版本** 的文档，适用于 Vue 3 开发。如果你在使用 Vue 2，请浏览 [Vant 2 文档](https://vant-contrib.gitee.io/vant/v2)。
 
 ### 快速上手
 
@@ -53,9 +53,9 @@ Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一�
 | --- | --- |
 | [vant-weapp](https://github.com/vant-ui/vant-weapp) | Vant 微信小程序版 |
 | [vant-demo](https://github.com/vant-ui/vant-demo) | Vant 官方示例合集 |
-| [vant-cli](https://github.com/vant-ui/vant/tree/dev/packages/vant-cli) | 开箱即用的组件库搭建工具 |
-| [vant-icons](https://github.com/vant-ui/vant/tree/dev/packages/vant-icons) | Vant 图标库 |
-| [vant-touch-emulator](https://github.com/vant-ui/vant/tree/dev/packages/vant-touch-emulator) | 在桌面端使用 Vant 的辅助库 |
+| [vant-cli](https://github.com/vant-ui/vant/tree/main/packages/vant-cli) | 开箱即用的组件库搭建工具 |
+| [vant-icons](https://github.com/vant-ui/vant/tree/main/packages/vant-icons) | Vant 图标库 |
+| [vant-touch-emulator](https://github.com/vant-ui/vant/tree/main/packages/vant-touch-emulator) | 在桌面端使用 Vant 的辅助库 |
 
 ### 社区生态
 
@@ -64,7 +64,6 @@ Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一�
 | 项目 | 描述 |
 | --- | --- |
 | [3lang3/react-vant](https://github.com/3lang3/react-vant) | 参照 Vant 打造的 React 移动端组件库 |
-| [rc-ui-lib](https://github.com/rancui/rc-ui-lib) | 基于 Vant 的 React 版本移动端 UI 组件库 |
 | [vant-aliapp](https://github.com/ant-move/Vant-Aliapp) | Vant 支付宝小程序版 |
 | [taroify](https://gitee.com/mallfoundry/taroify) | Vant Taro 版 |
 | [vant-theme](https://github.com/Aisen60/vant-theme) | Vant 在线主题预览工具 |
@@ -75,8 +74,8 @@ Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一�
 
 - [意见反馈](https://github.com/vant-ui/vant/issues)
 - [更新日志](#/zh-CN/changelog)
-- [码云镜像](https://gitee.com/vant-contrib/vant)
-- [Gitter 讨论组](https://gitter.im/vant-contrib/discuss?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+- [码云镜像仓库](https://gitee.com/vant-contrib/vant)
+- [Discussions 讨论区](https://github.com/vant-ui/vant/discussions)
 
 ## 贡献
 

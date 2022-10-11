@@ -1,14 +1,29 @@
 # 更新日志
 
-## v5.0.0 (未发布)
+## v5.0.2
+
+`2022-10-07`
+
+- 修复首次运行 dev 时 vite 引入了两份 Vue 代码导致渲染失败的问题
+
+## v5.0.1
+
+`2022-10-06`
+
+- 修复 jest 版本未正确升级的问题
+
+## v5.0.0
 
 ### 依赖升级
 
+`2022-10-06`
+
 对以下依赖进行了大版本升级：
 
-- vite v3
-- @vitejs/plugin-vue v3
-- @vitejs/plugin-vue-jsx v2
+- vite: 由 v2 升级至 v3
+- jest: 由 v27 升级至 v29
+- @vitejs/plugin-vue: 由 v2 升级至 v3
+- @vitejs/plugin-vue-jsx: 由 v1 升级至 v2
 
 ### 依赖精简
 
@@ -30,6 +45,12 @@ yarn add stylelint@13 @vant/stylelint-config
 由于 Vue 3 推荐使用 volar 而不是 vetur，因此移除了 vetur 相关的配置文件。
 
 现在会默认生成 WebStorm 所需的 web-types.json 文件到 `lib/web-types.json` 目录下。
+
+## v4.0.4
+
+`2022-07-02`
+
+- 修复构建 sfc 文件的类型定义时报错的问题
 
 ## v4.0.3
 

@@ -26,12 +26,14 @@ import {
   makeStringProp,
   makeNumericProp,
   createNamespace,
+  type ComponentInstance,
 } from '../utils';
 import {
   cutString,
   runSyncRule,
   endComposing,
   mapInputType,
+  isEmptyValue,
   startComposing,
   getRuleMessage,
   resizeTextarea,
@@ -41,7 +43,11 @@ import {
 import { cellSharedProps } from '../cell/Cell';
 
 // Composables
-import { CUSTOM_FIELD_INJECTION_KEY, useParent } from '@vant/use';
+import {
+  useParent,
+  useEventListener,
+  CUSTOM_FIELD_INJECTION_KEY,
+} from '@vant/use';
 import { useId } from '../composables/use-id';
 import { useExpose } from '../composables/use-expose';
 
@@ -99,7 +105,7 @@ export const fieldSharedProps = {
   },
 };
 
-const fieldProps = extend({}, cellSharedProps, fieldSharedProps, {
+export const fieldProps = extend({}, cellSharedProps, fieldSharedProps, {
   rows: numericProp,
   type: makeStringProp<FieldType>('text'),
   rules: Array as PropType<FieldRule[]>,
@@ -127,11 +133,11 @@ export default defineComponent({
     'focus',
     'clear',
     'keypress',
-    'click-input',
-    'end-validate',
-    'start-validate',
-    'click-left-icon',
-    'click-right-icon',
+    'clickInput',
+    'endValidate',
+    'startValidate',
+    'clickLeftIcon',
+    'clickRightIcon',
     'update:modelValue',
   ],
 
@@ -144,6 +150,7 @@ export default defineComponent({
     });
 
     const inputRef = ref<HTMLInputElement>();
+    const clearIconRef = ref<ComponentInstance>();
     const customValue = ref<() => unknown>();
 
     const { parent: form } = useParent(FORM_KEY);
@@ -201,6 +208,10 @@ export default defineComponent({
             }
 
             if (rule.validator) {
+              if (isEmptyValue(value) && rule.validateEmpty === false) {
+                return;
+              }
+
               return runRuleValidator(value, rule).then((result) => {
                 if (result && typeof result === 'string') {
                   state.status = 'failed';
@@ -220,13 +231,17 @@ export default defineComponent({
       state.validateMessage = '';
     };
 
-    const endValidate = () => emit('end-validate', { status: state.status });
+    const endValidate = () =>
+      emit('endValidate', {
+        status: state.status,
+        message: state.validateMessage,
+      });
 
     const validate = (rules = props.rules) =>
       new Promise<FieldValidateError | void>((resolve) => {
         resetValidation();
         if (rules) {
-          emit('start-validate');
+          emit('startValidate');
           runRules(rules).then(() => {
             if (state.status === 'failed') {
               resolve({
@@ -341,15 +356,14 @@ export default defineComponent({
       resetScroll();
     };
 
-    const onClickInput = (event: MouseEvent) => emit('click-input', event);
+    const onClickInput = (event: MouseEvent) => emit('clickInput', event);
 
-    const onClickLeftIcon = (event: MouseEvent) =>
-      emit('click-left-icon', event);
+    const onClickLeftIcon = (event: MouseEvent) => emit('clickLeftIcon', event);
 
     const onClickRightIcon = (event: MouseEvent) =>
-      emit('click-right-icon', event);
+      emit('clickRightIcon', event);
 
-    const onClear = (event: MouseEvent) => {
+    const onClear = (event: TouchEvent) => {
       preventDefault(event);
       emit('update:modelValue', '');
       emit('clear', event);
@@ -522,9 +536,9 @@ export default defineComponent({
         {renderInput()}
         {showClear.value && (
           <Icon
+            ref={clearIconRef}
             name={props.clearIcon}
             class={bem('clear')}
-            onTouchstart={onClear}
           />
         )}
         {renderRightIcon()}
@@ -564,22 +578,29 @@ export default defineComponent({
       nextTick(adjustTextareaSize);
     });
 
+    // useEventListener will set passive to `false` to eliminate the warning of Chrome
+    useEventListener('touchstart', onClear, {
+      target: computed(() => clearIconRef.value?.$el),
+    });
+
     return () => {
       const disabled = getProp('disabled');
       const labelAlign = getProp('labelAlign');
       const Label = renderLabel();
       const LeftIcon = renderLeftIcon();
 
+      const renderTitle = () =>
+        labelAlign === 'top' ? [LeftIcon, Label] : Label;
+
       return (
         <Cell
           v-slots={{
-            icon: LeftIcon ? () => LeftIcon : null,
-            title: Label ? () => Label : null,
+            icon: LeftIcon && labelAlign !== 'top' ? () => LeftIcon : null,
+            title: Label || labelAlign === 'top' ? renderTitle : null,
             value: renderFieldBody,
             extra: slots.extra,
           }}
           size={props.size}
-          icon={props.leftIcon}
           class={bem({
             error: showError.value,
             disabled,

@@ -1,3 +1,4 @@
+import { isObject } from './validate';
 import type { ComponentPublicInstance } from 'vue';
 
 export function noop() {}
@@ -16,7 +17,7 @@ export function get(object: any, path: string): any {
   let result = object;
 
   keys.forEach((key) => {
-    result = result[key] ?? '';
+    result = isObject(result) ? result[key] ?? '' : '';
   });
 
   return result;
@@ -36,6 +37,9 @@ export function pick<T, U extends keyof T>(
     return ret;
   }, {} as Writeable<Pick<T, U>>);
 }
+
+export const isSameValue = (newValue: unknown, oldValue: unknown) =>
+  JSON.stringify(newValue) === JSON.stringify(oldValue);
 
 export const toArray = <T>(item: T | T[]): T[] =>
   Array.isArray(item) ? item : [item];

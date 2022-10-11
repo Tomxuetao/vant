@@ -13,7 +13,7 @@ import {
 } from '../utils';
 
 // Composables
-import { useRect, useCustomFieldValue } from '@vant/use';
+import { useRect, useCustomFieldValue, useEventListener } from '@vant/use';
 import { useRefs } from '../composables/use-refs';
 import { useTouch } from '../composables/use-touch';
 
@@ -54,7 +54,7 @@ function getRateStatus(
   return { status: 'void', value: 0 };
 }
 
-const rateProps = {
+export const rateProps = {
   size: numericProp,
   icon: makeStringProp('star'),
   color: String,
@@ -268,6 +268,11 @@ export default defineComponent({
 
     useCustomFieldValue(() => props.modelValue);
 
+    // useEventListener will set passive to `false` to eliminate the warning of Chrome
+    useEventListener('touchmove', onTouchMove, {
+      target: groupRef,
+    });
+
     return () => (
       <div
         ref={groupRef}
@@ -279,8 +284,7 @@ export default defineComponent({
         tabindex={props.disabled ? undefined : 0}
         aria-disabled={props.disabled}
         aria-readonly={props.readonly}
-        onTouchstart={onTouchStart}
-        onTouchmove={onTouchMove}
+        onTouchstartPassive={onTouchStart}
       >
         {list.value.map(renderStar)}
       </div>

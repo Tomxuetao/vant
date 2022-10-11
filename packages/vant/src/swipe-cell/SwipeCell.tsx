@@ -21,7 +21,7 @@ import {
 } from '../utils';
 
 // Composables
-import { useRect, useClickAway } from '@vant/use';
+import { useRect, useClickAway, useEventListener } from '@vant/use';
 import { useTouch } from '../composables/use-touch';
 import { useExpose } from '../composables/use-expose';
 
@@ -34,7 +34,7 @@ import type {
 
 const [name, bem] = createNamespace('swipe-cell');
 
-const swipeCellProps = {
+export const swipeCellProps = {
   name: makeNumericProp(''),
   disabled: Boolean,
   leftWidth: numericProp,
@@ -209,6 +209,11 @@ export default defineComponent({
 
     useClickAway(root, () => onClick('outside'), { eventName: 'touchstart' });
 
+    // useEventListener will set passive to `false` to eliminate the warning of Chrome
+    useEventListener('touchmove', onTouchMove, {
+      target: root,
+    });
+
     return () => {
       const wrapperStyle = {
         transform: `translate3d(${state.offset}px, 0, 0)`,
@@ -220,8 +225,7 @@ export default defineComponent({
           ref={root}
           class={bem()}
           onClick={getClickHandler('cell', lockClick)}
-          onTouchstart={onTouchStart}
-          onTouchmove={onTouchMove}
+          onTouchstartPassive={onTouchStart}
           onTouchend={onTouchEnd}
           onTouchcancel={onTouchEnd}
         >

@@ -6,7 +6,6 @@ import {
   nextTick,
   onActivated,
   defineComponent,
-  getCurrentInstance,
   type PropType,
   type InjectionKey,
   type CSSProperties,
@@ -61,7 +60,7 @@ import type { TabsProvide, TabsType } from './types';
 
 const [name, bem] = createNamespace('tabs');
 
-const tabsProps = {
+export const tabsProps = {
   type: makeStringProp<TabsType>('line'),
   color: String,
   border: Boolean,
@@ -93,31 +92,9 @@ export default defineComponent({
 
   props: tabsProps,
 
-  emits: [
-    'click',
-    'change',
-    'scroll',
-    'disabled',
-    'rendered',
-    'click-tab',
-    'update:active',
-  ],
+  emits: ['change', 'scroll', 'rendered', 'clickTab', 'update:active'],
 
   setup(props, { emit, slots }) {
-    if (process.env.NODE_ENV !== 'production') {
-      const props = getCurrentInstance()?.vnode?.props;
-      if (props && 'onClick' in props) {
-        console.warn(
-          '[Vant] Tabs: "click" event is deprecated, using "click-tab" instead.'
-        );
-      }
-      if (props && 'onDisabled' in props) {
-        console.warn(
-          '[Vant] Tabs: "disabled" event is deprecated, using "click-tab" instead.'
-        );
-      }
-    }
-
     let tabHeight: number;
     let lockScroll: boolean;
     let stickyFixed: boolean;
@@ -125,6 +102,7 @@ export default defineComponent({
     const root = ref<HTMLElement>();
     const navRef = ref<HTMLElement>();
     const wrapRef = ref<HTMLElement>();
+    const contentRef = ref<ComponentInstance>();
 
     const id = useId();
     const scroller = useScrollParent(root);
@@ -238,7 +216,10 @@ export default defineComponent({
       }
     };
 
-    const setCurrentIndex = (currentIndex: number) => {
+    const setCurrentIndex = (
+      currentIndex: number,
+      skipScrollIntoView?: boolean
+    ) => {
       const newIndex = findAvailableTab(currentIndex);
 
       if (!isDef(newIndex)) {
@@ -249,7 +230,14 @@ export default defineComponent({
       const newName = getTabName(newTab, newIndex);
       const shouldEmitChange = state.currentIndex !== null;
 
-      state.currentIndex = newIndex;
+      if (state.currentIndex !== newIndex) {
+        state.currentIndex = newIndex;
+
+        if (!skipScrollIntoView) {
+          scrollIntoView();
+        }
+        setLine();
+      }
 
       if (newName !== props.active) {
         emit('update:active', newName);
@@ -258,16 +246,26 @@ export default defineComponent({
           emit('change', newName, newTab.title);
         }
       }
+
+      // scroll to correct position
+      if (stickyFixed && !props.scrollspy) {
+        setRootScrollTop(
+          Math.ceil(getElementTop(root.value!) - offsetTopPx.value)
+        );
+      }
     };
 
     // correct the index of active tab
-    const setCurrentIndexByName = (name: Numeric) => {
+    const setCurrentIndexByName = (
+      name: Numeric,
+      skipScrollIntoView?: boolean
+    ) => {
       const matched = children.find(
         (tab, index) => getTabName(tab, index) === name
       );
 
       const index = matched ? children.indexOf(matched) : 0;
-      setCurrentIndex(index);
+      setCurrentIndex(index, skipScrollIntoView);
     };
 
     const scrollToCurrentContent = (immediate = false) => {
@@ -299,11 +297,7 @@ export default defineComponent({
       const { title, disabled } = children[index];
       const name = getTabName(children[index], index);
 
-      if (disabled) {
-        // @deprecated
-        // should be removed in next major version
-        emit('disabled', name, title);
-      } else {
+      if (!disabled) {
         callInterceptor(props.beforeChange, {
           args: [name],
           done: () => {
@@ -312,14 +306,10 @@ export default defineComponent({
           },
         });
 
-        // @deprecated
-        // should be removed in next major version
-        emit('click', name, title);
-
         route(item as ComponentPublicInstance<RouteProps>);
       }
 
-      emit('click-tab', {
+      emit('clickTab', {
         name,
         title,
         event,
@@ -396,10 +386,11 @@ export default defineComponent({
     };
 
     const renderHeader = () => {
-      const { type, border } = props;
-      return (
+      const { type, border, sticky } = props;
+
+      const Header = [
         <div
-          ref={wrapRef}
+          ref={sticky ? undefined : wrapRef}
           class={[
             bem('wrap'),
             { [BORDER_TOP_BOTTOM]: type === 'line' && border },
@@ -420,8 +411,14 @@ export default defineComponent({
             {renderLine()}
             {slots['nav-right']?.()}
           </div>
-        </div>
-      );
+        </div>,
+        slots['nav-bottom']?.(),
+      ];
+
+      if (sticky) {
+        return <div ref={wrapRef}>{Header}</div>;
+      }
+      return Header;
     };
 
     watch([() => props.color, windowWidth], setLine);
@@ -448,23 +445,8 @@ export default defineComponent({
       }
     );
 
-    watch(
-      () => state.currentIndex,
-      () => {
-        scrollIntoView();
-        setLine();
-
-        // scroll to correct position
-        if (stickyFixed && !props.scrollspy) {
-          setRootScrollTop(
-            Math.ceil(getElementTop(root.value!) - offsetTopPx.value)
-          );
-        }
-      }
-    );
-
     const init = () => {
-      setCurrentIndexByName(props.active);
+      setCurrentIndexByName(props.active, true);
       nextTick(() => {
         state.inited = true;
         if (wrapRef.value) {
@@ -477,15 +459,23 @@ export default defineComponent({
     const onRendered = (name: Numeric, title?: string) =>
       emit('rendered', name, title);
 
+    const resize = () => {
+      setLine();
+      nextTick(() => contentRef.value?.swipeRef.value?.resize());
+    };
+
     useExpose({
-      resize: setLine,
+      resize,
       scrollTo,
     });
 
     onActivated(setLine);
     onPopupReopen(setLine);
     onMountedOrActivated(init);
-    useEventListener('scroll', onScroll, { target: scroller });
+    useEventListener('scroll', onScroll, {
+      target: scroller,
+      passive: true,
+    });
 
     linkChildren({
       id,
@@ -505,12 +495,12 @@ export default defineComponent({
             onScroll={onStickyScroll}
           >
             {renderHeader()}
-            {slots['nav-bottom']?.()}
           </Sticky>
         ) : (
-          [renderHeader(), slots['nav-bottom']?.()]
+          renderHeader()
         )}
         <TabsContent
+          ref={contentRef}
           count={children.length}
           inited={state.inited}
           animated={props.animated}

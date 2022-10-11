@@ -101,6 +101,7 @@ app.use(Lazyload);
 | height | Height | _number \| string_ | - |
 | radius | Border Radius | _number \| string_ | `0` |
 | round | Whether to be round | _boolean_ | `false` |
+| block `3.6.3` | Whether the root node is a block element | _boolean_ | `false` |
 | lazy-load | Whether to enable lazy load, should register [Lazyload](#/en-US/lazyload) component | _boolean_ | `false` |
 | show-error | Whether to show error placeholder | _boolean_ | `true` |
 | show-loading | Whether to show loading placeholder | _boolean_ | `true` |
@@ -149,12 +150,12 @@ import type { ImageFit, ImagePosition, ImageProps } from 'vant';
 
 The component provides the following CSS variables, which can be used to customize styles. Please refer to [ConfigProvider component](#/en-US/config-provider).
 
-| Name | Default Value | Description |
-| --- | --- | --- |
-| --van-image-placeholder-text-color | _var(--van-text-color-2)_ | - |
-| --van-image-placeholder-font-size | _var(--van-font-size-md)_ | - |
-| --van-image-placeholder-background-color | _var(--van-background-color)_ | - |
-| --van-image-loading-icon-size | _32px_ | - |
-| --van-image-loading-icon-color | _var(--van-gray-4)_ | - |
-| --van-image-error-icon-size | _32px_ | - |
-| --van-image-error-icon-color | _var(--van-gray-4)_ | - |
+| Name                               | Default Value             | Description |
+| ---------------------------------- | ------------------------- | ----------- |
+| --van-image-placeholder-text-color | _var(--van-text-color-2)_ | -           |
+| --van-image-placeholder-font-size  | _var(--van-font-size-md)_ | -           |
+| --van-image-placeholder-background | _var(--van-background)_   | -           |
+| --van-image-loading-icon-size      | _32px_                    | -           |
+| --van-image-loading-icon-color     | _var(--van-gray-4)_       | -           |
+| --van-image-error-icon-size        | _32px_                    | -           |
+| --van-image-error-icon-color       | _var(--van-gray-4)_       | -           |

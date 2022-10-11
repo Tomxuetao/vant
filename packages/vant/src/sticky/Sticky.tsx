@@ -30,7 +30,7 @@ const [name, bem] = createNamespace('sticky');
 
 export type StickyPosition = 'top' | 'bottom';
 
-const stickyProps = {
+export const stickyProps = {
   zIndex: numericProp,
   position: makeStringProp<StickyPosition>('top'),
   container: Object as PropType<Element>,
@@ -140,7 +140,10 @@ export default defineComponent({
       (value) => emit('change', value)
     );
 
-    useEventListener('scroll', onScroll, { target: scrollParent });
+    useEventListener('scroll', onScroll, {
+      target: scrollParent,
+      passive: true,
+    });
     useVisibilityChange(root, onScroll);
 
     return () => (

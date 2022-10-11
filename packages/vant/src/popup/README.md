@@ -112,6 +112,7 @@ Use `teleport` prop to specify mount location.
 | overlay-class | Custom overlay class | _string \| Array \| object_ | - |
 | overlay-style | Custom overlay style | _object_ | - |
 | duration | Transition duration, unit second | _number \| string_ | `0.3` |
+| z-index | Set the z-index to a fixed value | _number \| string_ | `2000+` |
 | round | Whether to show round corner | _boolean_ | `false` |
 | lock-scroll | Whether to lock background scroll | _boolean_ | `true` |
 | lazy-render | Whether to lazy render util appeared | _boolean_ | `true` |
@@ -168,9 +169,9 @@ The component provides the following CSS variables, which can be used to customi
 
 | Name | Default Value | Description |
 | --- | --- | --- |
-| --van-popup-background-color | _var(--van-background-color-light)_ | - |
-| --van-popup-transition | _transform var(--van-animation-duration-base)_ | - |
-| --van-popup-round-border-radius | _16px_ | - |
+| --van-popup-background | _var(--van-background-2)_ | - |
+| --van-popup-transition | _transform var(--van-duration-base)_ | - |
+| --van-popup-round-radius | _16px_ | - |
 | --van-popup-close-icon-size | _22px_ | - |
 | --van-popup-close-icon-color | _var(--van-gray-5)_ | - |
 | --van-popup-close-icon-margin | _16px_ | - |

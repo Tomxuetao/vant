@@ -40,7 +40,7 @@ const isEqual = (value1?: Numeric, value2?: Numeric) =>
 
 export type StepperTheme = 'default' | 'round';
 
-const stepperProps = {
+export const stepperProps = {
   min: makeNumericProp(1),
   max: makeNumericProp(Infinity),
   name: makeNumericProp(''),
@@ -52,6 +52,7 @@ const stepperProps = {
   showMinus: truthProp,
   showInput: truthProp,
   longPress: truthProp,
+  autoFixed: truthProp,
   allowEmpty: Boolean,
   modelValue: numericProp,
   inputWidth: numericProp,
@@ -83,7 +84,7 @@ export default defineComponent({
   ],
 
   setup(props, { emit }) {
-    const format = (value: Numeric) => {
+    const format = (value: Numeric, autoFixed = true) => {
       const { min, max, allowEmpty, decimalLength } = props;
 
       if (allowEmpty && value === '') {
@@ -93,7 +94,9 @@ export default defineComponent({
       value = formatNumber(String(value), !props.integer);
       value = value === '' ? 0 : +value;
       value = Number.isNaN(value) ? +min : value;
-      value = Math.max(Math.min(+max, value), +min);
+
+      // whether to format the value entered by the user
+      value = autoFixed ? Math.max(Math.min(+max, value), +min) : value;
 
       // format decimal
       if (isDef(decimalLength)) {
@@ -204,7 +207,7 @@ export default defineComponent({
 
     const onBlur = (event: Event) => {
       const input = event.target as HTMLInputElement;
-      const value = format(input.value);
+      const value = format(input.value, props.autoFixed);
       input.value = String(value);
       current.value = value;
       nextTick(() => {
@@ -214,7 +217,7 @@ export default defineComponent({
     };
 
     let isLongPress: boolean;
-    let longPressTimer: NodeJS.Timeout;
+    let longPressTimer: ReturnType<typeof setTimeout>;
 
     const longPressStep = () => {
       longPressTimer = setTimeout(() => {
@@ -259,7 +262,7 @@ export default defineComponent({
         actionType = type;
         onChange();
       },
-      onTouchstart: () => {
+      onTouchstartPassive: () => {
         actionType = type;
         onTouchStart();
       },

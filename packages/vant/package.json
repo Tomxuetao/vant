@@ -1,13 +1,16 @@
 {
   "name": "vant",
-  "version": "3.5.3",
-  "description": "Lightweight Mobile UI Components built on Vue",
+  "version": "4.0.0-rc.5",
+  "description": "Mobile UI Components built on Vue",
   "main": "lib/vant.cjs.js",
   "module": "es/index.mjs",
   "style": "lib/index.css",
   "typings": "lib/index.d.ts",
   "unpkg": "lib/vant.min.js",
   "jsdelivr": "lib/vant.min.js",
+  "npm": {
+    "tag": "next"
+  },
   "files": [
     "es",
     "lib"
@@ -44,29 +47,29 @@
     "components"
   ],
   "dependencies": {
-    "@vant/icons": "^1.8.0",
-    "@vant/popperjs": "^1.2.1",
-    "@vant/use": "^1.4.1"
+    "@vant/popperjs": "^1.3.0",
+    "@vant/use": "^1.4.3"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^16",
+    "@types/node": "^16.11.56",
+    "@types/jest": "^29.1.1",
     "@vant/area-data": "workspace:*",
     "@vant/cli": "workspace:*",
     "@vant/eslint-config": "workspace:*",
-    "@vue/runtime-core": "^3.2.27",
-    "@vue/test-utils": "^2.0.1",
-    "typescript": "^4.7.4",
-    "vue": "^3.2.27",
-    "vue-router": "^4.0.12"
+    "@vant/icons": "workspace:*",
+    "@vue/runtime-core": "^3.2.38",
+    "@vue/test-utils": "^2.0.2",
+    "typescript": "^4.8.2",
+    "vue": "^3.2.38",
+    "vue-router": "^4.1.5"
   },
   "sideEffects": [
     "es/**/style/*",
     "lib/**/style/*",
-    "*.css",
-    "*.less"
+    "*.css"
   ],
   "web-types": "lib/web-types.json"
 }
