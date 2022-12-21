@@ -19,6 +19,114 @@ Vant follows [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/).
 
 ## Details
 
+### [v4.0.3](https://github.com/vant-ui/vant/compare/v4.0.2...v4.0.3)
+
+`2022-12-13`
+
+**Bug Fixes**
+
+- Field: failed to dynamically set empty label [#11373](https://github.com/vant-ui/vant/issues/11373)
+- ImagePreview: fix loading when previewing images [#11376](https://github.com/vant-ui/vant/issues/11376)
+
+### [v4.0.2](https://github.com/vant-ui/vant/compare/v4.0.1...v4.0.2)
+
+`2022-12-03`
+
+**Bug Fixes**
+
+- Field: incorrect cursor position when using formatter [#11348](https://github.com/vant-ui/vant/issues/11348)
+- Image: load event not triggered in nuxt3 [128972](https://github.com/vant-ui/vant/commit/128972a75329d4b14028d00cd23dac66038e2d4c)
+- NavBar: update placeholder height when window resized [#11351](https://github.com/vant-ui/vant/issues/11351)
+
+### [v4.0.1](https://github.com/vant-ui/vant/compare/v4.0.0...v4.0.1)
+
+`2022-12-01`
+
+**Feature**
+
+- Picker: add selectedIndexes to the confirm event [#11329](https://github.com/vant-ui/vant/issues/11329)
+
+**Bug Fixes**
+
+- Field: set selection range only when focused [#11333](https://github.com/vant-ui/vant/issues/11333)
+
+### [v4.0.0](https://github.com/vant-ui/vant/compare/v4.0.0-rc.9...v4.0.0)
+
+`2022-11-26`
+
+**Feature**
+
+- List: add disabled prop [#11307](https://github.com/vant-ui/vant/issues/11307)
+- BackTop: allow dynamically set target prop [#11311](https://github.com/vant-ui/vant/issues/11311)
+- BackTop: allow using css var to custom position [#11312](https://github.com/vant-ui/vant/issues/11312)
+- BackTop: rename visibility-height prop to offset [#11309](https://github.com/vant-ui/vant/issues/11309)
+
+**Bug Fixes**
+
+- Field: keep selection position after updating value [#11308](https://github.com/vant-ui/vant/issues/11308)
+
+### [v4.0.0-rc.9](https://github.com/vant-ui/vant/compare/v4.0.0-rc.8...v4.0.0-rc.9)
+
+`2022-11-24`
+
+**Bug Fixes**
+
+- Cell: arrow-direction assignment right is invalid [#11279](https://github.com/vant-ui/vant/issues/11279)
+- Style: body normalize not work [#11287](https://github.com/vant-ui/vant/issues/11287)
+
+### [v4.0.0-rc.8](https://github.com/vant-ui/vant/compare/v4.0.0-rc.7...v4.0.0-rc.8)
+
+`2022-11-20`
+
+**Feature**
+
+- add new BackTop component, note that the API is not stable yet, we may change the API before 4.0 release. [#11236](https://github.com/vant-ui/vant/issues/11236)
+
+**Bug Fixes**
+
+- DropdownItem: should inherit attrs when using teleport [#11273](https://github.com/vant-ui/vant/issues/11273)
+- List: incorrect initial loading value [#11275](https://github.com/vant-ui/vant/issues/11275)
+- NumberKeyboard: should inherit attrs when using teleport [#11274](https://github.com/vant-ui/vant/issues/11274)
+
+### [v4.0.0-rc.7](https://github.com/vant-ui/vant/compare/v4.0.0-rc.6...v4.0.0-rc.7)
+
+`2022-11-13`
+
+**New Component**
+
+- Add new SkeletonAvatar、SkeletonTitle、SkeletonImage、SkeletonParagraph components [#11173](https://github.com/vant-ui/vant/issues/11173)
+
+**Feature**
+
+- ImagePreview: add long-press event [#11252](https://github.com/vant-ui/vant/issues/11252)
+- Popover: support uncontrolled mode [#11244](https://github.com/vant-ui/vant/issues/11244)
+
+**Bug Fixes**
+
+- ActionSheet: fix that close is invalid without title [#11213](https://github.com/vant-ui/vant/issues/11213)
+- DatePicker: only throw error in development [#11248](https://github.com/vant-ui/vant/issues/11248)
+- Lazyload: lazy-image h is not a function [#11229](https://github.com/vant-ui/vant/issues/11229)
+- Picker: correct v-model when emit confirm event [#11194](https://github.com/vant-ui/vant/issues/11194)
+- Picker: empty column will cause error [#11249](https://github.com/vant-ui/vant/issues/11249)
+- Uploader: chooseFile is invalid when show-upload is false [#11218](https://github.com/vant-ui/vant/issues/11218)
+
+### [v4.0.0-rc.6](https://github.com/vant-ui/vant/compare/v4.0.0-rc.5...v4.0.0-rc.6)
+
+`2022-10-23`
+
+**Feature**
+
+- Calendar: add params for subtitle slot [#11168](https://github.com/vant-ui/vant/issues/11168)
+- Cell: add tag prop [#11139](https://github.com/vant-ui/vant/issues/11139)
+- ImagePreview: add image slot [#11133](https://github.com/vant-ui/vant/issues/11133)
+- Toast: add wordBreak prop [#11147](https://github.com/vant-ui/vant/issues/11147)
+
+**Bug Fixes**
+
+- CouponList: fix the style of coupon checkbox [#11153](https://github.com/vant-ui/vant/issues/11153)
+- CouponList: incorrect field style [#11155](https://github.com/vant-ui/vant/issues/11155)
+- Swipe: failed to render when inside popup [#11162](https://github.com/vant-ui/vant/issues/11162)
+
 ### [v4.0.0-rc.5](https://github.com/vant-ui/vant/compare/v4.0.0-rc.4...v4.0.0-rc.5)
 
 `2022-10-07`

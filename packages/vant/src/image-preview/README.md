@@ -138,6 +138,39 @@ export default {
 };
 ```
 
+### Use image slot
+
+When using ImagePreview component, you can custom the image through the `image` slot, such as render a video content.
+
+```html
+<van-image-preview v-model:show="show" :images="images">
+  <template #image="{ src }">
+    <video style="width: 100%;" controls>
+      <source :src="src" />
+    </video>
+  </template>
+</van-image-preview>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const show = ref(false);
+    const images = [
+      'https://www.w3school.com.cn/i/movie.ogg',
+      'https://www.w3school.com.cn/i/movie.ogg',
+      'https://www.w3school.com.cn/i/movie.ogg',
+    ];
+    return {
+      show,
+      images,
+    };
+  },
+};
+```
+
 ## API
 
 ### Methods
@@ -202,11 +235,11 @@ Vant exports following ImagePreview utility functions:
 
 | Event | Description | Arguments |
 | --- | --- | --- |
-| close | Emitted when closing ImagePreview | _value: { index, url }_ |
+| close | Emitted when closing ImagePreview | _{ index: number, url: string }_ |
 | closed | Emitted when ImagePreview is closed | - |
 | change | Emitted when current image changed | _index: number_ |
-| scale | Emitted when scaling current image | _value: ImagePreviewScaleEventParams_ |
-| scale | Emitted when scaling current image | _value: ImagePreviewScaleEventParams_ |
+| scale | Emitted when scaling current image | _{ index: number, scale: number }_ |
+| long-press | Emitted when long press current image | _{ index: number }_ |
 
 ### Methods
 
@@ -246,6 +279,7 @@ imagePreviewRef.value?.swipeTo(1);
 | --- | --- | --- |
 | index | Custom index | { index: index of current image } |
 | cover | Custom content that covers the image preview | - |
+| image `v3.6.5` | Custom image content | { src: current image src } |
 
 ### onClose Parameters
 

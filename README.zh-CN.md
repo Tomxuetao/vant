@@ -8,10 +8,9 @@
 
 <p align="center">
     <img src="https://img.shields.io/npm/v/vant?style=flat-square" alt="npm version" />
-    <img src="https://img.shields.io/github/workflow/status/vant-ui/vant/CI/dev?style=flat-square" alt="CI Status" />
     <img src="https://img.shields.io/codecov/c/github/vant-ui/vant/dev.svg?style=flat-square&color=#4fc08d" alt="Coverage Status" />
     <img src="https://img.shields.io/npm/dm/vant.svg?style=flat-square&color=#4fc08d" alt="downloads" />
-    <img src="https://img.badgesize.io/https://unpkg.com/vant@3/lib/vant.min.js?compression=gzip&style=flat-square&label=gzip%20size&color=#4fc08d" alt="Gzip Size" />
+    <img src="https://img.badgesize.io/https://unpkg.com/vant/lib/vant.min.js?compression=gzip&style=flat-square&label=gzip%20size&color=#4fc08d" alt="Gzip Size" />
 </p>
 
 <p align="center">
@@ -41,7 +40,8 @@ Vant 是一个**轻量、可靠的移动端组件库**，于 2017 年开源。
 - 🍭 支持主题定制，内置 700+ 个主题变量
 - 🍭 支持按需引入和 Tree Shaking
 - 🍭 支持无障碍访问（持续改进中）
-- 🍭 支持深色模式（从 [Vant 4](https://vant-contrib.gitee.io/vant/v4/#/zh-CN/config-provider) 开始支持）
+- 🍭 支持深色模式
+- 🍭 支持 Nuxt 3
 - 🍭 支持服务器端渲染
 - 🌍 支持国际化，内置 20+ 种语言包
 
@@ -83,6 +83,10 @@ app.use(Button);
 ```
 
 vant 也支持按需引入、CDN 引入等方式，详细说明见 [快速上手](https://vant-contrib.gitee.io/vant#/zh-CN/quickstart).
+
+## 在 Cloud IDE 中预览
+
+[https://idegithub.com/youzan/vant](https://idegithub.com/youzan/vant)
 
 ## 浏览器支持
 

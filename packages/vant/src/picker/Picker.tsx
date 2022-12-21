@@ -2,6 +2,7 @@ import {
   ref,
   watch,
   computed,
+  nextTick,
   defineComponent,
   type PropType,
   type ExtractPropTypes,
@@ -121,6 +122,14 @@ export default defineComponent({
       )
     );
 
+    const selectedIndexes = computed(() =>
+      currentColumns.value.map((options, index) =>
+        options.findIndex(
+          (option) => option[fields.value.value] === selectedValues.value[index]
+        )
+      )
+    );
+
     const setValue = (index: number, value: Numeric) => {
       if (selectedValues.value[index] !== value) {
         const newValues = selectedValues.value.slice(0);
@@ -132,6 +141,7 @@ export default defineComponent({
     const getEventParams = () => ({
       selectedValues: selectedValues.value.slice(0),
       selectedOptions: selectedOptions.value,
+      selectedIndexes: selectedIndexes.value,
     });
 
     const onChange = (value: Numeric, columnIndex: number) => {
@@ -162,7 +172,13 @@ export default defineComponent({
     const confirm = () => {
       children.forEach((child) => child.stopMomentum());
       const params = getEventParams();
-      emit('confirm', params);
+
+      // wait nextTick to ensure the model value is update to date
+      // when confirm event is emitted
+      nextTick(() => {
+        emit('confirm', params);
+      });
+
       return params;
     };
 

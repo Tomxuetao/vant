@@ -96,6 +96,24 @@ showToast({
 });
 ```
 
+### Word Break
+
+Using `wordBreak` option to set whether line breaks appear wherever the text would otherwise overflow its content box. The default value is `break-all`, and can be set to `break-word` or `normal`.
+
+```js
+import { showToast } from 'vant';
+
+showToast({
+  message: 'This message will contain a incomprehensibilities long word.',
+  wordBreak: 'break-all',
+});
+
+showToast({
+  message: 'This message will contain a incomprehensibilities long word.',
+  wordBreak: 'break-word',
+});
+```
+
 ### Update Message
 
 ```js
@@ -199,6 +217,7 @@ Vant exports following Toast utility functions:
 | type | Can be set to `loading` `success` `fail` `html` | _ToastType_ | `text` |
 | position | Can be set to `top` `middle` `bottom` | _ToastPosition_ | `middle` |
 | message | Message | _string_ | `''` |
+| wordBreak | Can be set to `normal` `break-all` `break-word` | _ToastWordBreak_ | `'break-all'` |
 | icon | Custom icon | _string_ | - |
 | iconSize | Custom icon size | _number \| string_ | `36px` |
 | iconPrefix | Icon className prefix | _string_ | `van-icon` |
@@ -229,7 +248,13 @@ You can use following slots when using `Toast` component:
 The component exports the following type definitions:
 
 ```ts
-import type { ToastType, ToastProps, ToastOptions, ToastPosition } from 'vant';
+import type {
+  ToastType,
+  ToastProps,
+  ToastOptions,
+  ToastPosition,
+  ToastWordBreak,
+} from 'vant';
 ```
 
 ## Theming

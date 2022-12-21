@@ -4,11 +4,40 @@
 
 本文档提供了从 Vant 3 到 Vant 4 的升级指南。
 
-## 按需引入方式调整
+### 安装 Vant 4
+
+首先你需要安装 Vant 4 以及 `@vant/compat`。
+
+`@vant/compat` 是一个兼容包，可以帮助你从 Vant 3 过渡到 Vant 4。
+
+```bash
+# 通过 npm 安装
+npm add vant@^4 @vant/compat@^1
+
+# 通过 yarn 安装
+yarn add vant@^4 @vant/compat@^1
+
+# 通过 pnpm 安装
+pnpm add vant@^4 @vant/compat@^1
+```
+
+你也可以直接修改 `package.json` 的 `dependencies` 字段中的版本号，修改完成后需要重新安装依赖。
+
+```diff
+{
+  "dependencies": {
+-    "vant": "^3.0.0",
++    "vant": "^4.0.0",
++    "@vant/compat": "^1.0.0",
+  }
+}
+```
+
+## 调整按需引入方式
 
 ### 移除 babel-plugin-import
 
-从 Vant 4.0 版本开始，将不再支持 `babel-plugin-import`，请移除项目中依赖的 `babel-plugin-import` 插件。
+从 Vant 4.0 开始，将不再支持 `babel-plugin-import`，请移除项目中依赖的 `babel-plugin-import` 插件。
 
 只需要删除 `babel.config.js` 中的以下代码即可：
 
@@ -26,27 +55,28 @@ module.exports = {
 
 #### 收益
 
-移除 `babel-plugin-import` 有以下收益：
+移除 `babel-plugin-import` 主要带来以下收益：
 
-- 不再强依赖 babel，项目可以使用 esbuild、swc 等更高效的编译工具，大幅度提升编译效率。
-- 不再受到 `babel-plugin-import` 的 import 写法限制，可以从 vant 中导入除了组件以外的其他内容，比如 Vant 4 中新增的 `showToast` 等方法：
+- 不再强依赖 Babel 编译，项目可以使用 SWC、esbuild 等现代编译工具，进而提升编译效率。
+- 不再受到 `babel-plugin-import` 的 import 限制，可以从 Vant 中导入除组件以外的内容，比如 Vant 4 中新增的 `showToast` 方法，或是 `buttonProps` 对象：
 
 ```ts
-import { showToast, showDialog } from 'vant';
+import { showToast, buttonProps } from 'vant';
 ```
 
 #### 样式引入方案
 
-移除 `babel-plugin-import` 对项目的 JS 体积不会有影响，因为 Vant 默认支持通过 Tree Shaking 优化来移除不需要的 JS 代码。
+移除 `babel-plugin-import` 对项目的 JS 体积不会有影响，因为 Vant 默认支持通过 Tree Shaking 来移除不需要的 JS 代码。
 
 而 CSS 代码的引入方式可以从以下两种方式中进行选择：
 
-- 通过 [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) 插件实现按需引入样式，详细用法参见 [快速上手](#/zh-CN/quickstart)。
 - 在项目中全量引入 Vant 的样式文件：
 
 ```js
 import 'vant/lib/index.css';
 ```
+
+- 通过 [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) 插件实现按需引入样式，详细用法参见 [快速上手](#/zh-CN/quickstart)。
 
 ## 组件重构
 
@@ -58,12 +88,13 @@ import 'vant/lib/index.css';
 - `Picker`
 - `DatetimePicker`
 
-之所以重构这三个组件，是因为在之前的版本中，`Picker` 组件的 API 设计存在一些不合理的设计，导致大家在使用时经常遇到问题，比如：
+这三个组件之所以被重构，是因为在之前的版本中，`Picker` 组件的 API 设计存在一些不合理的设计，导致大家在使用时经常遇到问题，比如：
 
-- columns 数据格式定义不合理，容易产生误解
-- 数据流不清晰，暴露了过多的实例方法来对数据进行操作
+- Picker columns 数据格式定义不合理，容易产生误解
+- Picker 数据流不清晰，暴露了过多的实例方法来对数据进行操作
+- DatetimePicker 逻辑过于复杂，经常在边界场景下出现 bug
 
-为了解决上述问题，我们在 v4 版本中对 `Picker` 组件进行了重构，同时也重构了基于 `Picker` 派生出的 `Area` 和 `DatetimePicker` 组件。
+为了解决上述问题，我们在 v4 版本中对 `Picker` 组件进行了重构，同时也重构了基于 `Picker` 派生出的 `Area` 和 `DatetimePicker` 组件。如果你的项目中使用了这三个组件，请仔细阅读文档并进行升级。
 
 ### Picker 组件重构
 
@@ -81,11 +112,11 @@ import 'vant/lib/index.css';
 
 ### DatetimePicker 组件重构
 
-DatetimePicker 组件被拆分为：
+DatetimePicker 组件被拆分为三个子组件：
 
-- [TimePicker](#/zh-CN/time-picker): 用于时间选择。
-- [DatePicker](#/zh-CN/date-picker): 用于日期选择。
-- [PickerGroup](#/zh-CN/picker-group): 用于用于结合多个 Picker 选择器组件。
+- [TimePicker](#/zh-CN/time-picker): 用于时间选择，包括时、分、秒。
+- [DatePicker](#/zh-CN/date-picker): 用于日期选择，包括年、月、日。
+- [PickerGroup](#/zh-CN/picker-group): 用于结合多个 Picker 选择器组件，在一次交互中完成多个值的选择。
 
 同时，TimePicker 和 DatePicker 组件也基于新版 Picker 组件进行重构，并优化了部分 API 设计。
 
@@ -103,7 +134,7 @@ DatetimePicker 组件被拆分为：
 
 ### Area 组件重构
 
-Area 组件是基于 Picker 组件进行封装的，因此本次升级也对 Area 组件进行了内部逻辑的重构，并优化了部分 API 设计。
+Area 组件是基于 Picker 组件进行封装的，因此本次升级也对 Area 组件进行了内部逻辑的重构，并优化了部分 API。
 
 #### 主要变更
 
@@ -123,7 +154,7 @@ Area 组件是基于 Picker 组件进行封装的，因此本次升级也对 Are
 
 在 Vant 3 中，`Dialog` 是一个函数，调用函数可以快速唤起全局的弹窗组件，而 `Dialog.Component` 才是 `Dialog` 组件对象，这与大部分组件的用法存在差异，容易导致使用错误。
 
-为了更符合直觉，我们在 Vant 4 中调整了 `Dialog` 的调用方式，将 `Dialog()` 函数重命名为 `showDialog()`。
+为了更符合直觉，我们在 Vant 4 中调整了 `Dialog` 的调用方式，将 `Dialog()` 函数重命名为 `showDialog()`，并让 `Dialog` 直接指向组件对象。
 
 ```js
 // Vant 3
@@ -135,7 +166,7 @@ showDialog(); // 函数调用
 Dialog; // 组件对象
 ```
 
-`Dialog` 上挂载的其他方法也进行了重命名，新旧 API 的映射关系如下：
+由于 `Dialog` 变为了组件对象，`Dialog` 上挂载的其他方法也进行了重命名，新旧 API 的映射关系如下：
 
 ```js
 Dialog(); // -> showDialog()
@@ -148,7 +179,9 @@ Dialog.resetDefaultOptions(); // -> resetDialogDefaultOptions()
 
 #### 兼容方案
 
-为了便于代码迁移，我们提供了兼容方案，你可以使用 `@vant/compat` 中导出的 `Dialog` 对象来兼容原有代码。
+为了便于旧版本代码迁移至 v4，我们提供了兼容方案，你可以使用 `@vant/compat` 中导出的 `Dialog` 对象来兼容原有代码。
+
+从 `@vant/compat` 中引用 `Dialog` 方法：
 
 ```js
 import { Dialog } from '@vant/compat';
@@ -158,6 +191,8 @@ Dialog.close();
 ```
 
 `@vant/compat` 中导出的 `Dialog` 与 Vant 3 中的 `Dialog` 拥有完全一致的 API 和行为，因此你只需要修改 `Dialog` 的引用路径，其他代码可以保持不变。
+
+在项目完成升级到 Vant v4 后，建议在迭代中逐步替换为新的 `showDialog` 等方法，并移除 `@vant/compat` 包。
 
 ### Toast 调用方式调整
 
@@ -275,14 +310,14 @@ emit('click-input');
 emit('clickInput');
 ```
 
-这项改动**不影响原有的模板代码**，Vue 会自动在模板中对事件名进行格式转换：
+这项改动**不影响原有的模板代码**，Vue 会自动在模板中对事件名进行格式转换，因此你无须做任何更改。
 
 ```html
 <!-- 以下代码可以照常运行，无须做任何更改 -->
 <van-field @click-input="onClick" />
 ```
 
-如果你在 JSX 中使用 Vant 组件，需要将监听的事件名调整为驼峰格式，新的监听方式更加符合 JSX 本身的规范：
+如果你在 JSX 中使用 Vant 组件，需要将监听的事件名调整为驼峰格式，原有的中划线格式将不再生效，新的监听方式更加符合 JSX 本身的规范：
 
 ```jsx
 // Vant 3
@@ -305,7 +340,7 @@ emit('clickInput');
 
 #### Popup
 
-Popup 的 CSS 样式进行了一定调整，请确认是否对项目中的 UI 产生影响。
+Popup 的 CSS 样式进行了一定调整，如果你在 Popup 组件上添加了一些自定义的 CSS 样式，请确认本次升级是否对项目中的 UI 产生影响。
 
 - 默认添加了 `box-sizing: border-box` 样式
 - 调整了 `position="center"` 时的水平居中方式，以解决弹窗宽度无法正确自适应的问题：
@@ -332,11 +367,35 @@ Popup 的 CSS 样式进行了一定调整，请确认是否对项目中的 UI �
 
 - 移除了 `click` 和 `disabled` 事件，请使用 `click-tab` 事件代替
 
-## 样式变量调整
+## 样式调整
+
+### 主色调统一
+
+在之前的版本中，Vant 组件有两种主色调，部分组件采用蓝色（#1989fa）作为主色调，另一部分则采用红色（#ee0a24）。
+
+为了保持色彩规范的一致性，我们在 Vant 4 中对主色调进行统一，所有组件均采用蓝色作为主色调。
+
+以下组件的主色调由红色调整为蓝色：
+
+- AddressEdit
+- AddressList
+- Card
+- Calendar
+- Cascader
+- ContactList
+- ContactEdit
+- CouponList
+- Dialog
+- DropdownMenu
+- IndexBar
+- Sidebar
+- Steps
+- Tabs
+- TreeSelect
 
 ### 移除 Less 变量
 
-目前 Vant 已经支持了基于 CSS 变量的主题定制能力，因此后续将不再提供基于 Less 的主题定制方式。
+目前 Vant 已经支持了基于 CSS 变量的主题定制能力，相较于 Less 定制更加灵活。因此，Vant 4 将不再提供基于 Less 的主题定制方式。
 
 这意味着 Vant 的 npm 包中将不再会包含 `.less` 样式源文件，只会提供编译后的 `.css` 样式文件。
 
@@ -344,7 +403,9 @@ Popup 的 CSS 样式进行了一定调整，请确认是否对项目中的 UI �
 
 ### 简化 CSS 变量名
 
-考虑到 **代码体积** 和 **使用便捷性**，我们对部分 CSS 变量的名称进行了简化，在变量名中使用更简短的单词，涉及以下变更：
+考虑到 **代码体积** 和 **使用便捷性**，我们对部分 CSS 变量的名称进行了简化，在变量名中使用了更简短的单词，以减小代码体积。
+
+本次升级涉及以下变量名变更：
 
 ```less
 animation-duration               ->  duration
@@ -363,3 +424,13 @@ transition-duration              ->  duration
 ```
 
 由于涉及的 CSS 变量较多，建议在代码仓库中进行全局匹配和替换。
+
+对于 `ConfigProvider` 组件，我们新增了 `ConfigProviderThemeVars` 类型定义，提供完整的类型提示。在 TypeScript 代码中，你可以通过类型提示来确保主题变量被正确替换。
+
+```ts
+import type { ConfigProviderThemeVars } from 'vant';
+
+const themeVars: ConfigProviderThemeVars = {
+  sliderBarHeight: '4px',
+};
+```

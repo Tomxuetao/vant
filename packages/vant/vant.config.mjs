@@ -11,8 +11,7 @@ export default {
     },
     site: {
       publicPath:
-        (typeof window === 'undefined' && process.env.PUBLIC_PATH) ||
-        '/vant/v4',
+        (typeof window === 'undefined' && process.env.PUBLIC_PATH) || '/vant/',
     },
     vetur: {
       tagPrefix: 'van-',
@@ -82,6 +81,10 @@ location.href = location.href.replace('youzan.github.io', 'vant-ui.github.io');
               {
                 path: 'changelog',
                 title: '更新日志',
+              },
+              {
+                path: 'release-note-v4',
+                title: '4.0 更新介绍',
               },
               {
                 path: 'migrate-from-v2',
@@ -383,6 +386,10 @@ location.href = location.href.replace('youzan.github.io', 'vant-ui.github.io');
               {
                 path: 'tree-select',
                 title: 'TreeSelect 分类选择',
+              },
+              {
+                path: 'back-top',
+                title: 'BackTop 回到顶部',
               },
             ],
           },
@@ -794,6 +801,10 @@ location.href = location.href.replace('youzan.github.io', 'vant-ui.github.io');
               {
                 path: 'tree-select',
                 title: 'TreeSelect',
+              },
+              {
+                path: 'back-top',
+                title: 'BackTop',
               },
             ],
           },

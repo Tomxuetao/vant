@@ -149,6 +149,39 @@ export default {
 };
 ```
 
+### 使用 image 插槽
+
+当以组件调用的方式使用 ImagePreview 时，可以通过 `image` 插槽来插入自定义的内容，比如展示一个视频内容。
+
+```html
+<van-image-preview v-model:show="show" :images="images">
+  <template #image="{ src }">
+    <video style="width: 100%;" controls>
+      <source :src="src" />
+    </video>
+  </template>
+</van-image-preview>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const show = ref(false);
+    const images = [
+      'https://www.w3school.com.cn/i/movie.ogg',
+      'https://www.w3school.com.cn/i/movie.ogg',
+      'https://www.w3school.com.cn/i/movie.ogg',
+    ];
+    return {
+      show,
+      images,
+    };
+  },
+};
+```
+
 ## API
 
 ### 方法
@@ -217,12 +250,13 @@ Vant 中导出了以下 ImagePreview 相关的辅助函数：
 
 通过组件调用 `ImagePreview` 时，支持以下事件：
 
-| 事件 | 说明 | 回调参数 |
-| --- | --- | --- |
-| close | 关闭时触发 | { index: 索引, url: 图片链接 } |
-| closed | 关闭且且动画结束后触发 | - |
-| change | 切换当前图片时触发 | index: 当前图片的索引 |
-| scale | 缩放当前图片时触发 | { index: 当前图片的索引, scale: 当前缩放的值 } |
+| 事件       | 说明                   | 回调参数                           |
+| ---------- | ---------------------- | ---------------------------------- |
+| close      | 关闭时触发             | _{ index: number, url: string }_   |
+| closed     | 关闭且且动画结束后触发 | -                                  |
+| change     | 切换当前图片时触发     | _index: number_                    |
+| scale      | 缩放当前图片时触发     | _{ index: number, scale: number }_ |
+| long-press | 长按当前图片时触发     | _{ index: number }_                |
 
 ### 方法
 
@@ -260,10 +294,11 @@ imagePreviewRef.value?.swipeTo(1);
 
 通过组件调用 `ImagePreview` 时，支持以下插槽：
 
-| 名称  | 说明                           | 参数                      |
-| ----- | ------------------------------ | ------------------------- |
-| index | 自定义页码内容                 | { index: 当前图片的索引 } |
-| cover | 自定义覆盖在图片预览上方的内容 | -                         |
+| 名称           | 说明                           | 参数                      |
+| -------------- | ------------------------------ | ------------------------- |
+| index          | 自定义页码内容                 | { index: 当前图片的索引 } |
+| cover          | 自定义覆盖在图片预览上方的内容 | -                         |
+| image `v3.6.5` | 自定义图片内容                 | { src: 当前资源地址 }     |
 
 ### onClose 回调参数
 

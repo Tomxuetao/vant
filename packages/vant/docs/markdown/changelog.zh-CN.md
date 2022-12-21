@@ -19,6 +19,116 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 ## 更新内容
 
+### [v4.0.3](https://github.com/vant-ui/vant/compare/v4.0.2...v4.0.3)
+
+`2022-12-13`
+
+**Bug Fixes**
+
+- Field: 修复动态设置空的 label 不生效的问题 [#11373](https://github.com/vant-ui/vant/issues/11373)
+- ImagePreview: 修复图片可能加载失败的问题 [#11376](https://github.com/vant-ui/vant/issues/11376)
+
+### [v4.0.2](https://github.com/vant-ui/vant/compare/v4.0.1...v4.0.2)
+
+`2022-12-03`
+
+**Bug Fixes**
+
+- Field: 修复使用 formatter 时光标位置错误的问题 [#11348](https://github.com/vant-ui/vant/issues/11348)
+- Image: 修复在 Nuxt 3 下图片可能无法展示的问题 [128972](https://github.com/vant-ui/vant/commit/128972a75329d4b14028d00cd23dac66038e2d4c)
+- NavBar: 修复屏幕旋转时 placeholder 未自动适配高度的问题 [#11351](https://github.com/vant-ui/vant/issues/11351)
+
+### [v4.0.1](https://github.com/vant-ui/vant/compare/v4.0.0...v4.0.1)
+
+`2022-12-01`
+
+**Feature**
+
+- Picker: 新增 selectedIndexes 作为事件入参 [#11329](https://github.com/vant-ui/vant/issues/11329)
+
+**Bug Fixes**
+
+- Field: 修复未选中时修改绑定的值会导致键盘弹出的问题 [#11333](https://github.com/vant-ui/vant/issues/11333)
+
+### [v4.0.0](https://github.com/vant-ui/vant/compare/v4.0.0-rc.9...v4.0.0)
+
+`2022-11-26`
+
+> 完整内容请移步：[「4.0 更新介绍」](https://vant-ui.github.io/vant/#/zh-CN/release-note-v4)
+
+**Feature**
+
+- List: 新增 disabled 属性 [#11307](https://github.com/vant-ui/vant/issues/11307)
+- BackTop: 支持动态设置 target 属性 [#11311](https://github.com/vant-ui/vant/issues/11311)
+- BackTop: 支持通过 CSS 变量修改组件位置 [#11312](https://github.com/vant-ui/vant/issues/11312)
+- BackTop: 重命名 visibility-height 属性为 offset [#11309](https://github.com/vant-ui/vant/issues/11309)
+
+**Bug Fixes**
+
+- Field: 修复格式化值后，光标位置错误的问题 [#11308](https://github.com/vant-ui/vant/issues/11308)
+
+### [v4.0.0-rc.9](https://github.com/vant-ui/vant/compare/v4.0.0-rc.8...v4.0.0-rc.9)
+
+`2022-11-24`
+
+**Bug Fixes**
+
+- Cell: 修复 arrow-direction 设置为 right 不显示的问题 [#11279](https://github.com/vant-ui/vant/issues/11279)
+- Style: 修复 body 标签上的 normalize 样式未生效的问题 [#11287](https://github.com/vant-ui/vant/issues/11287)
+
+### [v4.0.0-rc.8](https://github.com/vant-ui/vant/compare/v4.0.0-rc.7...v4.0.0-rc.8)
+
+`2022-11-20`
+
+**Feature**
+
+- 新增 BackTop 回到顶部组件，注意该新组件的 API 尚未稳定，在 4.0 正式版发布前仍可能产生 breaking change [#11236](https://github.com/vant-ui/vant/issues/11236)
+
+**Bug Fixes**
+
+- DropdownItem: 修复使用 teleport 时无法设置 attr 的问题 [#11273](https://github.com/vant-ui/vant/issues/11273)
+- List: 修复初始的 loading 值为 true 时加载错误的问题 [#11275](https://github.com/vant-ui/vant/issues/11275)
+- NumberKeyboard: 修复使用 teleport 时无法设置 attr 的问题 [#11274](https://github.com/vant-ui/vant/issues/11274)
+
+### [v4.0.0-rc.7](https://github.com/vant-ui/vant/compare/v4.0.0-rc.6...v4.0.0-rc.7)
+
+`2022-11-13`
+
+**New Component**
+
+- 新增 SkeletonAvatar、SkeletonTitle、SkeletonImage、SkeletonParagraph 组件 [#11173](https://github.com/vant-ui/vant/issues/11173)
+
+**Feature**
+
+- ImagePreview: 新增 long-press 事件 [#11252](https://github.com/vant-ui/vant/issues/11252)
+- Popover: 支持非受控模式 [#11244](https://github.com/vant-ui/vant/issues/11244)
+
+**Bug Fixes**
+
+- ActionSheet: 修复标题为空时取消按钮层级错误的问题 [#11213](https://github.com/vant-ui/vant/issues/11213)
+- DatePicker: 在生产环境下不再抛出开发错误提示 [#11248](https://github.com/vant-ui/vant/issues/11248)
+- Lazyload: 修复使用 lazy-image 时报错 h is not a function 的问题 [#11229](https://github.com/vant-ui/vant/issues/11229)
+- Picker: 修复抛出 confirm 事件时 v-model 未正确更新的问题 [#11194](https://github.com/vant-ui/vant/issues/11194)
+- Picker: 修复 column 为空时操作报错的问题 [#11249](https://github.com/vant-ui/vant/issues/11249)
+- Uploader: 修复 show-upload 为 false 时 chooseFile 无法调用的问题 [#11218](https://github.com/vant-ui/vant/issues/11218)
+
+### [v4.0.0-rc.6](https://github.com/vant-ui/vant/compare/v4.0.0-rc.5...v4.0.0-rc.6)
+
+`2022-10-23`
+
+**Feature**
+
+- Calendar: subtitle 插槽新增 text 和 date 入参 [#11168](https://github.com/vant-ui/vant/issues/11168)
+- Cell: 新增 tag 属性 [#11139](https://github.com/vant-ui/vant/issues/11139)
+- ImagePreview: 新增 image 插槽 [#11133](https://github.com/vant-ui/vant/issues/11133)
+- Toast: 新增 wordBreak 选项 [#11147](https://github.com/vant-ui/vant/issues/11147)
+
+**Bug Fixes**
+
+- CouponList: 修复 coupon 位置错误的问题 [#11153](https://github.com/vant-ui/vant/issues/11153)
+- CouponList: 修复输入框样式错误的问题 [#11155](https://github.com/vant-ui/vant/issues/11155)
+- Swipe: 修复在 Popup 内时个别情况下渲染错误的问题 [#11162](https://github.com/vant-ui/vant/issues/11162)
+
 ### [v4.0.0-rc.5](https://github.com/vant-ui/vant/compare/v4.0.0-rc.4...v4.0.0-rc.5)
 
 `2022-10-07`

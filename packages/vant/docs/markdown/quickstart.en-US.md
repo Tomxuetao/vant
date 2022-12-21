@@ -32,12 +32,12 @@ The easiest way to use Vant is to include a CDN link in the HTML file, after whi
 <!-- import style -->
 <link
   rel="stylesheet"
-  href="https://fastly.jsdelivr.net/npm/vant@3/lib/index.css"
+  href="https://fastly.jsdelivr.net/npm/vant@4/lib/index.css"
 />
 
 <!-- import script -->
 <script src="https://fastly.jsdelivr.net/npm/vue@3"></script>
-<script src="https://fastly.jsdelivr.net/npm/vant@3/lib/vant.min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/vant@4/lib/vant.min.js"></script>
 
 <script>
   // Render the Button component
@@ -212,6 +212,11 @@ import 'vant/es/image-preview/style';
 ```
 
 > Tip: "Full Import" and "On-demand Import" should not be used at the same time, otherwise it will lead to problems such as code duplication and style overrides.
+
+#### Tips
+
+- "Full Import" and "On-demand Import" should not be used at the same time, otherwise it will lead to problems such as code duplication and style overrides.
+- unplugin-vue-components is not officially maintained by Vant. If you encounter issues when using this plugin, please feedback to [antfu/unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) repository.
 
 ## With Frameworks
 
