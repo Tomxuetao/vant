@@ -22,7 +22,7 @@
 - 🍭 Support Dark Mode
 - 🍭 Support Nuxt 3
 - 🍭 Support SSR
-- 🌍 Support i18n, built-in 20+ languages
+- 🌍 Support i18n, built-in 30+ languages
 
 ### Quickstart
 
@@ -98,4 +98,4 @@ Please make sure to read the [Contributing Guide](https://github.com/vant-ui/van
 
 ### LICENSE
 
-[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
+[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89).

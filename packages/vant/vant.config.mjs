@@ -24,6 +24,7 @@ export default {
     defaultLang: 'en-US',
     darkModeClass: 'van-theme-dark',
     lightModeClass: 'van-theme-light',
+    enableVConsole: false,
     versions: [
       { label: 'v1', link: '/vant/v1/' },
       { label: 'v2', link: '/vant/v2/' },
@@ -98,10 +99,6 @@ location.href = location.href.replace('youzan.github.io', 'vant-ui.github.io');
               {
                 path: 'design',
                 title: '设计资源',
-              },
-              {
-                path: 'style-guide',
-                title: '风格指南',
               },
               {
                 path: 'locale',
@@ -511,8 +508,28 @@ location.href = location.href.replace('youzan.github.io', 'vant-ui.github.io');
                 title: 'Advanced Usage',
               },
               {
+                path: 'faq',
+                title: 'FAQ',
+              },
+              {
                 path: 'changelog',
                 title: 'Changelog',
+              },
+              {
+                path: 'release-note-v4',
+                title: '4.0 Release Note',
+              },
+              {
+                path: 'migrate-from-v2',
+                title: 'Upgrade from v2 to v3',
+              },
+              {
+                path: 'migrate-from-v3',
+                title: 'Upgrade from v3 to v4',
+              },
+              {
+                path: 'contribution',
+                title: 'Contribution Guide',
               },
               {
                 path: 'design',

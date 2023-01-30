@@ -48,6 +48,7 @@ Current supported languages:
 | German (formal)          | de-DE-formal | -        |
 | Greek                    | el-GR        | `v3.5.0` |
 | English                  | en-US        | -        |
+| Esperanto                | eo-EO        | `v4.0.9` |
 | Spanish (Spain)          | es-ES        | -        |
 | Farsi                    | fa-IR        | `v3.5.0` |
 | French                   | fr-FR        | -        |
@@ -79,3 +80,23 @@ Current supported languages:
 ### Add new language
 
 If you can’t find the language you need, please send us a Pull Request to add the new language pack, you can refer to [Add German language pack](https://github.com/vant-ui/vant/pull/7245) PR.
+
+### Get Current Lang
+
+You can get the current language using `useCurrentLang` method.
+
+- **Type:**
+
+```ts
+function useCurrentLang(): Ref<string>;
+```
+
+- **Example:**
+
+```ts
+import { useCurrentLang } from 'vant';
+
+const currentLang = useCurrentLang();
+
+console.log(currentLang.value); // --> 'en-US'
+```

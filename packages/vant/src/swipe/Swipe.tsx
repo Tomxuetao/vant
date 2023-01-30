@@ -67,7 +67,7 @@ export default defineComponent({
 
   props: swipeProps,
 
-  emits: ['change'],
+  emits: ['change', 'dragStart', 'dragEnd'],
 
   setup(props, { emit, slots }) {
     const root = ref<HTMLElement>();
@@ -80,6 +80,9 @@ export default defineComponent({
       active: 0,
       swiping: false,
     });
+
+    // Whether the user is dragging the swipe
+    let dragging = false;
 
     const touch = useTouch();
     const { children, linkChildren } = useChildren(SWIPE_KEY);
@@ -299,9 +302,16 @@ export default defineComponent({
     let touchStartTime: number;
 
     const onTouchStart = (event: TouchEvent) => {
-      if (!props.touchable) return;
+      if (
+        !props.touchable ||
+        // avoid resetting position on multi-finger touch
+        event.touches.length > 1
+      )
+        return;
 
       touch.start(event);
+
+      dragging = false;
       touchStartTime = Date.now();
 
       stopAutoplay();
@@ -321,6 +331,11 @@ export default defineComponent({
           if (!isEdgeTouch) {
             preventDefault(event, props.stopPropagation);
             move({ offset: delta.value });
+
+            if (!dragging) {
+              emit('dragStart');
+              dragging = true;
+            }
           }
         }
       }
@@ -359,7 +374,10 @@ export default defineComponent({
         move({ pace: 0 });
       }
 
+      dragging = false;
       state.swiping = false;
+
+      emit('dragEnd');
       autoplay();
     };
 

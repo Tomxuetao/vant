@@ -49,6 +49,7 @@ Locale.add(messages);
 | 德语（正式）         | de-DE-formal | -        |
 | 希腊语               | el-GR        | `v3.5.0` |
 | 英语                 | en-US        | -        |
+| 世界语               | eo-EO        | `v4.0.9` |
 | 西班牙语             | es-ES        | -        |
 | 波斯语               | fa-IR        | `v3.5.0` |
 | 法语                 | fr-FR        | -        |
@@ -76,6 +77,26 @@ Locale.add(messages);
 | 繁體中文（台）       | zh-TW        | -        |
 
 > 在 [这里](https://github.com/vant-ui/vant/tree/main/packages/vant/src/locale/lang) 查看所有的语言包源文件。
+
+### 获取当前语言
+
+你可以通过 `useCurrentLang` 方法来获取当前使用的语言。
+
+- **类型：**
+
+```ts
+function useCurrentLang(): Ref<string>;
+```
+
+- **示例：**
+
+```ts
+import { useCurrentLang } from 'vant';
+
+const currentLang = useCurrentLang();
+
+console.log(currentLang.value); // --> 'zh-CN'
+```
 
 ## 常见问题
 
