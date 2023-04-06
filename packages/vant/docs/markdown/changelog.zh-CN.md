@@ -19,6 +19,83 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 ## 更新内容
 
+### [v4.1.2](https://github.com/vant-ui/vant/compare/v4.1.1...v4.1.2)
+
+`2023-03-26`
+
+**Feature**
+
+- Locale: 增加 Khmer 高棉语 [#11701](https://github.com/vant-ui/vant/issues/11701)
+
+**Bug Fixes**
+
+- Field: 修复同时设置 label-align "top" 和 is-link 时样式错误的问题 [#11684](https://github.com/vant-ui/vant/issues/11684)
+- Field: 修复设置 readonly 属性后无法触发 blur 事件的问题 [#11699](https://github.com/vant-ui/vant/issues/11699)
+- ImagePreview: 修复长图片上下拖动不顺滑的问题 [#11702](https://github.com/vant-ui/vant/issues/11702)
+
+### [v4.1.1](https://github.com/vant-ui/vant/compare/v4.1.0...v4.1.1)
+
+`2023-03-19`
+
+**Feature**
+
+- Uploader: 支持 avif 图片格式 [#11655](https://github.com/vant-ui/vant/issues/11655)
+
+**Bug Fixes**
+
+- @vant/use: 增加 vue 作为 peer dependencies [#11662](https://github.com/vant-ui/vant/issues/11662)
+- DatePicker: 修复个别情况下显示时间错误的问题 [#11656](https://github.com/vant-ui/vant/issues/11656)
+- Field: 修复 `FieldRuleFormatter` 类型拼写错误 [#11674](https://github.com/vant-ui/vant/issues/11674)
+- TextEllipsis: 修复长数字无法被正确截断的问题 [#11669](https://github.com/vant-ui/vant/issues/11669)
+
+### [v4.1.0](https://github.com/vant-ui/vant/compare/v4.0.11...v4.1.0)
+
+`2023-03-05`
+
+**New Component**
+
+- 新增 TextEllipsis 文本省略组件 [#11593](https://github.com/vant-ui/vant/issues/11593)
+
+**Feature**
+
+- Swipe: 新增 drag-start/drag-end 事件的 index 参数 [#11632](https://github.com/vant-ui/vant/issues/11632)
+- TreeSelect: 新增 nav-text 插槽 [#11602](https://github.com/vant-ui/vant/issues/11602) [#11641](https://github.com/vant-ui/vant/issues/11641)
+
+**Bug Fixes**
+
+- DropdownMenu: 修复使用 toggle 方法打开时位置错误的问题 [#11640](https://github.com/vant-ui/vant/issues/11640)
+- Field: 修复设置 label-width 后 label-position 不生效的问题 [#11611](https://github.com/vant-ui/vant/issues/11611)
+- Locale: 修复乌克兰语翻译问题 [#11629](https://github.com/vant-ui/vant/issues/11629)
+
+### [v4.0.11](https://github.com/vant-ui/vant/compare/v4.0.10...v4.0.11)
+
+`2023-02-20`
+
+**Feature**
+
+- 新增 [vant-nuxt](https://github.com/vant-ui/vant-nuxt) 包，作为官方的 Nuxt Module [#11588](https://github.com/vant-ui/vant/issues/11588)
+- BackTop: 新增 z-index 属性以及相关 CSS 变量 [#11582](https://github.com/vant-ui/vant/issues/11582)
+- Picker: 支持在 option 插槽中获取选项的 index [#11594](https://github.com/vant-ui/vant/issues/11594)
+- @vant/use: 支持注销 useEventListener [#11540](https://github.com/vant-ui/vant/issues/11540)
+
+**Bug Fixes**
+
+- PickerGroup: 修复 confirm 事件参数不正确的问题 [#11566](https://github.com/vant-ui/vant/issues/11566)
+- PickerGroup: 修复 Tab 的下划线样式错误问题 [#11547](https://github.com/vant-ui/vant/issues/11547)
+- PickerGroup: 修复部分插槽不可用的问题 [#11564](https://github.com/vant-ui/vant/issues/11564)
+- Popover: 修复 placement 为 `*-start/end` 时箭头位置错误的问题 [#11584](https://github.com/vant-ui/vant/issues/11584)
+- Popover: 修复动画会导致组件位置错误的问题 [#11568](https://github.com/vant-ui/vant/issues/11568)
+- Space: 修复 SSR 时出现缺少 Text 报错的问题 [#11549](https://github.com/vant-ui/vant/issues/11549)
+
+### [v4.0.10](https://github.com/vant-ui/vant/compare/v4.0.9...v4.0.10)
+
+`2023-02-02`
+
+**Bug Fixes**
+
+- DatePicker: 修复 change 事件中日期参数不正确的问题 [#11529](https://github.com/vant-ui/vant/issues/11529)
+- Slider: 修复双滑块模式下无法正确拖动的问题 [#11526](https://github.com/vant-ui/vant/issues/11526) [#11534](https://github.com/vant-ui/vant/issues/11534)
+
 ### [v4.0.9](https://github.com/vant-ui/vant/compare/v4.0.8...v4.0.9)
 
 `2023-01-26`

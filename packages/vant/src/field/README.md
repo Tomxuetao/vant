@@ -243,15 +243,33 @@ Use `input-align` prop to align the input value.
 
 ### Label Align
 
-Use `label-align` prop to align the input value.
+Use `label-align` prop to align the input value, can be set to `center`, `right` or `top`.
 
 ```html
 <van-cell-group inset>
   <van-field
     v-model="value"
-    label="Tel"
-    placeholder="Please input tel number"
+    label="Label"
+    placeholder="Align Top"
     label-align="top"
+  />
+  <van-field
+    v-model="value2"
+    label="Label"
+    placeholder="Align Left"
+    label-align="left"
+  />
+  <van-field
+    v-model="value3"
+    label="Label"
+    placeholder="Align Center"
+    label-align="center"
+  />
+  <van-field
+    v-model="value4"
+    label="Label"
+    placeholder="Align Right"
+    label-align="right"
   />
 </van-cell-group>
 ```
@@ -265,7 +283,7 @@ Use `label-align` prop to align the input value.
 | v-model | Input value | _number \| string_ | - |
 | label | Left side label | _string_ | - |
 | name | As the identifier when submitting the form | _string_ | - |
-| id `v3.2.2` | Input id, the for attribute of the label also will be set | _string_ | `van-field-n-input` |
+| id | Input id, the for attribute of the label also will be set | _string_ | `van-field-n-input` |
 | type | Input type, support all [native types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types) and `digit` type | _FieldType_ | `text` |
 | size | Size, can be set to `large` | _string_ | - |
 | maxlength | Max length of value | _number \| string_ | - |
@@ -277,7 +295,7 @@ Use `label-align` prop to align the input value.
 | required | Whether to show required mark | _boolean_ | `false` |
 | center | Whether to center content vertically | _boolean_ | `true` |
 | clearable | Whether to be clearable | _boolean_ | `false` |
-| clear-icon `v3.0.12` | Clear icon name | _string_ | `clear` |
+| clear-icon | Clear icon name | _string_ | `clear` |
 | clear-trigger | When to display the clear icon, `always` means to display the icon when value is not empty, `focus` means to display the icon when input is focused | _FieldClearTrigger_ | `focus` |
 | clickable | Whether to show click feedback when clicked | _boolean_ | `false` |
 | is-link | Whether to show link icon | _boolean_ | `false` |
@@ -298,8 +316,8 @@ Use `label-align` prop to align the input value.
 | right-icon | Right side icon name | _string_ | - |
 | icon-prefix | Icon className prefix | _string_ | `van-icon` |
 | rules | Form validation rules | _FieldRule[]_ | - |
-| autocomplete `v3.0.3` | HTML native attribute, see [MDN - autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) | _string_ | - |
-| enterkeyhint `v3.4.8` | HTML native attribute, see [MDN - enterkeyhint](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint)<br> | _string_ | - |
+| autocomplete | HTML native attribute, see [MDN - autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) | _string_ | - |
+| enterkeyhint | HTML native attribute, see [MDN - enterkeyhint](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint)<br> | _string_ | - |
 
 ### Events
 
@@ -313,8 +331,8 @@ Use `label-align` prop to align the input value.
 | click-input | Emitted when the input is clicked | _event: MouseEvent_ |
 | click-left-icon | Emitted when the left icon is clicked | _event: MouseEvent_ |
 | click-right-icon | Emitted when the right icon is clicked | _event: MouseEvent_ |
-| start-validate `v3.5.1` | Emitted when start validation | - |
-| end-validate `v3.5.1` | Emitted when end validation | _{ status: string, message: string }_ |
+| start-validate | Emitted when start validation | - |
+| end-validate | Emitted when end validation | _{ status: string, message: string }_ |
 
 ### Methods
 
@@ -340,7 +358,7 @@ import type {
   FieldClearTrigger,
   FieldFormatTrigger,
   FieldRuleValidator,
-  FiledRuleFormatter,
+  FieldRuleFormatter,
   FieldValidateError,
   FieldAutosizeConfig,
   FieldValidateTrigger,
@@ -361,15 +379,15 @@ fieldRef.value?.focus();
 
 ### Slots
 
-| Name                   | Description                 | SlotProps             |
-| ---------------------- | --------------------------- | --------------------- |
-| label                  | Custom label                | -                     |
-| input                  | Custom input                | -                     |
-| left-icon              | Custom left icon            | -                     |
-| right-icon             | Custom right icon           | -                     |
-| button                 | Insert button               | -                     |
-| error-message `v3.2.5` | Custom error message        | _{ message: string }_ |
-| extra                  | Custom content on the right | -                     |
+| Name          | Description                 | SlotProps             |
+| ------------- | --------------------------- | --------------------- |
+| label         | Custom label                | -                     |
+| input         | Custom input                | -                     |
+| left-icon     | Custom left icon            | -                     |
+| right-icon    | Custom right icon           | -                     |
+| button        | Insert button               | -                     |
+| error-message | Custom error message        | _{ message: string }_ |
+| extra         | Custom content on the right | -                     |
 
 ## Theming
 

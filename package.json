@@ -6,6 +6,7 @@
     "lint": "pnpm --dir ./packages/vant lint",
     "test": "pnpm --dir ./packages/vant test",
     "test:watch": "pnpm --dir ./packages/vant test:watch",
+    "test:update": "pnpm --dir ./packages/vant test:update",
     "build": "pnpm --dir ./packages/vant build",
     "build:site": "pnpm --dir ./packages/vant build:site"
   },
@@ -15,9 +16,9 @@
     "*.{ts,tsx,js,vue}": "eslint --fix"
   },
   "engines": {
-    "pnpm": ">= 7.0.0"
+    "pnpm": ">= 8.0.0"
   },
-  "packageManager": "pnpm@7.20.0",
+  "packageManager": "pnpm@8.1.0",
   "devDependencies": {
     "@vant/cli": "workspace:*",
     "@vant/eslint-config": "workspace:*",

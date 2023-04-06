@@ -160,7 +160,9 @@ export default defineComponent({
         });
       }
 
-      emit('change', extend({ columnIndex }, getEventParams()));
+      nextTick(() => {
+        emit('change', extend({ columnIndex }, getEventParams()));
+      });
     };
 
     const onClickOption = (currentOption: PickerOption, columnIndex: number) =>
@@ -273,6 +275,7 @@ export default defineComponent({
           !isSameValue(newValues, lastEmittedModelValue)
         ) {
           selectedValues.value = newValues.slice(0);
+          lastEmittedModelValue = newValues.slice(0);
         }
       },
       { deep: true }

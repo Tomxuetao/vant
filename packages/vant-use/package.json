@@ -1,6 +1,6 @@
 {
   "name": "@vant/use",
-  "version": "1.4.4",
+  "version": "1.5.1",
   "description": "Vant Composition API",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.mjs",
@@ -37,16 +37,19 @@
   "author": "chenjiahan",
   "license": "MIT",
   "devDependencies": {
-    "esbuild": "^0.16.10",
+    "esbuild": "^0.17.12",
     "release-it": "^15.4.1",
     "rimraf": "^4.0.4",
-    "typescript": "^4.8.2",
-    "vue": "^3.2.45"
+    "typescript": "^5.0.2",
+    "vue": "^3.2.47"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   },
   "release-it": {
     "git": {
       "tag": false,
-      "commitMessage": "release: @vant/use ${version}"
+      "commitMessage": "release: @vant/use v${version}"
     }
   }
 }

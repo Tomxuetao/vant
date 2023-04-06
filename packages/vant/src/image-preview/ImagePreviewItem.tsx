@@ -188,7 +188,8 @@ export default defineComponent({
         // allow user to swipe to next image
         if (
           (moveX > maxMoveX.value || moveX < -maxMoveX.value) &&
-          !isImageMoved
+          !isImageMoved &&
+          touch.isHorizontal()
         ) {
           state.moving = false;
           return;
@@ -276,8 +277,9 @@ export default defineComponent({
             resetScale();
           }
 
-          if (state.scale > props.maxZoom) {
-            state.scale = +props.maxZoom;
+          const maxZoom = +props.maxZoom;
+          if (state.scale > maxZoom) {
+            state.scale = maxZoom;
           }
         }
       }

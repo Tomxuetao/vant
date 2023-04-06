@@ -210,9 +210,10 @@ export default {
 
 ### Slots
 
-| Name    | Description          |
-| ------- | -------------------- |
-| content | Custom right content |
+| Name              | Description                    | SlotProps               |
+| ----------------- | ------------------------------ | ----------------------- |
+| nav-text `v4.1.0` | Custom name of the parent node | _item: TreeSelectChild_ |
+| content           | Custom right content           | -                       |
 
 ### Data Structure of TreeSelectItem
 

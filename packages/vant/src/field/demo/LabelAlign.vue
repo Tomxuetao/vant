@@ -6,14 +6,20 @@ import { useTranslate } from '../../../docs/site';
 
 const t = useTranslate({
   'zh-CN': {
-    text: '手机号',
+    label: '文本',
+    top: '顶部对齐',
+    center: '居中对齐',
+    left: '左对齐',
+    right: '右对齐',
     labelAlign: '输入框文本位置',
-    alignPlaceHolder: '请输入手机号',
   },
   'en-US': {
-    text: 'Tel',
+    label: 'Label',
+    top: 'Align Top',
+    center: 'Align Center',
+    left: 'Align Left',
+    right: 'Align Right',
     labelAlign: 'Label Align',
-    alignPlaceHolder: 'Please input tel number',
   },
 });
 
@@ -25,9 +31,27 @@ const value = ref('');
     <van-cell-group inset>
       <van-field
         v-model="value"
-        :label="t('text')"
-        :placeholder="t('alignPlaceHolder')"
+        :label="t('label')"
+        :placeholder="t('top')"
         label-align="top"
+      />
+      <van-field
+        v-model="value"
+        :label="t('label')"
+        :placeholder="t('left')"
+        label-align="left"
+      />
+      <van-field
+        v-model="value"
+        :label="t('label')"
+        :placeholder="t('center')"
+        label-align="center"
+      />
+      <van-field
+        v-model="value"
+        :label="t('label')"
+        :placeholder="t('right')"
+        label-align="right"
       />
     </van-cell-group>
   </demo-block>

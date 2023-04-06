@@ -161,8 +161,8 @@ export default {
 | Event | Description | Arguments |
 | --- | --- | --- |
 | change | Emitted when current swipe changed | _index: number_ |
-| drag-start `v4.0.9` | Emitted when user starts dragging the swipe | - |
-| drag-end `v4.0.9` | Emitted when user ends dragging the swipe | - |
+| drag-start `v4.0.9` | Emitted when user starts dragging the swipe | _{ index: number }_ |
+| drag-end `v4.0.9` | Emitted when user ends dragging the swipe | _{ index: number }_ |
 
 ### SwipeItem Events
 
@@ -208,10 +208,10 @@ swipeRef.value?.next();
 
 ### Swipe Slots
 
-| Name               | Description      | SlotProps                           |
-| ------------------ | ---------------- | ----------------------------------- |
-| default            | Content          | -                                   |
-| indicator `v3.4.0` | Custom indicator | _{ active: number, total: number }_ |
+| Name      | Description      | SlotProps                           |
+| --------- | ---------------- | ----------------------------------- |
+| default   | Content          | -                                   |
+| indicator | Custom indicator | _{ active: number, total: number }_ |
 
 ## Theming
 

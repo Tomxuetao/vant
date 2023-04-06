@@ -49,7 +49,7 @@ export default {
 
 ### 宽度定制
 
-通过 `stroke-width` 属性来控制进度条宽度。
+通过 `stroke-width` 属性来控制进度条宽度，`stroke-width` 指的是 SVG 中 `path` 的宽度，默认值为 `40`。
 
 ```html
 <van-circle
@@ -58,6 +58,19 @@ export default {
   :stroke-width="60"
   text="宽度定制"
 />
+```
+
+`stroke-width` 的单位不是 `px`，如果你想知道 `stroke-width` 与 `px` 的换算关系，可以通过如下公式计算：
+
+```js
+// SVG 的 viewBox 大小
+const viewBox = 1000 + strokeWidth;
+
+// Circle 组件的宽度，默认为 100px
+const circleWidth = 100;
+
+// 最终渲染出来的进度条宽度（px）
+const pxWidth = (strokeWidth * circleWidth) / viewBox;
 ```
 
 ### 颜色定制
@@ -173,7 +186,7 @@ export default {
 | stroke-width | 进度条宽度 | _number \| string_ | `40` |
 | stroke-linecap | 进度条端点的形状，可选值为 `square` `butt` | _string_ | `round` |
 | clockwise | 是否顺时针增加 | _boolean_ | `true` |
-| start-position `v3.2.1` | 进度起始位置，可选值为 `left`、`right`、`bottom` | _CircleStartPosition_ | `top` |
+| start-position | 进度起始位置，可选值为 `left`、`right`、`bottom` | _CircleStartPosition_ | `top` |
 
 ### Slots
 

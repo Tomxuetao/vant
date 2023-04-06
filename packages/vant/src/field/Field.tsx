@@ -281,7 +281,7 @@ export default defineComponent({
     // see: https://github.com/vant-ui/vant/issues/5033
     const limitValueLength = (value: string) => {
       const { maxlength } = props;
-      if (isDef(maxlength) && getStringLength(value) > maxlength) {
+      if (isDef(maxlength) && getStringLength(value) > +maxlength) {
         const modelValue = getModelValue();
         if (modelValue && getStringLength(modelValue) === +maxlength) {
           return modelValue;
@@ -322,7 +322,7 @@ export default defineComponent({
         const { formatter, maxlength } = props;
         value = formatter(value);
         // The length of the formatted value may exceed maxlength.
-        if (isDef(maxlength) && getStringLength(value) > maxlength) {
+        if (isDef(maxlength) && getStringLength(value) > +maxlength) {
           value = cutString(value, +maxlength);
         }
         if (inputRef.value && state.focused) {
@@ -397,13 +397,14 @@ export default defineComponent({
     };
 
     const onBlur = (event: Event) => {
+      state.focused = false;
+      updateValue(getModelValue(), 'onBlur');
+      emit('blur', event);
+
       if (getProp('readonly')) {
         return;
       }
 
-      state.focused = false;
-      updateValue(getModelValue(), 'onBlur');
-      emit('blur', event);
       validateWithTrigger('onBlur');
       nextTick(adjustTextareaSize);
       resetScroll();
@@ -433,7 +434,8 @@ export default defineComponent({
 
     const labelStyle = computed(() => {
       const labelWidth = getProp('labelWidth');
-      if (labelWidth) {
+      const labelAlign = getProp('labelAlign');
+      if (labelWidth && labelAlign !== 'top') {
         return { width: addUnit(labelWidth) };
       }
     });
@@ -570,6 +572,8 @@ export default defineComponent({
     };
 
     const renderLabel = () => {
+      const labelWidth = getProp('labelWidth');
+      const labelAlign = getProp('labelAlign');
       const colon = getProp('colon') ? ':' : '';
 
       if (slots.label) {
@@ -577,7 +581,15 @@ export default defineComponent({
       }
       if (props.label) {
         return (
-          <label id={`${id}-label`} for={getInputId()}>
+          <label
+            id={`${id}-label`}
+            for={getInputId()}
+            style={
+              labelAlign === 'top' && labelWidth
+                ? { width: addUnit(labelWidth) }
+                : undefined
+            }
+          >
             {props.label + colon}
           </label>
         );

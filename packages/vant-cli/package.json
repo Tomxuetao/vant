@@ -1,6 +1,6 @@
 {
   "name": "@vant/cli",
-  "version": "5.1.0",
+  "version": "6.1.0",
   "type": "module",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -40,12 +40,12 @@
   "license": "MIT",
   "devDependencies": {
     "@jest/types": "^29.1.2",
-    "@types/fs-extra": "^9.0.13",
+    "@types/fs-extra": "^11.0.1",
     "@types/less": "^3.0.3",
     "@types/lodash": "^4.14.191",
     "@types/markdown-it": "^12.2.3",
     "rimraf": "^4.0.4",
-    "vue": "^3.2.45"
+    "vue": "^3.2.47"
   },
   "dependencies": {
     "@babel/core": "^7.18.13",
@@ -57,14 +57,14 @@
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "autoprefixer": "^10.4.8",
-    "commander": "^9.4.0",
+    "commander": "^10.0.0",
     "consola": "^2.15.3",
     "conventional-changelog": "^3.1.25",
-    "esbuild": "^0.16.10",
+    "esbuild": "^0.17.12",
     "eslint": "^8.31.0",
     "execa": "^6.1.0",
     "fast-glob": "^3.2.11",
-    "fs-extra": "^10.1.0",
+    "fs-extra": "^11.1.0",
     "hash-sum": "^2.0.0",
     "highlight.js": "^11.6.0",
     "husky": "^8.0.1",
@@ -85,15 +85,15 @@
     "release-it": "^15.4.1",
     "terser": "^5.16.1",
     "transliteration": "^2.3.5",
-    "typescript": "^4.8.2",
-    "vite": "^4.0.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.2.0",
     "vite-plugin-md": "^0.11.9",
     "vue-router": "^4.1.5"
   },
   "release-it": {
     "git": {
       "tag": false,
-      "commitMessage": "release: @vant/cli ${version}"
+      "commitMessage": "release: @vant/cli v${version}"
     }
   }
 }
