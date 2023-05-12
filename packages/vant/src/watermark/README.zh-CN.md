@@ -18,36 +18,35 @@ app.use(Watermark);
 
 ## 代码演示
 
-### 基础用法
+### 文字水印
+
+通过 `content` 属性来设置水印的文字。
 
 ```html
-<!-- 文字水印 -->
 <van-watermark content="Vant" />
+```
 
-<!-- 图片水印 -->
-<van-watermark image="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+### 图片水印
+
+通过 `image` 属性来设置水印图片，并使用 `opacity` 来调整水印的整体透明度。
+
+```html
+<van-watermark
+  image="https://fastly.jsdelivr.net/npm/@vant/assets/vant-watermark.png"
+  opacity="0.2"
+/>
 ```
 
 ### 自定义间隔
 
-通过 `gapX` 和 `gapY` 属性来控制多个重复水印之间的间隔。
+通过 `gap-x` 和 `gap-y` 属性来控制多个重复水印之间的间隔。
 
 ```html
 <van-watermark
-  image="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-  :gap-x="20"
+  image="https://fastly.jsdelivr.net/npm/@vant/assets/vant-watermark.png"
+  :gap-x="30"
   :gap-y="10"
-/>
-```
-
-### 自定义透明度
-
-通过 `opacity` 属性来控制水印的整体透明度。
-
-```html
-<van-watermark
-  image="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-  :opacity="0.5"
+  opacity="0.2"
 />
 ```
 
@@ -57,33 +56,35 @@ app.use(Watermark);
 
 ```html
 <van-watermark
-  image="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+  image="https://fastly.jsdelivr.net/npm/@vant/assets/vant-watermark.png"
   rotate="22"
+  opacity="0.2"
 />
 ```
 
 ### 显示范围
 
-通过 `fullPage` 属性来控制水印的显示范围。
+通过 `full-page` 属性来控制水印的显示范围。
 
 ```html
 <van-watermark
+  image="https://fastly.jsdelivr.net/npm/@vant/assets/vant-watermark.png"
+  opacity="0.2"
   :full-page="true"
-  content="vant watermark"
-  font-color="rgba(0, 0, 0, 0.15)"
->
-</van-watermark>
+/>
 ```
 
 ### HTML 水印
 
-通过默认插槽可以直接传入 HTML，HTML 样式仅支持行内样式同时不支持传入自闭合标签。
+通过 `content` 插槽可以直接传入 HTML 作为水印。HTML 中的样式仅支持行内样式，同时不支持传入自闭合标签。
 
 ```html
 <van-watermark :width="150">
-  <div style="background: linear-gradient(45deg, #000 0, #000 50%, #fff 50%)">
-    <p style="mix-blend-mode: difference; color: #fff">Vant watermark</p>
-  </div>
+  <template #content>
+    <div style="background: linear-gradient(45deg, #000 0, #000 50%, #fff 50%)">
+      <p style="mix-blend-mode: difference; color: #fff">Vant watermark</p>
+    </div>
+  </template>
 </van-watermark>
 ```
 
@@ -97,18 +98,18 @@ app.use(Watermark);
 | height | 水印高度 | _number_ | `100` |
 | z-index | 水印的 z-index | _number \| string_ | `100` |
 | content | 文字水印的内容 | _string_ | - |
-| image | 图片水印的内容，如果与 content 同时传入，优先使用图片水印 | _string_ | - |
+| image | 图片水印的内容，如果与 `content` 同时传入，优先使用图片水印 | _string_ | - |
 | full-page | 水印是否全屏显示 | _boolean_ | `false` |
-| gapX | 水印之间的水平间隔 | _number_ | `0` |
-| gapY | 水印之间的垂直间隔 | _number_ | `0` |
-| font-color | 文字水印的颜色 | _string_ | `#dcdee0` |
-| opacity | 水印的透明度 | _number_ | `1` |
+| gap-x | 水印之间的水平间隔 | _number_ | `0` |
+| gap-y | 水印之间的垂直间隔 | _number_ | `0` |
+| text-color | 文字水印的颜色 | _string_ | `#dcdee0` |
+| opacity | 水印的透明度 | _number \| string_ | - |
 
 ### Slots
 
 | 名称 | 说明 |
 | --- | --- |
-| default | HTML 水印的内容，仅支持行内样式同时不支持传入自闭合标签，存在 `content` 或 `image` 属性时，此插槽无效 |
+| content | HTML 水印的内容，仅支持行内样式，同时不支持传入自闭合标签，优先级高于 `content` 或 `image` 属性 |
 
 ### 类型定义
 

@@ -21,17 +21,17 @@ import {
 const [name, bem] = createNamespace('watermark');
 
 export const watermarkProps = {
+  gapX: makeNumberProp(0),
+  gapY: makeNumberProp(0),
+  image: String,
   width: makeNumberProp(100),
   height: makeNumberProp(100),
   rotate: makeNumericProp(-22),
   zIndex: numericProp,
   content: String,
-  image: String,
+  opacity: numericProp,
   fullPage: truthProp,
-  gapX: makeNumberProp(0),
-  gapY: makeNumberProp(0),
-  fontColor: makeStringProp('#dcdee0'),
-  opacity: makeNumberProp(1),
+  textColor: makeStringProp('#dcdee0'),
 };
 
 export type WatermarkProps = ExtractPropTypes<typeof watermarkProps>;
@@ -47,20 +47,26 @@ export default defineComponent({
     const watermarkUrl = ref('');
     const imageBase64 = ref('');
     const renderWatermark = () => {
+      const rotateStyle = {
+        transformOrigin: 'center',
+        transform: `rotate(${props.rotate}deg)`,
+      };
+
       const svgInner = () => {
-        if (props.image) {
+        if (props.image && !slots.content) {
           return (
             <image
               href={imageBase64.value}
+              // Compatite for versions below Safari 12
+              // More detail: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href
+              // @ts-ignore
+              xlink:href={imageBase64.value}
               x="0"
               y="0"
               width={props.width}
               height={props.height}
-              style={{
-                transformOrigin: 'center',
-                transform: `rotate(${props.rotate}deg)`,
-              }}
-            ></image>
+              style={rotateStyle}
+            />
           );
         }
 
@@ -69,20 +75,12 @@ export default defineComponent({
             <div
               // @ts-ignore
               xmlns="http://www.w3.org/1999/xhtml"
-              style={{
-                transform: `rotate(${props.rotate}deg)`,
-              }}
+              style={rotateStyle}
             >
-              {props.content ? (
-                <span
-                  style={{
-                    color: props.fontColor,
-                  }}
-                >
-                  {props.content}
-                </span>
+              {slots.content ? (
+                slots.content()
               ) : (
-                slots?.default?.()
+                <span style={{ color: props.textColor }}>{props.content}</span>
               )}
             </div>
           </foreignObject>
@@ -98,6 +96,9 @@ export default defineComponent({
           width={svgWidth}
           height={svgHeight}
           xmlns="http://www.w3.org/2000/svg"
+          // xlink namespace for compatite image xlink attribute
+          // @ts-ignore
+          xmlns:xlink="http://www.w3.org/1999/xlink"
           style={{
             padding: `0 ${props.gapX}px ${props.gapY}px 0`,
             opacity: props.opacity,
@@ -124,8 +125,9 @@ export default defineComponent({
     };
 
     const makeSvgToBlobUrl = (svgStr: string) => {
+      // svg MIME type: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
       const svgBlob = new Blob([svgStr], {
-        type: 'image/svg+xml;charset=utf-8',
+        type: 'image/svg+xml',
       });
       return URL.createObjectURL(svgBlob);
     };
@@ -140,7 +142,7 @@ export default defineComponent({
       () => [
         imageBase64.value,
         props.content,
-        props.fontColor,
+        props.textColor,
         props.height,
         props.width,
         props.rotate,
@@ -148,7 +150,11 @@ export default defineComponent({
         props.gapY,
       ],
       () => {
-        // 路径为 renderWatermark渲染的实际HTML => SVG字符串转换为blob图片 => 放到background-image中。
+        /**
+         * The path is the actual HTML rendered by renderWatermark
+         * => convert the SVG string to a blob image
+         * => put it in background-image.
+         */
         nextTick(() => {
           if (svgElRef.value) {
             if (watermarkUrl.value) {
@@ -177,7 +183,7 @@ export default defineComponent({
 
       return (
         <div class={bem({ full: props.fullPage })} style={style}>
-          <div style={{ display: 'none' }} ref={svgElRef}>
+          <div class={bem('wrapper')} ref={svgElRef}>
             {renderWatermark()}
           </div>
         </div>

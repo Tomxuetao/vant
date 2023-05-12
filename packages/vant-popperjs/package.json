@@ -40,8 +40,8 @@
     "@popperjs/core": "^2.11.6",
     "esbuild": "^0.17.12",
     "release-it": "^15.4.1",
-    "rimraf": "^4.0.4",
-    "typescript": "^5.0.2"
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4"
   },
   "release-it": {
     "git": {

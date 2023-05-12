@@ -18,72 +18,73 @@ app.use(Watermark);
 
 ## Usage
 
-### Basic Usage
+### Text Watermark
+
+Use the `content` prop to set the text of the watermark.
 
 ```html
-<!-- text watermark -->
 <van-watermark content="Vant" />
+```
 
-<!-- image watermark -->
-<van-watermark image="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+### Image Watermark
+
+Use the `image` prop to set the watermark image, and use `opacity` prop to adjust the transparency of the watermark.
+
+```html
+<van-watermark
+  image="https://fastly.jsdelivr.net/npm/@vant/assets/vant-watermark.png"
+  opacity="0.2"
+/>
 ```
 
 ### Custom Gap
 
-Use `gapX` `gapY` attributes to control the gap between two watermark slice.
+Use `gap-x` `gap-y` prop to control the gap between watermark items.
 
 ```html
 <van-watermark
-  image="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-  :gap-x="20"
+  image="https://fastly.jsdelivr.net/npm/@vant/assets/vant-watermark.png"
+  :gap-x="30"
   :gap-y="10"
-/>
-```
-
-### Custom Opacity
-
-Use `opacity` attribute to control the entirety opacity.
-
-```html
-<van-watermark
-  image="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-  :opacity="0.5"
+  opacity="0.2"
 />
 ```
 
 ### Custom Rotate
 
-Use `rotate` attribute to control the rotate of watermark. Default value is `-22`.
+Use `rotate` prop to control the rotate of watermark. The default value is `-22`.
 
 ```html
 <van-watermark
-  image="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+  image="https://fastly.jsdelivr.net/npm/@vant/assets/vant-watermark.png"
   rotate="22"
+  opacity="0.2"
 />
 ```
 
 ### Display Range
 
-Use the `fullPage` attribute to control the display range of the watermark.
+Use the `full-page` prop to control the display range of the watermark.
 
 ```html
 <van-watermark
+  image="https://fastly.jsdelivr.net/npm/@vant/assets/vant-watermark.png"
+  opacity="0.2"
   :full-page="true"
-  content="vant watermark"
-  font-color="rgba(0, 0, 0, 0.15)"
->
-</van-watermark>
+/>
 ```
 
 ### HTML Watermark
 
-Use the `default slot` to pass HTML directly. Inline styles are supported, and self-closing tags are not supported.
+Use the `content` slot to pass HTML as watermark. Only supports inline styles, and self-closing tags are not supported.
 
 ```html
 <van-watermark :width="150">
-  <div style="background: linear-gradient(45deg, #000 0, #000 50%, #fff 50%)">
-    <p style="mix-blend-mode: difference; color: #fff">Vant watermark</p>
-  </div>
+  <template #content>
+    <div style="background: linear-gradient(45deg, #000 0, #000 50%, #fff 50%)">
+      <p style="mix-blend-mode: difference; color: #fff">Vant watermark</p>
+    </div>
+  </template>
 </van-watermark>
 ```
 
@@ -99,16 +100,16 @@ Use the `default slot` to pass HTML directly. Inline styles are supported, and s
 | content | Text watermark content | _string_ | - |
 | image | Image watermark content. If `content` and `image` are passed at the same time, use the `image` watermark first | _string_ | - |
 | full-page | Whether to display the watermark in full screen | _boolean_ | `true` |
-| gapX | Horizontal spacing between watermarks | _number_ | `0` |
-| gapY | Vertical spacing between watermarks | _number_ | `0` |
-| font-color | Color of text watermark | _string_ | `#dcdee0` |
-| opacity | opacity of watermark | _number_ | `1` |
+| gap-x | Horizontal spacing between watermarks | _number_ | `0` |
+| gap-y | Vertical spacing between watermarks | _number_ | `0` |
+| text-color | Color of text watermark | _string_ | `#dcdee0` |
+| opacity | Opacity of watermark | _number \| string_ | - |
 
 ### Slots
 
 | Attribute | Description |
 | --- | --- |
-| default | Content of HTML watermark. Inline styles are supported, and self-closing tags are not supported. This slot is invalid if `content` or `image` props is passed |
+| content | Content of HTML watermark. Only supports inline styles, and self-closing tags are not supported. The priority is higher than `content` or `image` props |
 
 ### Types
 

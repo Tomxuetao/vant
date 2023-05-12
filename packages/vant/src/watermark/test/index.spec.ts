@@ -47,7 +47,7 @@ describe('watermark', () => {
     const wrapper = mount(Watermark, {
       props: {
         content: 'Vant',
-        fontColor: 'red',
+        textColor: 'red',
       },
     });
 
@@ -58,7 +58,8 @@ describe('watermark', () => {
     const wrapper = mount(Watermark, {
       props: {
         content: 'Vant',
-        image: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
+        image:
+          'https://fastly.jsdelivr.net/npm/@vant/assets/vant-watermark.png',
         opacity: 0.5,
       },
     });
@@ -69,7 +70,7 @@ describe('watermark', () => {
   test('should render html', () => {
     const wrapper = mount(Watermark, {
       slots: {
-        default: () => 'vant watermark test',
+        content: () => 'vant watermark test',
       },
     });
 
@@ -85,7 +86,7 @@ describe('watermark', () => {
         zIndex: 200,
       },
       slots: {
-        default: () => 'vant watermark test',
+        content: () => 'vant watermark test',
       },
     });
 
@@ -98,7 +99,7 @@ describe('watermark', () => {
         fullPage: false,
       },
       slots: {
-        default: () => 'vant watermark test',
+        content: () => 'vant watermark test',
       },
     });
 
