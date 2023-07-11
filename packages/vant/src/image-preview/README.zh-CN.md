@@ -188,9 +188,9 @@ export default {
 
 Vant 中导出了以下 ImagePreview 相关的辅助函数：
 
-| 方法名           | 说明         | 参数      | 返回值               |
-| ---------------- | ------------ | --------- | -------------------- | ----------------- |
-| showImagePreview | 展示图片预览 | `string[] | ImagePreviewOptions` | imagePreview 实例 |
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| showImagePreview | 展示图片预览 | _string[] \| ImagePreviewOptions_ | ImagePreview 实例 |
 
 ### ImagePreviewOptions
 
@@ -215,10 +215,10 @@ Vant 中导出了以下 ImagePreview 相关的辅助函数：
 | closeable | 是否显示关闭图标 | _boolean_ | `false` |
 | closeIcon | 关闭图标名称或图片链接 | _string_ | `clear` |
 | closeIconPosition | 关闭图标位置，可选值为 `top-left`<br>`bottom-left` `bottom-right` | _string_ | `top-right` |
-| transition | 动画类名，等价于 [transition](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的 `name` 属性 | _string_ | `van-fade` |
+| transition | 动画类名，等价于 [transition](https://cn.vuejs.org/api/built-in-components.html#transition) 的 `name` 属性 | _string_ | `van-fade` |
 | overlayClass | 自定义遮罩层类名 | _string \| Array \| object_ | - |
 | overlayStyle | 自定义遮罩层样式 | _object_ | - |
-| teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://v3.cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | - |
+| teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | - |
 
 ### Props
 
@@ -241,10 +241,10 @@ Vant 中导出了以下 ImagePreview 相关的辅助函数：
 | closeable | 是否显示关闭图标 | _boolean_ | `false` |
 | close-icon | 关闭图标名称或图片链接 | _string_ | `clear` |
 | close-icon-position | 关闭图标位置，可选值为 `top-left`<br>`bottom-left` `bottom-right` | _string_ | `top-right` |
-| transition | 动画类名，等价于 [transition](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的 `name` 属性 | _string_ | `van-fade` |
+| transition | 动画类名，等价于 [transition](https://cn.vuejs.org/api/built-in-components.html#transition) 的 `name` 属性 | _string_ | `van-fade` |
 | overlay-class | 自定义遮罩层类名 | _string \| Array \| object_ | - |
 | overlay-style | 自定义遮罩层样式 | _object_ | - |
-| teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://v3.cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | - |
+| teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | - |
 
 ### Events
 
@@ -294,11 +294,11 @@ imagePreviewRef.value?.swipeTo(1);
 
 通过组件调用 `ImagePreview` 时，支持以下插槽：
 
-| 名称  | 说明                           | 参数                      |
-| ----- | ------------------------------ | ------------------------- |
-| index | 自定义页码内容                 | { index: 当前图片的索引 } |
-| cover | 自定义覆盖在图片预览上方的内容 | -                         |
-| image | 自定义图片内容                 | { src: 当前资源地址 }     |
+| 名称  | 说明                           | 参数                        |
+| ----- | ------------------------------ | --------------------------- |
+| index | 自定义页码内容                 | _{ index: 当前图片的索引 }_ |
+| cover | 自定义覆盖在图片预览上方的内容 | -                           |
+| image | 自定义图片内容                 | _{ src: 当前资源地址 }_     |
 
 ### onClose 回调参数
 

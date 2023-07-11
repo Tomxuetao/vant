@@ -13,11 +13,142 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 **发布节奏**
 
-- 修订号：每周发布，包含新特性和问题修复。
-- 次版本号：每隔一至二个月发布，包含新特性和较大的功能更新，向下兼容。
+- 修订号：通常每隔 1 ~ 2 周发布，包含新特性和问题修复。
+- 次版本号：通常每隔 1 ~ 2 月发布，包含新组件或较大的功能更新，向下兼容。
 - 主版本号：无固定的发布时间，包含不兼容更新和重大功能更新。
 
 ## 更新内容
+
+### [v4.6.2](https://github.com/vant-ui/vant/compare/v4.6.1...v4.6.2)
+
+`2023-07-09`
+
+**Feature**
+
+- Field: 新增 autocapitalize，autocorrect 和 spellcheck 属性 [#12065](https://github.com/vant-ui/vant/issues/12065)
+- FloatingBubble: 新增 CSS 变量用于自定义圆角 [#12070](https://github.com/vant-ui/vant/issues/12070)
+- Radio: 新增 dot 属性 [#12057](https://github.com/vant-ui/vant/issues/12057)
+- TextEllipsis: 新增 position 属性，由 [cxybd](https://github.com/cxybd) 贡献 ❤️ [#12058](https://github.com/vant-ui/vant/issues/12058)
+
+**Bug Fixes**
+
+- FloatingBubble: 修复边界错误 [#12067](https://github.com/vant-ui/vant/issues/12067)
+- Pagination: 修复边框渲染错误 [#12062](https://github.com/vant-ui/vant/issues/12062)
+
+### [v4.6.1](https://github.com/vant-ui/vant/compare/v4.6.0...v4.6.1)
+
+`2023-07-02`
+
+**Feature**
+
+- ellipsis: 改进中文、日文或韩文文本的换行符 [#12030](https://github.com/vant-ui/vant/issues/12030)
+
+**Bug Fixes**
+
+- FloatingBubble: 修复 floatingBubbleBackground 类型问题 [#12029](https://github.com/vant-ui/vant/issues/12029)
+- SubmitBar: 移除多余的 theme 类型定义 [#12031](https://github.com/vant-ui/vant/issues/12031)
+- Uploader: 修复 base64 图片预览导致的性能问题 [#12051](https://github.com/vant-ui/vant/issues/12051)
+
+### [v4.6.0](https://github.com/vant-ui/vant/compare/v4.5.0...v4.6.0)
+
+`2023-06-24`
+
+**New Component**
+
+- 新增 FloatingBubble 组件，由 [@zhousg](https://github.com/zhousg) 贡献 ❤️ [#11880](https://github.com/vant-ui/vant/issues/11880)
+- 新增 RollingText 组件，由 [@cunzaizhuyi](https://github.com/cunzaizhuyi) 贡献 ❤️ [#11911](https://github.com/vant-ui/vant/issues/11911)
+
+**Feature**
+
+- Rate: 新增 clearable 属性 [#11969](https://github.com/vant-ui/vant/issues/11969)
+
+**Bug Fixes**
+
+- DropdownMenu: 修复缺少类型导出的问题 [#11979](https://github.com/vant-ui/vant/issues/11979)
+- Field: 修复使用 input 插槽时设置了多余的 label `for` 属性的问题 [#11966](https://github.com/vant-ui/vant/issues/11966)
+- FloatingPanel: 修复缺少 floatingPanelProps 类型导出的问题 [#11978](https://github.com/vant-ui/vant/issues/11978)
+- FloatingPanel: 修复 passive event warning [#11992](https://github.com/vant-ui/vant/issues/11992)
+- Picker: 修复多列同时滚动时的问题 [#11945](https://github.com/vant-ui/vant/issues/11945)
+- Rate: 修复半星拖动时断触的问题 [#12002](https://github.com/vant-ui/vant/issues/12002)
+
+### [v4.5.0](https://github.com/vant-ui/vant/compare/v4.4.1...v4.5.0)
+
+`2023-06-11`
+
+**New Component**
+
+- 新增 FloatingPanel 组件，由 [@zhousg](https://github.com/zhousg) 贡献 ❤️ [#11832](https://github.com/vant-ui/vant/issues/11832)
+
+**Feature**
+
+- AddressList: 新增 right-icon 属性 [#11959](https://github.com/vant-ui/vant/issues/11959)
+- DropdownMenu: 新增 close 方法 [#11921](https://github.com/vant-ui/vant/issues/11921)
+- Slider: 新增 button 插槽的 dragging 参数 [#11946](https://github.com/vant-ui/vant/issues/11946)
+- TimePicker: 新增 min-time 和 max-time 属性 [#11887](https://github.com/vant-ui/vant/issues/11887)
+- TimePicker: 新增 filter 属性的 values 参数 [#11916](https://github.com/vant-ui/vant/issues/11916)
+- CI: 增加 issue helper [#11963](https://github.com/vant-ui/vant/issues/11963)
+
+**Bug Fixes**
+
+- BackTop: 修复 deactivated 时未隐藏的问题 [#11938](https://github.com/vant-ui/vant/issues/11938)
+
+### [v4.4.1](https://github.com/vant-ui/vant/compare/v4.4.0...v4.4.1)
+
+`2023-05-28`
+
+**Feature**
+
+- Popover: 新增 actions-direction 属性 [#11888](https://github.com/vant-ui/vant/issues/11888)
+
+**Bug Fixes**
+
+- ImagePreview: 修复初始化时可能有过渡动画的问题 [#11897](https://github.com/vant-ui/vant/issues/11897)
+- Popup: 修复 duration 为 0 时 opened 事件触发两次的问题 [#11902](https://github.com/vant-ui/vant/issues/11902)
+- Slider: 修复点击可能无法触发 change 事件的问题 [#11904](https://github.com/vant-ui/vant/issues/11904)
+- Tab: 修复 title-class 和 title-style 属性可能导致死循环的问题 [#11898](https://github.com/vant-ui/vant/issues/11898)
+
+### [v4.4.0](https://github.com/vant-ui/vant/compare/v4.3.2...v4.4.0)
+
+`2023-05-21`
+
+**New Component**
+
+- 新增 Barrage 组件，由 [@zhousg](https://github.com/zhousg) 贡献 ❤️ [#11760](https://github.com/vant-ui/vant/issues/11760)
+
+**Feature**
+
+- Cascader: 切换 Tab 时自动滚动到选中项 [#11869](https://github.com/vant-ui/vant/issues/11869)
+- Divider: 新增 vertical 属性 [#11883](https://github.com/vant-ui/vant/issues/11883)
+- Document: 支持点击标题时自动调整右侧示例到相应的位置 [#11879](https://github.com/vant-ui/vant/issues/11879)
+- ImagePreview: 优化长图的默认展示效果 [#11857](https://github.com/vant-ui/vant/issues/11857)
+- Signature: 优化签名的清晰度 [#11835](https://github.com/vant-ui/vant/issues/11835)
+- Uploader: 新增 reupload prop [#11854](https://github.com/vant-ui/vant/issues/11854)
+
+**Bug Fixes**
+
+- AddressEdit: 修复多余的底部边框 [#11872](https://github.com/vant-ui/vant/issues/11872)
+- Area: 修复多余的 allow-html 和 show-toolbar props 定义 [#11871](https://github.com/vant-ui/vant/issues/11871)
+- BackTop: 默认使用最近的父级滚动元素作为 target [#11858](https://github.com/vant-ui/vant/issues/11858)
+- ContactList: 优化样式和图标大小 [#11873](https://github.com/vant-ui/vant/issues/11873)
+- DatePicker: 修复外部设置 modelValue 时展示错误的问题 [#11839](https://github.com/vant-ui/vant/issues/11839)
+- Dialog: 修复点击按钮时圆角错误的问题 [#11863](https://github.com/vant-ui/vant/issues/11863)
+
+### [v4.3.2](https://github.com/vant-ui/vant/compare/v4.3.1...v4.3.2)
+
+`2023-05-14`
+
+**Feature**
+
+- ImagePreview: 支持基于手指位置进行缩放 [#11848](https://github.com/vant-ui/vant/issues/11848)
+- PickerGroup: 支持控制当前 Tab 的位置 [#11771](https://github.com/vant-ui/vant/issues/11771)
+- Checkbox: 支持在达到最大选择数量时自动禁用其他选项 [#11814](https://github.com/vant-ui/vant/issues/11814)
+
+**Bug Fixes**
+
+- Filed: 修复点击 label 会触发两次 click 事件的问题 [#11838](https://github.com/vant-ui/vant/issues/11838)
+- Steps: 修复只有一个 Step 时样式错误的问题 [#11822](https://github.com/vant-ui/vant/issues/11822)
+- SubmitBar: 移除多余的 CSS 变量 [#11845](https://github.com/vant-ui/vant/issues/11845)
+- Tab: 修复下划线动画可能错误的问题 [#11819](https://github.com/vant-ui/vant/issues/11819)
 
 ### [v4.3.1](https://github.com/vant-ui/vant/compare/v4.3.0...v4.3.1)
 
@@ -33,7 +164,7 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 **New Component**
 
-- 新增 Signature 组件, 由 [@LIjiAngChen8](https://github.com/LIjiAngChen8) 贡献 [#11733](https://github.com/vant-ui/vant/issues/11733)
+- 新增 Signature 组件, 由 [@LIjiAngChen8](https://github.com/LIjiAngChen8) 贡献 ❤️ [#11733](https://github.com/vant-ui/vant/issues/11733)
 
 **Feature**
 
@@ -67,7 +198,7 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 **New Component**
 
-- 新增 Watermark 水印组件，由 [@HuberTRoy](https://github.com/HuberTRoy) 贡献 [#11721](https://github.com/vant-ui/vant/issues/11721)
+- 新增 Watermark 水印组件，由 [@HuberTRoy](https://github.com/HuberTRoy) 贡献 ❤️ [#11721](https://github.com/vant-ui/vant/issues/11721)
 
 **Feature**
 
@@ -113,7 +244,7 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 **New Component**
 
-- 新增 TextEllipsis 文本省略组件，由 [@wjw-gavin](https://github.com/wjw-gavin) 贡献 [#11593](https://github.com/vant-ui/vant/issues/11593)
+- 新增 TextEllipsis 文本省略组件，由 [@wjw-gavin](https://github.com/wjw-gavin) 贡献 ❤️ [#11593](https://github.com/vant-ui/vant/issues/11593)
 
 **Feature**
 
@@ -461,7 +592,7 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 **New Component**
 
-- 新增 [Space 间距](#/zh-CN/space) 组件, 由 [@LadyChatterleyLover](https://github.com/LadyChatterleyLover) 贡献 [#10857](https://github.com/vant-ui/vant/issues/10857)
+- 新增 [Space 间距](#/zh-CN/space) 组件, 由 [@LadyChatterleyLover](https://github.com/LadyChatterleyLover) 贡献 ❤️ [#10857](https://github.com/vant-ui/vant/issues/10857)
 
 **Feature**
 

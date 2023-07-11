@@ -60,6 +60,7 @@ export const rateProps = {
   color: String,
   count: makeNumericProp(5),
   gutter: numericProp,
+  clearable: Boolean,
   readonly: Boolean,
   disabled: Boolean,
   voidIcon: makeStringProp('star-o'),
@@ -85,8 +86,9 @@ export default defineComponent({
     const [itemRefs, setItemRefs] = useRefs();
     const groupRef = ref<Element>();
 
-    const untouchable = () =>
-      props.readonly || props.disabled || !props.touchable;
+    const unselectable = computed(() => props.readonly || props.disabled);
+
+    const untouchable = computed(() => unselectable.value || !props.touchable);
 
     const list = computed<RateListItem[]>(() =>
       Array(+props.count)
@@ -169,15 +171,14 @@ export default defineComponent({
       return props.allowHalf ? 0.5 : 1;
     };
 
-    const select = (index: number) => {
-      if (!props.disabled && !props.readonly && index !== props.modelValue) {
-        emit('update:modelValue', index);
-        emit('change', index);
-      }
+    const select = (value: number) => {
+      if (unselectable.value || value === props.modelValue) return;
+      emit('update:modelValue', value);
+      emit('change', value);
     };
 
     const onTouchStart = (event: TouchEvent) => {
-      if (untouchable()) {
+      if (untouchable.value) {
         return;
       }
 
@@ -186,13 +187,13 @@ export default defineComponent({
     };
 
     const onTouchMove = (event: TouchEvent) => {
-      if (untouchable()) {
+      if (untouchable.value) {
         return;
       }
 
       touch.move(event);
 
-      if (touch.isHorizontal()) {
+      if (touch.isHorizontal() && !touch.isTap.value) {
         const { clientX, clientY } = event.touches[0];
         preventDefault(event);
         select(getScoreByPosition(clientX, clientY));
@@ -227,9 +228,17 @@ export default defineComponent({
 
       const onClickItem = (event: MouseEvent) => {
         updateRanges();
-        select(
-          allowHalf ? getScoreByPosition(event.clientX, event.clientY) : score
-        );
+        let value = allowHalf
+          ? getScoreByPosition(event.clientX, event.clientY)
+          : score;
+        if (
+          props.clearable &&
+          touch.isTap.value &&
+          value === props.modelValue
+        ) {
+          value = 0;
+        }
+        select(value);
       };
 
       return (

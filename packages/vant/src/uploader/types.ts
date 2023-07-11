@@ -8,12 +8,14 @@ export type UploaderResultType = 'dataUrl' | 'text' | 'file';
 export type UploaderFileListItem = {
   url?: string;
   file?: File;
+  objectUrl?: string;
   content?: string;
   isImage?: boolean;
   status?: '' | 'uploading' | 'done' | 'failed';
   message?: string;
   imageFit?: ImageFit;
   deletable?: boolean;
+  reupload?: boolean;
   previewSize?: Numeric;
   beforeDelete?: Interceptor;
 };

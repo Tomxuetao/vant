@@ -87,6 +87,42 @@ export default {
 };
 ```
 
+### 水平排列
+
+将 `actions-direction` 属性设置为 `horizontal` 后，菜单选项会变成水平排列。
+
+```html
+<van-popover
+  v-model:show="showPopover"
+  :actions="actions"
+  actions-direction="horizontal"
+>
+  <template #reference>
+    <van-button type="primary">水平排列</van-button>
+  </template>
+</van-popover>
+```
+
+```js
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const showPopover = ref(false);
+    const actions = [
+      { text: '选项一' },
+      { text: '选项二' },
+      { text: '选项三' },
+    ];
+
+    return {
+      actions,
+      showPopover,
+    };
+  },
+};
+```
+
 ### 弹出位置
 
 通过 `placement` 属性来控制气泡的弹出位置。
@@ -257,6 +293,7 @@ export default {
 | --- | --- | --- | --- |
 | v-model:show | 是否展示气泡弹出层 | _boolean_ | `false` |
 | actions | 选项列表 | _PopoverAction[]_ | `[]` |
+| actions-direction `v4.4.1` | 选项列表的排列方向，可选值为 `horizontal` | _PopoverActionsDirection_ | `vertical` |
 | placement | 弹出位置 | _PopoverPlacement_ | `bottom` |
 | theme | 主题风格，可选值为 `dark` | _PopoverTheme_ | `light` |
 | trigger | 触发方式，可选值为 `manual` | _PopoverTrigger_ | `click` |
@@ -269,7 +306,7 @@ export default {
 | close-on-click-action | 是否在点击选项后关闭 | _boolean_ | `true` |
 | close-on-click-outside | 是否在点击外部元素后关闭菜单 | _boolean_ | `true` |
 | close-on-click-overlay | 是否在点击遮罩层后关闭菜单 | _boolean_ | `true` |
-| teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://v3.cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | `body` |
+| teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | `body` |
 | icon-prefix | 图标类名前缀，等同于 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 
 ### PopoverAction 数据结构
@@ -312,6 +349,7 @@ import type {
   PopoverProps,
   PopoverTheme,
   PopoverAction,
+  PopoverActionsDirection,
   PopoverTrigger,
   PopoverPlacement,
 } from 'vant';
@@ -332,6 +370,8 @@ import type {
 | --van-popover-action-font-size | _var(--van-font-size-md)_ | - |
 | --van-popover-action-line-height | _var(--van-line-height-md)_ | - |
 | --van-popover-action-icon-size | _20px_ | - |
+| --van-popover-horizontal-action-height | _34px_ | - |
+| --van-popover-horizontal-action-icon-size | _16px_ | - |
 | --van-popover-light-text-color | _var(--van-text-color)_ | - |
 | --van-popover-light-background | _var(--van-background-2)_ | - |
 | --van-popover-light-action-disabled-text-color | _var(--van-text-color-3)_ | - |

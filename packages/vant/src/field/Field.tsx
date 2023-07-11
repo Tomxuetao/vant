@@ -87,8 +87,14 @@ export const fieldSharedProps = {
   inputAlign: String as PropType<FieldTextAlign>,
   placeholder: String,
   autocomplete: String,
+  autocapitalize: String,
+  autocorrect: String,
   errorMessage: String,
   enterkeyhint: String,
+  spellcheck: {
+    type: Boolean,
+    default: null,
+  },
   clearTrigger: makeStringProp<FieldClearTrigger>('focus'),
   formatTrigger: makeStringProp<FieldFormatTrigger>('onChange'),
   error: {
@@ -491,7 +497,10 @@ export default defineComponent({
         autofocus: props.autofocus,
         placeholder: props.placeholder,
         autocomplete: props.autocomplete,
+        autocapitalize: props.autocapitalize,
+        autocorrect: props.autocorrect,
         enterkeyhint: props.enterkeyhint,
+        spellcheck: props.spellcheck,
         'aria-labelledby': props.label ? `${id}-label` : undefined,
         onBlur,
         onFocus,
@@ -583,7 +592,12 @@ export default defineComponent({
         return (
           <label
             id={`${id}-label`}
-            for={getInputId()}
+            for={slots.input ? undefined : getInputId()}
+            onClick={(event: MouseEvent) => {
+              // https://github.com/youzan/vant/issues/11831
+              preventDefault(event);
+              focus();
+            }}
             style={
               labelAlign === 'top' && labelWidth
                 ? { width: addUnit(labelWidth) }

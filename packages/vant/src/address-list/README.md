@@ -83,13 +83,14 @@ export default {
 
 | Attribute | Description | Type | Default |
 | --- | --- | --- | --- |
-| v-model | Id of chosen address | _string_ | - |
+| v-model | Id of chosen address | _number \| string_ | - |
 | list | Address list | _Address[]_ | `[]` |
 | disabled-list | Disabled address list | _Address[]_ | `[]` |
 | disabled-text | Disabled text | _string_ | - |
 | switchable | Whether to allow switch address | _boolean_ | `true` |
 | add-button-text | Add button text | _string_ | `Add new address` |
 | default-tag-text | Default tag text | _string_ | - |
+| right-icon `v4.5.0` | Right Icon | _string_ | `edit` |
 
 ### Events
 

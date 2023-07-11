@@ -59,12 +59,20 @@ Use `pen-color` prop to set the color of the brush stroke.
 <van-signature pen-color="#ff0000" @submit="onSubmit" @clear="onClear" />
 ```
 
-### LineWidth
+### Line Width
 
 Use `line-width` prop to set the width of the line.
 
 ```html
 <van-signature :line-width="6" @submit="onSubmit" @clear="onClear" />
+```
+
+### Background Color
+
+Use `background-color` prop to set the color of the background.
+
+```html
+<van-signature background-color="#eee" @submit="onSubmit" @clear="onClear" />
 ```
 
 ## API
@@ -76,6 +84,7 @@ Use `line-width` prop to set the width of the line.
 | type | Export image type | _string_ | `png` |
 | pen-color | Color of the brush stroke, default is black | _string_ | `#000` |
 | line-width | Width of the line | _number_ | `3` |
+| background-color | Background color | _string_ | - |
 | tips | Text that appears when Canvas is not supported | _string_ | - |
 | clear-button-text | Clear button text | _string_ | `Clear` |
 | confirm-button-text | Confirm button text | _string_ | `Confirm` |

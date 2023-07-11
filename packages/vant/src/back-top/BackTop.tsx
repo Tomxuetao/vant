@@ -9,6 +9,8 @@ import {
   type PropType,
   type TeleportProps,
   type ExtractPropTypes,
+  onDeactivated,
+  onActivated,
 } from 'vue';
 
 // Utils
@@ -57,6 +59,7 @@ export default defineComponent({
   emits: ['click'],
 
   setup(props, { emit, slots, attrs }) {
+    let shouldReshow = false;
     const show = ref(false);
     const root = ref<HTMLElement>();
     const scrollParent = ref<Window | Element>();
@@ -116,12 +119,28 @@ export default defineComponent({
     useEventListener('scroll', throttle(scroll, 100), { target: scrollParent });
 
     onMounted(updateTarget);
+
+    onActivated(() => {
+      if (shouldReshow) {
+        show.value = true;
+        shouldReshow = false;
+      }
+    });
+
+    onDeactivated(() => {
+      // teleported back-top should be hide when deactivated
+      if (show.value && props.teleport) {
+        show.value = false;
+        shouldReshow = true;
+      }
+    });
+
     watch(() => props.target, updateTarget);
 
     return () => {
       const Content = (
         <div
-          ref={root}
+          ref={!props.teleport ? root : undefined}
           class={bem({ active: show.value })}
           style={style.value}
           onClick={onClick}
@@ -136,7 +155,10 @@ export default defineComponent({
       );
 
       if (props.teleport) {
-        return <Teleport to={props.teleport}>{Content}</Teleport>;
+        return [
+          <div ref={root} class={bem('placeholder')}></div>,
+          <Teleport to={props.teleport}>{Content}</Teleport>,
+        ];
       }
       return Content;
     };

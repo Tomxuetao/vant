@@ -13,11 +13,142 @@ Vant follows [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/).
 
 **Release Schedule**
 
-- Patch version：released weekly, including features and bug fixes.
-- Minor version：released every one to two months, including backwards compatible features.
-- Major version：including breaking changes and new features.
+- Patch version：Typically released every 1 to 2 weeks, including new features and bug fixes.
+- Minor version：Typically released every 1 to 2 months, including new components or significant feature updates, with backward compatibility.
+- Major version：No fixed release time, includes breaking changes and major feature updates.
 
 ## Details
+
+### [v4.6.2](https://github.com/vant-ui/vant/compare/v4.6.1...v4.6.2)
+
+`2023-07-09`
+
+**Feature**
+
+- Field: add autocapitalize, autocorrect and spellcheck props [#12065](https://github.com/vant-ui/vant/issues/12065)
+- FloatingBubble: add CSS vars to override border radius [#12070](https://github.com/vant-ui/vant/issues/12070)
+- Radio: add dot shape [#12057](https://github.com/vant-ui/vant/issues/12057)
+- TextEllipsis: add position prop, contributed by [cxybd](https://github.com/cxybd) ❤️ [#12058](https://github.com/vant-ui/vant/issues/12058)
+
+**Bug Fixes**
+
+- FloatingBubble: fix wrong value of boundary [#12067](https://github.com/vant-ui/vant/issues/12067)
+- Pagination: display the border correctly [#12062](https://github.com/vant-ui/vant/issues/12062)
+
+### [v4.6.1](https://github.com/vant-ui/vant/compare/v4.6.0...v4.6.1)
+
+`2023-07-02`
+
+**Feature**
+
+- ellipsis: improve break lines of Chinese, Japanese, or Korean text [#12030](https://github.com/vant-ui/vant/issues/12030)
+
+**Bug Fixes**
+
+- FloatingBubble: floatingBubbleBackground type should be optional [#12029](https://github.com/vant-ui/vant/issues/12029)
+- SubmitBar: remove redundant theme types [#12031](https://github.com/vant-ui/vant/issues/12031)
+- Uploader: render objectUrl to avoid perf issue [#12051](https://github.com/vant-ui/vant/issues/12051)
+
+### [v4.6.0](https://github.com/vant-ui/vant/compare/v4.5.0...v4.6.0)
+
+`2023-06-24`
+
+**New Component**
+
+- add new FloatingBubble component, contributed by [@zhousg](https://github.com/zhousg) ❤️ [#11880](https://github.com/vant-ui/vant/issues/11880)
+- add new RollingText component, contributed by [@cunzaizhuyi](https://github.com/cunzaizhuyi) ❤️ [#11911](https://github.com/vant-ui/vant/issues/11911)
+
+**Feature**
+
+- Rate: add clearable prop [#11969](https://github.com/vant-ui/vant/issues/11969)
+
+**Bug Fixes**
+
+- DropdownMenu: fix missing exported type [#11979](https://github.com/vant-ui/vant/issues/11979)
+- Field: should not set `for` attr to label when using input slot [#11966](https://github.com/vant-ui/vant/issues/11966)
+- FloatingPanel: fix missing floatingPanelProps export [#11978](https://github.com/vant-ui/vant/issues/11978)
+- FloatingPanel: remove passive event warning [#11992](https://github.com/vant-ui/vant/issues/11992)
+- Picker: optimize the animation effect of sliding multiple columns simultaneously [#11945](https://github.com/vant-ui/vant/issues/11945)
+- Rate: should change value when half icon is touchmoved [#12002](https://github.com/vant-ui/vant/issues/12002)
+
+### [v4.5.0](https://github.com/vant-ui/vant/compare/v4.4.1...v4.5.0)
+
+`2023-06-11`
+
+**New Component**
+
+- add new FloatingPanel component, contributed by [@zhousg](https://github.com/zhousg) ❤️ [#11832](https://github.com/vant-ui/vant/issues/11832)
+
+**Feature**
+
+- AddressList: add new right-icon props [#11959](https://github.com/vant-ui/vant/issues/11959)
+- DropdownMenu: add close method [#11921](https://github.com/vant-ui/vant/issues/11921)
+- Slider: add dragging param for button slot [#11946](https://github.com/vant-ui/vant/issues/11946)
+- TimePicker: add min-time and max-time prop [#11887](https://github.com/vant-ui/vant/issues/11887)
+- TimePicker: add values param for filter method [#11916](https://github.com/vant-ui/vant/issues/11916)
+- CI: add issue helper [#11963](https://github.com/vant-ui/vant/issues/11963)
+
+**Bug Fixes**
+
+- BackTop: should hide when deactivated [#11938](https://github.com/vant-ui/vant/issues/11938)
+
+### [v4.4.1](https://github.com/vant-ui/vant/compare/v4.4.0...v4.4.1)
+
+`2023-05-28`
+
+**Feature**
+
+- Popover: add actions-direction prop [#11888](https://github.com/vant-ui/vant/issues/11888)
+
+**Bug Fixes**
+
+- ImagePreview: stop animation during initialization [#11897](https://github.com/vant-ui/vant/issues/11897)
+- Popup: opened event is emitted twice when duration is 0 [#11902](https://github.com/vant-ui/vant/issues/11902)
+- Slider: should update startValue when the slider is clicked [#11904](https://github.com/vant-ui/vant/issues/11904)
+- Tab: maximum recursive updates exceeded in Tabs [#11898](https://github.com/vant-ui/vant/issues/11898)
+
+### [v4.4.0](https://github.com/vant-ui/vant/compare/v4.3.2...v4.4.0)
+
+`2023-05-21`
+
+**New Component**
+
+- add new Barrage component, contributed by [@zhousg](https://github.com/zhousg) ❤️ [#11760](https://github.com/vant-ui/vant/issues/11760)
+
+**Feature**
+
+- Cascader: scroll the selected option into view when switching tabs [#11869](https://github.com/vant-ui/vant/issues/11869)
+- Divider: add vertical prop [#11883](https://github.com/vant-ui/vant/issues/11883)
+- Document: sync mobile position on anchor click [#11879](https://github.com/vant-ui/vant/issues/11879)
+- ImagePreview: optimize the preview effect of long images [#11857](https://github.com/vant-ui/vant/issues/11857)
+- Signature: improve signature clarity by devicePixelRatio [#11835](https://github.com/vant-ui/vant/issues/11835)
+- Uploader: add reupload prop [#11854](https://github.com/vant-ui/vant/issues/11854)
+
+**Bug Fixes**
+
+- AddressEdit: should hide border of the last cell [#11872](https://github.com/vant-ui/vant/issues/11872)
+- Area: areaProps omit allow-html show-toolbar [#11871](https://github.com/vant-ui/vant/issues/11871)
+- BackTop: use the closest parent scroll element as target [#11858](https://github.com/vant-ui/vant/issues/11858)
+- ContactList: increase right icon size and optimize styles [#11873](https://github.com/vant-ui/vant/issues/11873)
+- DatePicker: should display correctly when modelValue is updated from external [#11839](https://github.com/vant-ui/vant/issues/11839)
+- Dialog: fix the rounded corners of shadow when button is clicked [#11863](https://github.com/vant-ui/vant/issues/11863)
+
+### [v4.3.2](https://github.com/vant-ui/vant/compare/v4.3.1...v4.3.2)
+
+`2023-05-14`
+
+**Feature**
+
+- ImagePreview: use the touched point as the center of zooming [#11848](https://github.com/vant-ui/vant/issues/11848)
+- PickerGroup: the tab of PickerGroup supports controlled mode [#11771](https://github.com/vant-ui/vant/issues/11771)
+- Checkbox: disabled unchecked options when the limit is exceeded [#11814](https://github.com/vant-ui/vant/issues/11814)
+
+**Bug Fixes**
+
+- Filed: onclick label execute twice [#11838](https://github.com/vant-ui/vant/issues/11838)
+- Steps: fix the style that occurs when there is only one step [#11822](https://github.com/vant-ui/vant/issues/11822)
+- SubmitBar: Unused CSS variables [#11845](https://github.com/vant-ui/vant/issues/11845)
+- Tab: should cancel raf before the next scroll [#11819](https://github.com/vant-ui/vant/issues/11819)
 
 ### [v4.3.1](https://github.com/vant-ui/vant/compare/v4.3.0...v4.3.1)
 
@@ -33,7 +164,7 @@ Vant follows [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/).
 
 **New Component**
 
-- add new Signature component, contributed by [@LIjiAngChen8](https://github.com/LIjiAngChen8) [#11733](https://github.com/vant-ui/vant/issues/11733)
+- add new Signature component, contributed by [@LIjiAngChen8](https://github.com/LIjiAngChen8) ❤️ [#11733](https://github.com/vant-ui/vant/issues/11733)
 
 **Feature**
 
@@ -67,7 +198,7 @@ Vant follows [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/).
 
 **New Component**
 
-- add new Watermark component, contributed by [@HuberTRoy](https://github.com/HuberTRoy) [#11721](https://github.com/vant-ui/vant/issues/11721)
+- add new Watermark component, contributed by [@HuberTRoy](https://github.com/HuberTRoy) ❤️ [#11721](https://github.com/vant-ui/vant/issues/11721)
 
 **Feature**
 
@@ -113,7 +244,7 @@ Vant follows [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/).
 
 **New Component**
 
-- add new TextEllipsis component, contributed by [@wjw-gavin](https://github.com/wjw-gavin) [#11593](https://github.com/vant-ui/vant/issues/11593)
+- add new TextEllipsis component, contributed by [@wjw-gavin](https://github.com/wjw-gavin) ❤️ [#11593](https://github.com/vant-ui/vant/issues/11593)
 
 **Feature**
 
@@ -458,7 +589,7 @@ Vant follows [Semantic Versioning 2.0.0](https://semver.org/lang/zh-CN/).
 
 **New Component**
 
-- Add new component [Space](#/en-US/space), contributed by [@LadyChatterleyLover](https://github.com/LadyChatterleyLover) [#10857](https://github.com/vant-ui/vant/issues/10857)
+- Add new component [Space](#/en-US/space), contributed by [@LadyChatterleyLover](https://github.com/LadyChatterleyLover) [#10857](https://github.com/vant-ui/vant/issues/10857) ❤️
 
 **Feature**
 

@@ -91,9 +91,9 @@ export default {
 | detail-maxlength | Detail maxlength | _number \| string_ | `200` |
 | is-saving | Whether to show save button loading status | _boolean_ | `false` |
 | is-deleting | Whether to show delete button loading status | _boolean_ | `false` |
-| tel-validator | The method to validate tel | _(tel: string) => boolean_ | - |
+| tel-validator | The method to validate tel | _(val: string) => boolean_ | - |
 | tel-maxlength | Tel maxlength | _number \| string_ | - |
-| validator | Custom validator | _(key, val) => string_ | - |
+| validator | Custom validator | _(key: string, val: string) => string_ | - |
 
 ### Events
 
@@ -116,11 +116,12 @@ export default {
 
 ### Methods
 
-Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get AddressEdit instance and call instance methods.
+Use [ref](https://vuejs.org/guide/essentials/template-refs.html) to get AddressEdit instance and call instance methods.
 
 | Name | Description | Attribute | Return value |
 | --- | --- | --- | --- |
 | setAddressDetail | Set address detail | _addressDetail: string_ | - |
+| setAreaCode | Set area code | _code: string_ | - |
 
 ### Types
 

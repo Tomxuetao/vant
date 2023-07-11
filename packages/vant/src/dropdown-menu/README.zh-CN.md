@@ -58,12 +58,12 @@ export default {
 
 ### 自定义菜单内容
 
-通过插槽可以自定义 `DropdownItem` 的内容，此时需要使用实例上的 `toggle` 方法手动控制菜单的显示。
+通过插槽可以自定义 `DropdownItem` 的内容，此时需要使用 `DropdownMenu` 实例上的 `close` 或指定 `DropdownItem` 的 `toggle` 方法手动控制菜单的显示。
 
 ```html
-<van-dropdown-menu>
+<van-dropdown-menu ref="menuRef">
   <van-dropdown-item v-model="value" :options="options" />
-  <van-dropdown-item title="筛选" ref="item">
+  <van-dropdown-item title="筛选" ref="itemRef">
     <van-cell center title="包邮">
       <template #right-icon>
         <van-switch v-model="switch1" />
@@ -88,7 +88,8 @@ import { ref } from 'vue';
 
 export default {
   setup() {
-    const item = ref(null);
+    const menuRef = ref(null);
+    const itemRef = ref(null);
     const value = ref(0);
     const switch1 = ref(false);
     const switch2 = ref(false);
@@ -98,11 +99,14 @@ export default {
       { text: '活动商品', value: 2 },
     ];
     const onConfirm = () => {
-      item.value.toggle();
+      itemRef.value.toggle();
+      // 或者
+      // menuRef.value.close();
     };
 
     return {
-      item,
+      menuRef,
+      itemRef,
       value,
       switch1,
       switch2,
@@ -168,7 +172,7 @@ export default {
 | disabled | 是否禁用菜单 | _boolean_ | `false` |
 | lazy-render | 是否在首次展开时才渲染菜单内容 | _boolean_ | `true` |
 | title-class | 标题额外类名 | _string \| Array \| object_ | - |
-| teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://v3.cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | - |
+| teleport | 指定挂载的节点，等同于 Teleport 组件的 [to 属性](https://cn.vuejs.org/api/built-in-components.html#teleport) | _string \| Element_ | - |
 
 ### DropdownItem Events
 
@@ -186,6 +190,14 @@ export default {
 | ------- | ---------------- |
 | default | 菜单内容         |
 | title   | 自定义菜单项标题 |
+
+### DropdownMenu 方法
+
+通过 ref 可以获取到 DropdownMenu 实例并调用实例方法，详见[组件实例方法](#/zh-CN/advanced-usage#zu-jian-shi-li-fang-fa)。
+
+| 方法名 | 说明                   | 参数 | 返回值 |
+| ------ | ---------------------- | ---- | ------ |
+| close  | 关闭所有菜单的展示状态 | -    | -      |
 
 ### DropdownItem 方法
 
@@ -205,18 +217,21 @@ import type {
   DropdownItemProps,
   DropdownItemOption,
   DropdownItemInstance,
+  DropdownMenuInstance,
   DropdownMenuDirection,
 } from 'vant';
 ```
 
-`DropdownItemInstance` 是组件实例的类型，用法如下：
+`DropdownMenuInstance` 和 `DropdownItemInstance` 是组件实例的类型，用法如下：
 
 ```ts
 import { ref } from 'vue';
-import type { DropdownItemInstance } from 'vant';
+import type { DropdownMenuInstance, DropdownItemInstance } from 'vant';
 
+const dropdownMenuRef = ref<DropdownMenuInstance>();
 const dropdownItemRef = ref<DropdownItemInstance>();
 
+dropdownMenuRef.value?.close();
 dropdownItemRef.value?.toggle();
 ```
 

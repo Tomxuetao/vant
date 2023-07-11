@@ -365,7 +365,7 @@ export default {
 
 | Name | Description | SlotProps |
 | --- | --- | --- |
-| toolbar `3.1.2` | Custom toolbar content | - |
+| toolbar | Custom toolbar content | - |
 | title | Custom title | - |
 | confirm | Custom confirm button text | - |
 | cancel | Custom cancel button text | - |
@@ -385,7 +385,7 @@ export default {
 
 ### Methods
 
-Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get Picker instance and call instance methods.
+Use [ref](https://vuejs.org/guide/essentials/template-refs.html) to get Picker instance and call instance methods.
 
 | Name | Description | Attribute | Return value |
 | --- | --- | --- | --- |
