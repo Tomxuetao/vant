@@ -31,7 +31,7 @@ import { SwipeItem } from '../swipe-item';
 const getDistance = (touches: TouchList) =>
   Math.sqrt(
     (touches[0].clientX - touches[1].clientX) ** 2 +
-      (touches[0].clientY - touches[1].clientY) ** 2
+      (touches[0].clientY - touches[1].clientY) ** 2,
   );
 
 const getCenter = (touches: TouchList) => ({
@@ -53,6 +53,7 @@ export default defineComponent({
     rootWidth: makeRequiredProp(Number),
     rootHeight: makeRequiredProp(Number),
     disableZoom: Boolean,
+    closeOnClickOverlay: Boolean,
   },
 
   emits: ['scale', 'close', 'longPress'],
@@ -159,7 +160,7 @@ export default defineComponent({
         scale,
         scale === 2 || isLongImage.value
           ? { x: touch.startX.value, y: touch.startY.value }
-          : undefined
+          : undefined,
       );
     };
 
@@ -241,7 +242,7 @@ export default defineComponent({
       }
     };
 
-    const checkTap = () => {
+    const checkTap = (event: TouchEvent) => {
       if (fingerNum > 1) {
         return;
       }
@@ -260,6 +261,12 @@ export default defineComponent({
             doubleTapTimer = null;
             toggleScale();
           } else {
+            if (
+              !props.closeOnClickOverlay &&
+              event.target === swipeItem.value?.$el
+            ) {
+              return;
+            }
             doubleTapTimer = setTimeout(() => {
               emit('close');
               doubleTapTimer = null;
@@ -314,7 +321,7 @@ export default defineComponent({
       // eliminate tap delay on safari
       preventDefault(event, stopPropagation);
 
-      checkTap();
+      checkTap(event);
       touch.reset();
     };
 
@@ -353,7 +360,7 @@ export default defineComponent({
         if (!value) {
           resetScale();
         }
-      }
+      },
     );
     watch(() => [props.rootWidth, props.rootHeight], resize);
 

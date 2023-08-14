@@ -40,7 +40,7 @@ export default defineComponent({
     const root = ref<HTMLElement>();
 
     const actionText = computed(() =>
-      expanded.value ? props.expandText : props.collapseText
+      expanded.value ? props.collapseText : props.expandText,
     );
 
     const pxToNum = (value: string | null) => {
@@ -74,7 +74,7 @@ export default defineComponent({
 
       const calcEllipsisText = (
         container: HTMLDivElement,
-        maxHeight: number
+        maxHeight: number,
       ) => {
         const { content, position, dots } = props;
         const end = content.length;
@@ -89,7 +89,7 @@ export default defineComponent({
               return dots + content.slice(right, end);
             }
 
-            const middle = Math.round((left + right) >> 1);
+            const middle = Math.round((left + right) / 2);
 
             // Set the interception location
             if (position === 'end') {
@@ -120,40 +120,38 @@ export default defineComponent({
 
         const middleTail = (
           leftPart: [number, number],
-          rightPart: [number, number]
+          rightPart: [number, number],
         ): string => {
           if (
             leftPart[1] - leftPart[0] <= 1 &&
             rightPart[1] - rightPart[0] <= 1
           ) {
             return (
-              content.slice(0, leftPart[1]) +
-              dots +
+              content.slice(0, leftPart[0]) +
               dots +
               content.slice(rightPart[1], end)
             );
           }
 
-          const leftMiddle = Math.floor((leftPart[0] + leftPart[1]) >> 1);
-          const rightMiddle = Math.ceil((rightPart[0] + rightPart[1]) >> 1);
+          const leftMiddle = Math.floor((leftPart[0] + leftPart[1]) / 2);
+          const rightMiddle = Math.ceil((rightPart[0] + rightPart[1]) / 2);
 
           container.innerText =
             props.content.slice(0, leftMiddle) +
             props.dots +
-            actionText.value +
-            props.dots +
-            props.content.slice(rightMiddle, end);
+            props.content.slice(rightMiddle, end) +
+            props.expandText;
 
           if (container.offsetHeight >= maxHeight) {
             return middleTail(
               [leftPart[0], leftMiddle],
-              [rightMiddle, rightPart[1]]
+              [rightMiddle, rightPart[1]],
             );
           }
 
           return middleTail(
             [leftMiddle, leftPart[1]],
-            [rightPart[0], rightMiddle]
+            [rightPart[0], rightMiddle],
           );
         };
 
@@ -171,7 +169,7 @@ export default defineComponent({
       const maxHeight = Math.ceil(
         (Number(props.rows) + 0.5) * pxToNum(lineHeight) +
           pxToNum(paddingTop) +
-          pxToNum(paddingBottom)
+          pxToNum(paddingBottom),
       );
 
       if (maxHeight < container.offsetHeight) {
@@ -192,7 +190,7 @@ export default defineComponent({
 
     const renderAction = () => (
       <span class={bem('action')} onClick={onClickAction}>
-        {expanded.value ? props.collapseText : props.expandText}
+        {actionText.value}
       </span>
     );
 

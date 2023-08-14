@@ -1,12 +1,28 @@
 # 更新日志
 
+## Unreleased
+
+- 移除 vant-cli release 命令
+- 移除 vant-cli changelog 命令
+- 升级 commander v11
+- 升级 markdown-it v13
+
+## v6.2.0
+
+`2023-07-29`
+
+- 支持替换 dynamic import 中的文件后缀
+- 升级 vite v4.4
+- 升级 esbuild v0.18
+- 升级 prettier v3
+
 ## v6.1.0
 
 `2023-03-19`
 
 - 升级 typescript v5
-- 升级 esbuild 0.17
-- 升级 vite 4.2
+- 升级 esbuild v0.17
+- 升级 vite v4.2
 - 优化 tsc 错误日志的格式
 
 ## v6.0.1

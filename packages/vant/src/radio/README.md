@@ -62,14 +62,14 @@ export default {
 ### Custom Shape
 
 ```html
-<van-radio-group v-model="checked">
-  <van-radio name="1" shape="square">Radio 1</van-radio>
-  <van-radio name="2" shape="square">Radio 2</van-radio>
+<van-radio-group v-model="checked" shape="square">
+  <van-radio name="1">Radio 1</van-radio>
+  <van-radio name="2">Radio 2</van-radio>
 </van-radio-group>
 
-<van-radio-group v-model="checked">
-  <van-radio name="1" shape="dot">Radio 1</van-radio>
-  <van-radio name="2" shape="dot">Radio 2</van-radio>
+<van-radio-group v-model="checked" shape="dot">
+  <van-radio name="1">Radio 1</van-radio>
+  <van-radio name="2">Radio 2</van-radio>
 </van-radio-group>
 ```
 
@@ -211,6 +211,7 @@ import type {
 | direction | Direction, can be set to `horizontal` | _string_ | `vertical` |
 | icon-size | Icon size of all radios | _number \| string_ | `20px` |
 | checked-color | Checked color of all radios | _string_ | `#1989fa` |
+| shape `v4.6.3` | Can be set to `square` `dot` | _string_ | `round` |
 
 ### Radio Events
 
@@ -237,15 +238,15 @@ import type {
 
 The component provides the following CSS variables, which can be used to customize styles. Please refer to [ConfigProvider component](#/en-US/config-provider).
 
-| Name                             | Default Value              | Description |
-| -------------------------------- | -------------------------- | ----------- |
-| --van-radio-size                 | _20px_                     | -           |
-| --van-radio-dot-size             | _8px_                      | -           |
-| --van-radio-border-color         | _var(--van-gray-5)_        | -           |
-| --van-radio-duration             | _var(--van-duration-fast)_ | -           |
-| --van-radio-label-margin         | _var(--van-padding-xs)_    | -           |
-| --van-radio-label-color          | _var(--van-text-color)_    | -           |
-| --van-radio-checked-icon-color   | _var(--van-primary-color)_ | -           |
-| --van-radio-disabled-icon-color  | _var(--van-gray-5)_        | -           |
-| --van-radio-disabled-label-color | _var(--van-text-color-3)_  | -           |
-| --van-radio-disabled-background  | _var(--van-border-color)_  | -           |
+| Name | Default Value | Description |
+| --- | --- | --- |
+| --van-radio-size | _20px_ | - |
+| --van-radio-dot-size | _8px_ | The distance between the dot and the border |
+| --van-radio-border-color | _var(--van-gray-5)_ | - |
+| --van-radio-duration | _var(--van-duration-fast)_ | - |
+| --van-radio-label-margin | _var(--van-padding-xs)_ | - |
+| --van-radio-label-color | _var(--van-text-color)_ | - |
+| --van-radio-checked-icon-color | _var(--van-primary-color)_ | - |
+| --van-radio-disabled-icon-color | _var(--van-gray-5)_ | - |
+| --van-radio-disabled-label-color | _var(--van-text-color-3)_ | - |
+| --van-radio-disabled-background | _var(--van-border-color)_ | - |

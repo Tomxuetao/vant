@@ -63,11 +63,13 @@ const [name, bem] = createNamespace('floating-bubble');
 export default defineComponent({
   name,
 
+  inheritAttrs: false,
+
   props: floatingBubbleProps,
 
   emits: ['click', 'update:offset', 'offsetChange'],
 
-  setup(props, { slots, emit }) {
+  setup(props, { slots, emit, attrs }) {
     const rootRef = ref<HTMLDivElement>();
 
     const state = ref({
@@ -163,14 +165,14 @@ export default defineComponent({
         if (props.magnetic === 'x') {
           const nextX = closest(
             [boundary.value.left, boundary.value.right],
-            state.value.x
+            state.value.x,
           );
           state.value.x = nextX;
         }
         if (props.magnetic === 'y') {
           const nextY = closest(
             [boundary.value.top, boundary.value.bottom],
-            state.value.y
+            state.value.y,
           );
           state.value.y = nextY;
         }
@@ -198,7 +200,7 @@ export default defineComponent({
 
     watch(
       [windowWidth, windowHeight, () => props.gap, () => props.offset],
-      updateState
+      updateState,
     );
 
     const show = ref(true);
@@ -224,6 +226,7 @@ export default defineComponent({
           onClick={onClick}
           style={rootStyle.value}
           v-show={show.value}
+          {...attrs}
         >
           {slots.default ? (
             slots.default()

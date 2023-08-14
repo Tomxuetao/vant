@@ -26,6 +26,7 @@ const defaultConfig: ImagePreviewOptions = {
   swipeDuration: 300,
   showIndicators: false,
   closeOnPopstate: true,
+  closeOnClickOverlay: true,
   closeIconPosition: 'top-right',
 };
 
@@ -50,7 +51,7 @@ function initInstance() {
 
 export const showImagePreview = (
   options: string[] | ImagePreviewOptions,
-  startPosition = 0
+  startPosition = 0,
 ) => {
   /* istanbul ignore if */
   if (!inBrowser) {
