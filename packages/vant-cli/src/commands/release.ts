@@ -2,17 +2,15 @@ import fse from 'fs-extra';
 import { join } from 'node:path';
 import color from 'picocolors';
 import enquirer from 'enquirer';
-import { consola } from '../common/logger.js';
+import { logger } from 'rslog';
 import { getPackageManager } from '../common/manager.js';
 import { execSync } from 'child_process';
 
 function logCurrentVersion(cwd: string) {
   const pkgJson = join(cwd, 'package.json');
   const pkg = fse.readJSONSync(pkgJson);
-  consola.success(`${color.bold('Current package:')} ${color.green(pkg.name)}`);
-  consola.success(
-    `${color.bold('Current version:')} ${color.green(pkg.version)}`,
-  );
+  logger.info(`${color.bold('Current package:')} ${color.green(pkg.name)}`);
+  logger.info(`${color.bold('Current version:')} ${color.green(pkg.version)}`);
   return {
     pkgName: pkg.name,
     currentVersion: pkg.version,
@@ -43,22 +41,26 @@ function getNpmTag(version: string, forceTag?: string) {
     tag = 'latest';
   }
 
-  consola.success(`${color.bold('Npm tag:')} ${color.green(tag)}`);
+  logger.info(`${color.bold('Npm tag:')} ${color.green(tag)}`);
 
   return tag;
 }
 
-function setPkgVersion(version: string, cwd: string) {
-  const pkgJson = join(cwd, 'package.json');
-  const pkg = fse.readJSONSync(pkgJson);
-  pkg.version = version;
-  fse.writeJSONSync(pkgJson, pkg, { spaces: 2 });
+function setPkgVersion(
+  pkgJson: Record<string, any>,
+  pkgJsonPath: string,
+  version: string,
+) {
+  pkgJson.version = version;
+  fse.writeJSONSync(pkgJsonPath, pkgJson, { spaces: 2 });
 }
 
-function buildPackage(packageManager: string) {
-  const command = `${packageManager} run build`;
-  consola.success(`${color.bold('Build package:')} ${color.green(command)}`);
-  execSync(command, { stdio: 'inherit' });
+function buildPackage(pkgJson: Record<string, any>, packageManager: string) {
+  if (pkgJson.scripts?.build) {
+    const command = `${packageManager} run build`;
+    logger.info(`${color.bold('Build package:')} ${color.green(command)}`);
+    execSync(command, { stdio: 'inherit' });
+  }
 }
 
 function publishPackage(packageManager: string, tag: string) {
@@ -101,13 +103,16 @@ export async function release(command: { tag?: string; gitTag?: boolean }) {
   const tag = getNpmTag(version, command.tag);
   const packageManager = getPackageManager();
 
-  setPkgVersion(version, cwd);
+  const pkgJsonPath = join(cwd, 'package.json');
+  const pkgJson = fse.readJSONSync(pkgJsonPath);
+
+  setPkgVersion(pkgJson, pkgJsonPath, version);
 
   try {
-    buildPackage(packageManager);
+    buildPackage(pkgJson, packageManager);
   } catch (err) {
-    consola.error('Failed to build package, rollback to the previous version.');
-    setPkgVersion(currentVersion, cwd);
+    logger.error('Failed to build package, rollback to the previous version.');
+    setPkgVersion(pkgJson, pkgJsonPath, currentVersion);
     throw err;
   }
 

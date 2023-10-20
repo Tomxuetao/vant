@@ -104,6 +104,9 @@ export default defineComponent({
     });
 
     const updateState = () => {
+      // onDeactivated with window size change will cause this
+      if (!show.value) return;
+
       const { width, height } = useRect(rootRef.value!);
       const { offset } = props;
       state.value = {
@@ -189,6 +192,7 @@ export default defineComponent({
 
     const onClick = (e: MouseEvent) => {
       if (touch.isTap.value) emit('click', e);
+      else e.stopPropagation();
     };
 
     onMounted(() => {
@@ -223,7 +227,7 @@ export default defineComponent({
           onTouchstartPassive={onTouchStart}
           onTouchend={onTouchEnd}
           onTouchcancel={onTouchEnd}
-          onClick={onClick}
+          onClickCapture={onClick}
           style={rootStyle.value}
           v-show={show.value}
           {...attrs}

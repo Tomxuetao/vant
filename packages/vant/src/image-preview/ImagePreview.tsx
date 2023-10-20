@@ -63,6 +63,7 @@ export const imagePreviewProps = {
   closeIcon: makeStringProp('clear'),
   transition: String,
   beforeClose: Function as PropType<Interceptor>,
+  doubleScale: truthProp,
   overlayClass: unknownProp,
   overlayStyle: Object as PropType<CSSProperties>,
   swipeDuration: makeNumericProp(300),
@@ -174,6 +175,7 @@ export default defineComponent({
             rootWidth={state.rootWidth}
             rootHeight={state.rootHeight}
             disableZoom={state.disableZoom}
+            doubleScale={props.doubleScale}
             closeOnClickOverlay={props.closeOnClickOverlay}
             onScale={emitScale}
             onClose={emitClose}

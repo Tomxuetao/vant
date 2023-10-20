@@ -19,37 +19,279 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 ## 更新内容
 
+### v4.7.2
+
+`2023-10-15`
+
+#### 新功能 🎉
+
+- feat(Icon): 添加 font-family CSS 变量，由 [@JeremyFan](https://github.com/JeremyFan) 在 [#12354](https://github.com/youzan/vant/pull/12354) 中贡献
+- feat(ImagePreview): 添加 doubleScale 选项，由 [@coderXMin](https://github.com/coderXMin) 在 [#12360](https://github.com/youzan/vant/pull/12360) 中贡献
+
+#### Bug 修复 🐞
+
+- fix(Icons): 使图标与 Vant 2 的浏览器范围兼容，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12356](https://github.com/youzan/vant/pull/12356) 中贡献
+- fix(Uploader): 修复了多次重新上传只选择一个以及取消选择的问题，由 [@zhousg](https://github.com/zhousg) 在 [#12359](https://github.com/youzan/vant/pull/12359) 中贡献
+
+#### 其他更改
+
+- refactor(Signature): 避免在下一个 tick 中设置 canvas 的宽度和高度，由 [@inottn](https://github.com/inottn) 在 [#12347](https://github.com/youzan/vant/pull/12347) 中贡献
+- refactor(Signature): 使用 scale 方法提高清晰度，由 [@inottn](https://github.com/inottn) 在 [#12363](https://github.com/youzan/vant/pull/12363) 中贡献
+- chore(deps): 将 rslog 版本提升至 v1.1.0，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12364](https://github.com/youzan/vant/pull/12364) 中贡献
+- chore(cli): 合并欢迎日志，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12365](https://github.com/youzan/vant/pull/12365) 中贡献
+- chore(ImagePreview): 重命名 doubleScale 并添加测试用例，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12366](https://github.com/youzan/vant/pull/12366) 中贡献
+
+#### 新贡献者
+
+- [@coderXMin](https://github.com/coderXMin) 在 [#12360](https://github.com/youzan/vant/pull/12360) 中进行了他的首次贡献
+
+### v4.7.1
+
+`2023-10-06`
+
+#### 新功能 🎉
+
+- feat(FloatingPanel): 优化弹跳动画，由 [@zhousg](https://github.com/zhousg) 在 [#12317](https://github.com/youzan/vant/pull/12317) 中贡献
+- feat(cli): 使用 rslog，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12334](https://github.com/youzan/vant/pull/12334) 中贡献
+- style(Swipe): 声明 `transition-property` 样式，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12336](https://github.com/youzan/vant/pull/12336) 中贡献
+- feat(Notify): 为辅助函数添加 JSDoc，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12342](https://github.com/youzan/vant/pull/12342) 中贡献
+- feat(Dialog): 为辅助函数添加 JSDoc，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12343](https://github.com/youzan/vant/pull/12343) 中贡献
+- feat(Toast): 为辅助函数添加 JSDoc，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12344](https://github.com/youzan/vant/pull/12344) 中贡献
+
+#### Bug 修复 🐞
+
+- fix(Popup): 修复无法继承 scopedId 的问题，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12327](https://github.com/youzan/vant/pull/12327) 中贡献
+- fix(CellGroup): 修复带有标题时无法继承 scopeId 的问题，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12328](https://github.com/youzan/vant/pull/12328) 中贡献
+- fix(Popover): 修复无法继承 scopedId 的问题，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12329](https://github.com/youzan/vant/pull/12329) 中贡献
+
+#### 文档 📖
+
+- docs: 修复 Form 中的拼写错误，由 [@zcvvvbb](https://github.com/zcvvvbb) 在 [#12322](https://github.com/youzan/vant/pull/12322) 中贡献
+- docs: 添加更多生态项目，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12338](https://github.com/youzan/vant/pull/12338) 中贡献
+- docs(ImagePreview): 改进英文文档，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12345](https://github.com/youzan/vant/pull/12345) 中贡献
+- docs: 修复将 Georqia 错误拼写为 Georgia 的问题，由 [@mahnunchik](https://github.com/mahnunchik) 在 [#12331](https://github.com/youzan/vant/pull/12331) 中贡献
+
+#### 其他变更
+
+- chore(Swipe): 限制 transform 的小数位数，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12337](https://github.com/youzan/vant/pull/12337) 中贡献
+- chore: 升级 pnpm 到 v8.8.0，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12339](https://github.com/youzan/vant/pull/12339) 中贡献
+- chore(deps): 将 postcss 从 8.4.27 升级到 8.4.31，由 [@dependabot](https://github.com/dependabot) 在 [#12341](https://github.com/youzan/vant/pull/12341) 中贡献
+
+#### 新贡献者
+
+- [@zcvvvbb](https://github.com/zcvvvbb) 在 [#12322](https://github.com/youzan/vant/pull/12322) 中首次贡献
+- [@mahnunchik](https://github.com/mahnunchik) 在 [#12331](https://github.com/youzan/vant/pull/12331) 中首次贡献
+
+### v4.7.0
+
+`2023-09-24`
+
+#### 🍭 图标更新
+
+- 图标：添加一个实底的 `records` 图标
+- 图标：添加一个实底的 `contact` 图标
+- 图标：添加一个实底的 `discount` 图标
+- 图标：添加一个实底的 `completed` 图标
+- 图标：添加一个实底的 `description` 图标
+- 图标：添加一个实底的 `cash-back-record` 图标
+- 图标：添加新的 `user` 图标
+- 图标：添加新的 `notes` 图标
+- 图标：添加新的 `newspaper` 图标
+- 图标：添加新的 `list-switch` 图标
+- 图标：添加新的 `list-switching` 图标
+- 图标：将以前的 `records` 图标重命名为 `records-o`
+- 图标：将以前的 `contact` 图标重命名为 `contact-o`
+- 图标：将以前的 `discount` 图标重命名为 `discount-o`
+- 图标：将以前的 `completed` 图标重命名为 `completed-o`
+- 图标：将以前的 `description` 图标重命名为 `description-o`
+- 图标：将以前的 `cash-back-record` 图标重命名为 `cash-back-record-o`
+
+#### 新功能 🎉
+
+- feat(Calendar): 由 [@LadyChatterleyLover](https://github.com/LadyChatterleyLover) 在 [#12274](https://github.com/youzan/vant/pull/12274) 中添加了 `click-disabled-date` 事件
+- feat(Uploader): 由 [@xieyezi](https://github.com/xieyezi) 在 [#12280](https://github.com/youzan/vant/pull/12280) 中添加了 `--van-uploader-border-radius` CSS 变量
+- feat(SwipeCell): 由 [@nined9](https://github.com/nined9) 在 [#12309](https://github.com/youzan/vant/pull/12309) 中修复了运行 `beforeClose` 时点击外部触发关闭的问题
+- feat(AddressEdit): 由 [@zhousg](https://github.com/zhousg) 在 [#12310](https://github.com/youzan/vant/pull/12310) 中为姓名和电话输入添加了 `change` 事件
+- types(Dialog): 由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12316](https://github.com/youzan/vant/pull/12316) 中改进了 `showDialog` 的返回类型
+
+#### Bug 修复 🐞
+
+- fix(Picker): 由 [@lllomh](https://github.com/lllomh) 在 [#12300](https://github.com/youzan/vant/pull/12300) 中修复了弹出窗口的内容与中文版本不一致的问题
+- fix(Signature): 由 [@sywyyhykkk](https://github.com/sywyyhykkk) 在 [#12304](https://github.com/youzan/vant/pull/12304) 中修复了当设置了背景颜色时检查画布是否为空的问题
+- fix(FloatingPanel): 由 [@zhousg](https://github.com/zhousg) 在 [#12314](https://github.com/youzan/vant/pull/12314) 中修复了向下拖动导致页面移动的问题
+
+#### 文档 📖
+
+- docs(Picker): 由 [@MrXwq](https://github.com/MrXwq) 在 [#12275](https://github.com/youzan/vant/pull/12275) 中改进了 Picker 的文档
+- docs(Uploader): 由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12289](https://github.com/youzan/vant/pull/12289) 中添加了有关相机权限的常见问题解答
+
+#### 其他变更
+
+- test(Dialog): 由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12315](https://github.com/youzan/vant/pull/12315) 中启用了函数调用测试用例
+- fix(cli): 由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12292](https://github.com/youzan/vant/pull/12292) 中允许在发布时缺少构建脚本
+
+#### 新贡献者
+
+- [@nined9](https://github.com/nined9) 在 [#12309](https://github.com/youzan/vant/pull/12309) 中进行了首次贡献
+- [@sywyyhykkk](https://github.com/sywyyhykkk) 在 [#12304](https://github.com/youzan/vant/pull/12304) 中进行了首次贡献
+
+### v4.6.8
+
+`2023-09-10`
+
+#### 新功能 🎉
+
+- feat(Cell): 添加 CSS 变量用于自定义 Value 的字体大小 by [@inottn](https://github.com/inottn) in [#12260](https://github.com/youzan/vant/pull/12260)
+- feat(ConfigProvider): 补充 ConfigProviderThemeVars 的类型声明 by [@xieyezi](https://github.com/xieyezi) in [#12264](https://github.com/youzan/vant/pull/12264)
+- feat(NavBar): 添加 leftDisabled 和 rightDisabled 属性 by [@m-xlsea](https://github.com/m-xlsea) in [#12258](https://github.com/youzan/vant/pull/12258)
+
+#### Bug 修复 🐞
+
+- fix(ConfigProvider): 修复设置某些基础主题变量失败的问题 by [@chenjiahan](https://github.com/chenjiahan) in [#12272](https://github.com/youzan/vant/pull/12272)
+- fix(ConfigProvider): 修复 ConfigProviderThemeVars 的 fontSizeXs 命名错误 by [@xieyezi](https://github.com/xieyezi) in [#12267](https://github.com/youzan/vant/pull/12267)
+
+#### 文档 📖
+
+- docs(NavBar): 添加禁用按钮示例 by [@chenjiahan](https://github.com/chenjiahan) in [#12270](https://github.com/youzan/vant/pull/12270)
+
+#### 其他变更
+
+- chore(CI): 启用单一提交以减小仓库大小 by [@chenjiahan](https://github.com/chenjiahan) in [#12268](https://github.com/youzan/vant/pull/12268)
+- chore(CI): 升级 actions 版本 by [@chenjiahan](https://github.com/chenjiahan) in [#12269](https://github.com/youzan/vant/pull/12269)
+- chore: 将 Axure 文件移动到 vant-assets 仓库 by [@chenjiahan](https://github.com/chenjiahan) in [#12271](https://github.com/youzan/vant/pull/12271)
+
+#### 新贡献者
+
+- [@xieyezi](https://github.com/xieyezi) 在 [#12264](https://github.com/youzan/vant/pull/12264) 中首次贡献
+- [@m-xlsea](https://github.com/m-xlsea) 在 [#12258](https://github.com/youzan/vant/pull/12258) 中首次贡献
+
+### v4.6.7
+
+`2023-09-04`
+
+#### 新功能 🎉
+
+- feat(vant-use): 添加 useRaf，由 [@Simon-He95](https://github.com/Simon-He95) 在 [#12211](https://github.com/youzan/vant/pull/12211) 中贡献
+- feat(Checkbox): 添加不确定状态，由 [@wjw-gavin](https://github.com/wjw-gavin) 在 [#12216](https://github.com/youzan/vant/pull/12216) 中贡献
+- feat(auto-import-resolver): 添加 auto-import-resolver 包，由 [@wChenonly](https://github.com/wChenonly) 在 [#12227](https://github.com/youzan/vant/pull/12227) 中贡献
+- feat(ConfigProvider): 添加 theme-vars-scope 属性以启用根作用域影响，由 [@zhousg](https://github.com/zhousg) 在 [#12240](https://github.com/youzan/vant/pull/12240) 中贡献
+
+#### 问题修复 🐞
+
+- fix(auto-import-resolver): 修复 TS 项目中的类型不匹配问题，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12243](https://github.com/youzan/vant/pull/12243) 中贡献
+- fix(eslint): 使用 ignorePatterns 替代 .eslintignore，由 [@MrXwq](https://github.com/MrXwq) 在 [#12237](https://github.com/youzan/vant/pull/12237) 中贡献
+
+#### 文档 📖
+
+- docs: 改善 back-top 的菜单位置，由 [@wjw-gavin](https://github.com/wjw-gavin) 在 [#12223](https://github.com/youzan/vant/pull/12223) 中贡献
+- docs: 改善 use-raf 文档，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12224](https://github.com/youzan/vant/pull/12224) 中贡献
+- docs: 在快速入门指南中添加 Vite 和 Nuxt 的指引，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12239](https://github.com/youzan/vant/pull/12239) 中贡献
+- docs(auto-import-resolver): 更新 README 和文件夹名称，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12241](https://github.com/youzan/vant/pull/12241) 中贡献
+- docs(auto-import-resolver): 添加 Rspack 的使用方法，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12242](https://github.com/youzan/vant/pull/12242) 中贡献
+- docs(ConfigProvider): 更新修改 CSS 变量的指南，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12246](https://github.com/youzan/vant/pull/12246) 中贡献
+
+#### 其他变更
+
+- test: 将测试运行器迁移到 vitest，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12206](https://github.com/youzan/vant/pull/12206) 中贡献
+- chore(CI): 修复 codecov 报告器，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12210](https://github.com/youzan/vant/pull/12210) 中贡献
+- chore: 对内部依赖使用 workspace 协议，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12225](https://github.com/youzan/vant/pull/12225) 中贡献
+- test: 修复 vitest 的 canvas 模拟，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12226](https://github.com/youzan/vant/pull/12226) 中贡献
+
+### v4.6.6
+
+`2023-08-20`
+
+#### 新功能 🎉
+
+- feat(DropdownItem): 支持在 options 的 value 中传入布尔值 by [@baboon-king](https://github.com/baboon-king) in [#12208](https://github.com/youzan/vant/pull/12208)
+
+#### Bug 修复 🐞
+
+- fix(FloatingBubble): 拖动时不应触发子元素的点击事件 by [@zhousg](https://github.com/zhousg) in [#12201](https://github.com/youzan/vant/pull/12201)
+- fix(FloatingBubble): 隐藏时不更新状态 by [@zhousg](https://github.com/zhousg) in [#12207](https://github.com/youzan/vant/pull/12207)
+
+#### 其他变更
+
+- chore(CI): 更新 issue 评论消息的内容 by [@chenjiahan](https://github.com/chenjiahan) in [#12204](https://github.com/youzan/vant/pull/12204)
+- refactor(cli): 移除 execa 依赖 by [@chenjiahan](https://github.com/chenjiahan) in [#12205](https://github.com/youzan/vant/pull/12205)
+
+### v4.6.5
+
+`2023-08-16`
+
+#### 新功能 🎉
+
+- feat(DropdownMenu): 添加 swipe-threshold 属性 by [@inottn](https://github.com/inottn) in [#12117](https://github.com/youzan/vant/pull/12117)
+- types(Toast): 添加 `ToastWrapperInstance` 导出 by [@long-woo](https://github.com/long-woo) in [#12166](https://github.com/youzan/vant/pull/12166)
+- feat(FloatingBubble): 使用组件属性 by [@zhousg](https://github.com/zhousg) in [#12171](https://github.com/youzan/vant/pull/12171)
+
+#### Bug 修复 🐞
+
+- fix(FloatingPanel): 修复由滚动条和面板移动引起的延迟问题 #12146 by [@yue1123](https://github.com/yue1123) in [#12161](https://github.com/youzan/vant/pull/12161)
+- fix(FloatingPanel): 将 lock-scroll 的默认值更改为 false by [@inottn](https://github.com/inottn) in [#12162](https://github.com/youzan/vant/pull/12162)
+- fix(cli): 在 markdown 中应该转义花括号 by [@chenjiahan](https://github.com/chenjiahan) in [#12188](https://github.com/youzan/vant/pull/12188)
+
+#### 文档 📖
+
+- docs: 添加 bun 包管理器的说明 by [@colinhacks](https://github.com/colinhacks) in [#12182](https://github.com/youzan/vant/pull/12182)
+
+#### 其他变更
+
+- chore: 添加脚本以格式化 GitHub 更新日志 by [@chenjiahan](https://github.com/chenjiahan) in [#12158](https://github.com/youzan/vant/pull/12158)
+- chore(FloatingPanel): 改进代码风格 by [@chenjiahan](https://github.com/chenjiahan) in [#12175](https://github.com/youzan/vant/pull/12175)
+- refactor(cli): 重写 vite-plugin-md by [@chenjiahan](https://github.com/chenjiahan) in [#12179](https://github.com/youzan/vant/pull/12179)
+- chore(deps): 升级 markdown-it 到 v13 和 commander 到 v11 by [@chenjiahan](https://github.com/chenjiahan) in [#12180](https://github.com/youzan/vant/pull/12180)
+- chore(CI): 不在拉取请求中运行 codeql by [@chenjiahan](https://github.com/chenjiahan) in [#12181](https://github.com/youzan/vant/pull/12181)
+
+#### 新贡献者
+
+- [@long-woo](https://github.com/long-woo) 在 [#12166](https://github.com/youzan/vant/pull/12166) 中进行了首次贡献
+- [@yue1123](https://github.com/yue1123) 在 [#12161](https://github.com/youzan/vant/pull/12161) 中进行了首次贡献
+- [@colinhacks](https://github.com/colinhacks) 在 [#12182](https://github.com/youzan/vant/pull/12182) 中进行了首次贡献
+- [@xincheng-1999](https://github.com/xincheng-1999) 在 [#12189](https://github.com/youzan/vant/pull/12189) 中进行了首次贡献
+
 ### v4.6.4
 
 `2023-08-06`
 
 #### 新功能 🎉
 
-- feat(area-data): 更新芜湖的县区数据，由 [nivin-studio](https://github.com/nivin-studio) 在 [#12122](https://github.com/youzan/vant/pull/12122) 中贡献
-- feat(Locale): 添加塞尔维亚语到国际化，由 [RogerZXY](https://github.com/RogerZXY) 在 [#12145](https://github.com/youzan/vant/pull/12145) 中贡献
-- feat(ImagePreview): 添加 closeOnClickOverlay 选项，由 [chenjiahan](https://github.com/chenjiahan) 在 [#12153](https://github.com/youzan/vant/pull/12153) 中贡献
-- feat(List): 添加 scroller 属性，由 [chenjiahan](https://github.com/chenjiahan) 在 [#12154](https://github.com/youzan/vant/pull/12154) 中贡献
-- feat(FloatingPanel): 添加 lock-scroll 属性，由 [inottn](https://github.com/inottn) 在 [#12157](https://github.com/youzan/vant/pull/12157) 中贡献
+- feat(area-data): 更新芜湖的县区数据，由 [@nivin-studio](https://github.com/nivin-studio) 在 [#12122](https://github.com/youzan/vant/pull/12122) 中贡献
+- feat(Locale): 添加塞尔维亚语到国际化，由 [@RogerZXY](https://github.com/RogerZXY) 在 [#12145](https://github.com/youzan/vant/pull/12145) 中贡献
+- feat(ImagePreview): 添加 closeOnClickOverlay 选项，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12153](https://github.com/youzan/vant/pull/12153) 中贡献
+- feat(List): 添加 scroller 属性，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12154](https://github.com/youzan/vant/pull/12154) 中贡献
+- feat(FloatingPanel): 添加 lock-scroll 属性，由 [@inottn](https://github.com/inottn) 在 [#12157](https://github.com/youzan/vant/pull/12157) 中贡献
 
 #### Bug 修复 🐞
 
-- fix(TextEllipsis): 修复省略号重复出现的问题，由 [muzaisimao](https://github.com/muzaisimao) 在 [#12120](https://github.com/youzan/vant/pull/12120) 中贡献
-- fix(TextEllipsis): 修复计算省略号位置的逻辑问题，由 [inottn](https://github.com/inottn) 在 [#12137](https://github.com/youzan/vant/pull/12137) 中贡献
+- fix(TextEllipsis): 修复省略号重复出现的问题，由 [@muzaisimao](https://github.com/muzaisimao) 在 [#12120](https://github.com/youzan/vant/pull/12120) 中贡献
+- fix(TextEllipsis): 修复计算省略号位置的逻辑问题，由 [@inottn](https://github.com/inottn) 在 [#12137](https://github.com/youzan/vant/pull/12137) 中贡献
 
 #### 文档 📖
 
-- docs: 将 PR 标题格式移至贡献指南，由 [chenjiahan](https://github.com/chenjiahan) 在 [#12114](https://github.com/youzan/vant/pull/12114) 中贡献
-- docs(Radio): 添加对 css 变量 '--van-radio-dot-size' 的文档描述，由 [wjw-gavin](https://github.com/wjw-gavin) 在 [#12152](https://github.com/youzan/vant/pull/12152) 中贡献
+- docs: 将 PR 标题格式移至贡献指南，由 [@chenjiahan](https://github.com/chenjiahan) 在 [#12114](https://github.com/youzan/vant/pull/12114) 中贡献
+- docs(Radio): 添加对 css 变量 '--van-radio-dot-size' 的文档描述，由 [@wjw-gavin](https://github.com/wjw-gavin) 在 [#12152](https://github.com/youzan/vant/pull/12152) 中贡献
 
-#### 其他变更
+#### 其他更改
 
-- chore: 避免 prettier 破坏 hbs 模板，由 [chenjiahan](https://github.com/chenjiahan) 在 [#12113](https://github.com/youzan/vant/pull/12113) 中贡献
-- chore(deps): 升级 release-it 到 v16，由 [chenjiahan](https://github.com/chenjiahan) 在 [#12115](https://github.com/youzan/vant/pull/12115) 中贡献
-- feat(get-deps): 将 import('../foo.vue') 替换为 import('../foo.mjs')，由 [suncohey](https://github.com/suncohey) 在 [#12046](https://github.com/youzan/vant/pull/12046) 中贡献
-- refactor(cli): 重写 release 命令，由 [chenjiahan](https://github.com/chenjiahan) 在 [#12133](https://github.com/youzan/vant/pull/12133) 中贡献
-- feat(cli): 支持 release 命令的 gitTag 选项，由 [chenjiahan](https://github.com/chenjiahan) 在 [#12134](https://github.com/youzan/vant/pull/12134) 中贡献
-- chore(CI): 通过 GitHub 自动生成变更日志，由 [chenjiahan](https://github.com/chenjiahan) 在 [#12135](https://github.com/youzan/vant/pull/12135) 中贡献
-- chore: 添加 PR 标签动作，由 [chenjiahan](https://github.com/chenjiahan) 在 [#12136](https://github.com
+- chore: 避免 prettier 破坏 hbs 模板 by [@chenjiahan](https://github.com/chenjiahan) in [#12113](https://github.com/youzan/vant/pull/12113)
+- chore(deps): 升级 release-it v16 by [@chenjiahan](https://github.com/chenjiahan) in [#12115](https://github.com/youzan/vant/pull/12115)
+- feat(get-deps): 将 import('../foo.vue') 替换为 import('../foo.mjs') by [@suncohey](https://github.com/suncohey) in [#12046](https://github.com/youzan/vant/pull/12046)
+- refactor(cli): 重写 release 命令 by [@chenjiahan](https://github.com/chenjiahan) in [#12133](https://github.com/youzan/vant/pull/12133)
+- feat(cli): 为 release 命令添加 gitTag 选项支持 by [@chenjiahan](https://github.com/chenjiahan) in [#12134](https://github.com/youzan/vant/pull/12134)
+- chore(CI): 通过 GitHub 自动生成变更日志 by [@chenjiahan](https://github.com/chenjiahan) in [#12135](https://github.com/youzan/vant/pull/12135)
+- chore: 添加 PR 标签动作 by [@chenjiahan](https://github.com/chenjiahan) in [#12136](https://github.com/youzan/vant/pull/12136)
+- chore(TextEllipsis): 重用 actionText 变量 by [@chenjiahan](https://github.com/chenjiahan) in [#12138](https://github.com/youzan/vant/pull/12138)
+- refactor(cli): 使用 GitHub 变更日志替代 conventional-changelog by [@chenjiahan](https://github.com/chenjiahan) in [#12139](https://github.com/youzan/vant/pull/12139)
+- chore: 添加塞尔维亚文档并重命名文件 by [@chenjiahan](https://github.com/chenjiahan) in [#12150](https://github.com/youzan/vant/pull/12150)
+- chore(eslint-config): 升级依赖项 by [@chenjiahan](https://github.com/chenjiahan) in [#12155](https://github.com/youzan/vant/pull/12155)
+
+#### 新贡献者
+
+- [@muzaisimao](https://github.com/muzaisimao) 在 [#12120](https://github.com/youzan/vant/pull/12120) 中首次贡献
+- [@suncohey](https://github.com/suncohey) 在 [#12046](https://github.com/youzan/vant/pull/12046) 中首次贡献
+- [@nivin-studio](https://github.com/nivin-studio) 在 [#12122](https://github.com/youzan/vant/pull/12122) 中首次贡献
+- [@RogerZXY](https://github.com/RogerZXY) 在 [#12145](https://github.com/youzan/vant/pull/12145) 中首次贡献
 
 ### [v4.6.3](https://github.com/vant-ui/vant/compare/v4.6.2...v4.6.3)
 

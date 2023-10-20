@@ -20,6 +20,7 @@ export type ImagePreviewOptions = {
   closeIcon?: string;
   transition?: string;
   beforeClose?: Interceptor;
+  doubleScale?: boolean;
   overlayStyle?: CSSProperties;
   overlayClass?: unknown;
   swipeDuration?: number;

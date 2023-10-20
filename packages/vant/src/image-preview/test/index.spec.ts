@@ -217,8 +217,8 @@ test('should not close when overlay is clicked and closeOnClickOverlay is false'
   expect(wrapper.emitted('close')).toBeFalsy();
 });
 
-test('double click', async () => {
-  const onScale = jest.fn();
+test('should trigger scale after double clicking', async () => {
+  const onScale = vi.fn();
   const wrapper = mount(ImagePreview, {
     props: {
       images,
@@ -243,6 +243,24 @@ test('double click', async () => {
     index: 0,
     scale: 1,
   });
+});
+
+test('should allow to disable double click gesture', async () => {
+  const onScale = vi.fn();
+  const wrapper = mount(ImagePreview, {
+    props: {
+      images,
+      show: true,
+      doubleScale: false,
+      onScale,
+    },
+  });
+
+  await later();
+  const swipe = wrapper.find('.van-swipe-item');
+  triggerDrag(swipe, 0, 0);
+  triggerDrag(swipe, 0, 0);
+  expect(onScale).toHaveBeenCalledTimes(0);
 });
 
 test('zoom in and drag image to move', async () => {
@@ -276,7 +294,7 @@ test('zoom in and drag image to move', async () => {
 test('zoom out', async () => {
   const restore = mockGetBoundingClientRect({ width: 100, height: 100 });
 
-  const onScale = jest.fn();
+  const onScale = vi.fn();
   const wrapper = mount(ImagePreview, {
     props: {
       images,
@@ -328,7 +346,7 @@ test('should render image slot correctly 2', async () => {
 });
 
 test('should emit long-press event after long press', async () => {
-  const onLongPress = jest.fn();
+  const onLongPress = vi.fn();
   const wrapper = mount(ImagePreview, {
     props: {
       images,
