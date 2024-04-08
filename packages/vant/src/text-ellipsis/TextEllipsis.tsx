@@ -2,16 +2,21 @@ import {
   ref,
   watch,
   computed,
+  onActivated,
   onMounted,
   defineComponent,
   type ExtractPropTypes,
 } from 'vue';
 
-// Composables
-import { useEventListener } from '@vant/use';
-
 // Utils
-import { makeNumericProp, makeStringProp, createNamespace } from '../utils';
+import {
+  makeNumericProp,
+  makeStringProp,
+  createNamespace,
+  windowWidth,
+} from '../utils';
+
+import { useExpose } from '../composables/use-expose';
 
 const [name, bem] = createNamespace('text-ellipsis');
 
@@ -33,11 +38,12 @@ export default defineComponent({
 
   emits: ['clickAction'],
 
-  setup(props, { emit }) {
+  setup(props, { emit, slots }) {
     const text = ref('');
     const expanded = ref(false);
     const hasAction = ref(false);
     const root = ref<HTMLElement>();
+    let needRecalculate = false;
 
     const actionText = computed(() =>
       expanded.value ? props.collapseText : props.expandText,
@@ -49,29 +55,31 @@ export default defineComponent({
       return match ? Number(match[0]) : 0;
     };
 
+    const cloneContainer = () => {
+      if (!root.value || !root.value.isConnected) return;
+
+      const originStyle = window.getComputedStyle(root.value);
+      const container = document.createElement('div');
+      const styleNames: string[] = Array.prototype.slice.apply(originStyle);
+
+      styleNames.forEach((name) => {
+        container.style.setProperty(name, originStyle.getPropertyValue(name));
+      });
+
+      container.style.position = 'fixed';
+      container.style.zIndex = '-9999';
+      container.style.top = '-9999px';
+      container.style.height = 'auto';
+      container.style.minHeight = 'auto';
+      container.style.maxHeight = 'auto';
+
+      container.innerText = props.content;
+      document.body.appendChild(container);
+
+      return container;
+    };
+
     const calcEllipsised = () => {
-      const cloneContainer = () => {
-        if (!root.value) return;
-
-        const originStyle = window.getComputedStyle(root.value);
-        const container = document.createElement('div');
-        const styleNames: string[] = Array.prototype.slice.apply(originStyle);
-        styleNames.forEach((name) => {
-          container.style.setProperty(name, originStyle.getPropertyValue(name));
-        });
-
-        container.style.position = 'fixed';
-        container.style.zIndex = '-9999';
-        container.style.top = '-9999px';
-        container.style.height = 'auto';
-        container.style.minHeight = 'auto';
-        container.style.maxHeight = 'auto';
-
-        container.innerText = props.content;
-        document.body.appendChild(container);
-        return container;
-      };
-
       const calcEllipsisText = (
         container: HTMLDivElement,
         maxHeight: number,
@@ -164,7 +172,12 @@ export default defineComponent({
 
       // Calculate the interceptional text
       const container = cloneContainer();
-      if (!container) return;
+
+      if (!container) {
+        needRecalculate = true;
+        return;
+      }
+
       const { paddingBottom, paddingTop, lineHeight } = container.style;
       const maxHeight = Math.ceil(
         (Number(props.rows) + 0.5) * pxToNum(lineHeight) +
@@ -183,22 +196,41 @@ export default defineComponent({
       document.body.removeChild(container);
     };
 
+    const toggle = (isExpanded = !expanded.value) => {
+      expanded.value = isExpanded;
+    };
+
     const onClickAction = (event: MouseEvent) => {
-      expanded.value = !expanded.value;
+      toggle();
       emit('clickAction', event);
     };
 
-    const renderAction = () => (
-      <span class={bem('action')} onClick={onClickAction}>
-        {actionText.value}
-      </span>
-    );
+    const renderAction = () => {
+      const action = slots.action
+        ? slots.action({ expanded: expanded.value })
+        : actionText.value;
+      return (
+        <span class={bem('action')} onClick={onClickAction}>
+          {action}
+        </span>
+      );
+    };
 
     onMounted(calcEllipsised);
 
-    watch(() => [props.content, props.rows, props.position], calcEllipsised);
+    onActivated(() => {
+      if (needRecalculate) {
+        needRecalculate = false;
+        calcEllipsised();
+      }
+    });
 
-    useEventListener('resize', calcEllipsised);
+    watch(
+      [windowWidth, () => [props.content, props.rows, props.position]],
+      calcEllipsised,
+    );
+
+    useExpose({ toggle });
 
     return () => (
       <div ref={root} class={bem()}>

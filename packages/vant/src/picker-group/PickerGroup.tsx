@@ -1,7 +1,15 @@
-import { defineComponent, type InjectionKey, type ExtractPropTypes } from 'vue';
+import {
+  defineComponent,
+  Comment,
+  Fragment,
+  type InjectionKey,
+  type ExtractPropTypes,
+  type VNode,
+} from 'vue';
 
 // Utils
 import {
+  flat,
   pick,
   extend,
   makeArrayProp,
@@ -71,7 +79,21 @@ export default defineComponent({
     const onCancel = () => emit('cancel');
 
     return () => {
-      const childNodes = slots.default?.();
+      let childNodes = slots
+        .default?.()
+        ?.filter((node) => node.type !== Comment)
+        .map((node) => {
+          if (node.type === Fragment) {
+            return node.children as VNode[];
+          }
+
+          return node;
+        });
+
+      if (childNodes) {
+        childNodes = flat(childNodes);
+      }
+
       const confirmButtonText = showNextButton()
         ? props.nextStepText
         : props.confirmButtonText;

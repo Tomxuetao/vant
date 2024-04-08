@@ -20,12 +20,16 @@ export default defineConfig({
       reporter: ['lcov', 'text-summary'],
       reportsDirectory: './test/coverage',
     },
+    pool: 'vmThreads',
+    poolOptions: {
+      vmThreads: {
+        // limit the memory to avoid OOM
+        memoryLimit: Math.min(1 / (cpuNum * 2), 0.1),
+      },
+    },
     environment: 'jsdom',
     include: ['src/**/*.spec.[jt]s?(x)'],
     restoreMocks: true,
-    experimentalVmThreads: true,
-    // limit the memory to avoid OOM
-    experimentalVmWorkerMemoryLimit: Math.min(1 / (cpuNum * 2), 0.1),
   },
   plugins: [vitePluginVue(), vitePluginJsx()],
 });
