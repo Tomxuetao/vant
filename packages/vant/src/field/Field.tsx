@@ -9,6 +9,7 @@ import {
   defineComponent,
   type PropType,
   type ExtractPropTypes,
+  type HTMLAttributes,
 } from 'vue';
 
 // Utils
@@ -69,6 +70,7 @@ import type {
   FieldValidationStatus,
   FieldValidateTrigger,
   FieldFormSharedProps,
+  FieldEnterKeyHint,
 } from './types';
 
 const [name, bem] = createNamespace('field');
@@ -93,7 +95,7 @@ export const fieldSharedProps = {
   autocapitalize: String,
   autocorrect: String,
   errorMessage: String,
-  enterkeyhint: String,
+  enterkeyhint: String as PropType<FieldEnterKeyHint>,
   clearTrigger: makeStringProp<FieldClearTrigger>('focus'),
   formatTrigger: makeStringProp<FieldFormatTrigger>('onChange'),
   spellcheck: {
@@ -112,6 +114,7 @@ export const fieldSharedProps = {
     type: Boolean,
     default: null,
   },
+  inputmode: String as PropType<HTMLAttributes['inputmode']>,
 };
 
 export const fieldProps = extend({}, cellSharedProps, fieldSharedProps, {
@@ -305,10 +308,11 @@ export default defineComponent({
         }
         // Remove redundant interpolated values,
         // make it consistent with the native input maxlength behavior.
-        const selectionEnd = inputRef.value?.selectionEnd;
+        let selectionEnd = inputRef.value?.selectionEnd;
         if (state.focused && selectionEnd) {
           const valueArr = [...value];
           const exceededLength = valueArr.length - +maxlength;
+          selectionEnd = getStringLength(value.slice(0, selectionEnd));
           valueArr.splice(selectionEnd - exceededLength, exceededLength);
           return valueArr.join('');
         }
@@ -326,8 +330,7 @@ export default defineComponent({
       // When the value length exceeds maxlength,
       // record the excess length for correcting the cursor position.
       // https://github.com/youzan/vant/issues/11289
-      const limitDiffLen =
-        getStringLength(originalValue) - getStringLength(value);
+      const limitDiffLen = originalValue.length - value.length;
 
       // https://github.com/youzan/vant/issues/13058
       if (props.type === 'number' || props.type === 'digit') {
@@ -344,7 +347,10 @@ export default defineComponent({
             props.min ?? -Infinity,
             props.max ?? Infinity,
           );
-          value = adjustedValue.toString();
+
+          if (+value !== adjustedValue) {
+            value = adjustedValue.toString();
+          }
         }
       }
 
@@ -362,8 +368,7 @@ export default defineComponent({
           const bcoVal = cutString(originalValue, selectionEnd!);
           // Record the length change of `bcoVal` after formatting,
           // which is used to correct the cursor position.
-          formatterDiffLen =
-            getStringLength(formatter(bcoVal)) - getStringLength(bcoVal);
+          formatterDiffLen = formatter(bcoVal).length - bcoVal.length;
         }
       }
 
@@ -374,7 +379,7 @@ export default defineComponent({
           inputRef.value.value = value;
 
           if (isDef(selectionStart) && isDef(selectionEnd)) {
-            const valueLen = getStringLength(value);
+            const valueLen = value.length;
 
             if (limitDiffLen) {
               selectionStart -= limitDiffLen;
@@ -539,10 +544,12 @@ export default defineComponent({
       };
 
       if (props.type === 'textarea') {
-        return <textarea {...inputAttrs} />;
+        return <textarea {...inputAttrs} inputmode={props.inputmode} />;
       }
 
-      return <input {...mapInputType(props.type)} {...inputAttrs} />;
+      return (
+        <input {...mapInputType(props.type, props.inputmode)} {...inputAttrs} />
+      );
     };
 
     const renderLeftIcon = () => {

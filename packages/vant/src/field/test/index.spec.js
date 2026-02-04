@@ -123,6 +123,23 @@ test('should limit input value based on min and max props', async () => {
   expect(wrapper.emitted('update:modelValue')[2][0]).toEqual('5');
 });
 
+test('should not modify the value if it is within the min/max', async () => {
+  const wrapper = mount(Field, {
+    props: {
+      type: 'number',
+      min: 2,
+      max: 10,
+      modelValue: '',
+    },
+  });
+
+  const input = wrapper.find('input');
+
+  await wrapper.setProps({ modelValue: '2.00' });
+  await input.trigger('blur');
+  expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+});
+
 test('should render textarea when type is textarea', async () => {
   const wrapper = mount(Field, {
     props: {
@@ -590,4 +607,59 @@ test("should not be set label's for attribute when using input slot", async () =
   expect(
     wrapper.find('.van-field__label label').attributes('for'),
   ).toBeUndefined();
+});
+
+test('should update selection range correctly when inputting text into string with emoji', async () => {
+  const wrapper = mount(Field, {
+    props: {
+      maxlength: 2,
+      modelValue: '😀😀',
+    },
+  });
+
+  const input = wrapper.find('input');
+  await input.trigger('focus');
+
+  input.element.value = '😀😀😀';
+  input.element.selectionEnd = 6;
+  input.trigger('input');
+
+  expect(input.element.selectionEnd).toEqual(4);
+});
+
+test('should update selection range correctly when using formatter with emoji', async () => {
+  const wrapper = mount(Field, {
+    props: {
+      modelValue: '',
+      formatter: (val) => val.replace('1', '😀😀'),
+    },
+  });
+
+  const input = wrapper.find('input');
+  await input.trigger('focus');
+
+  input.element.value = '1';
+  input.element.selectionEnd = 1;
+  input.trigger('input');
+
+  expect(input.element.selectionEnd).toEqual(4);
+});
+
+test('should limit maxlength correctly when pasting multiple emojis', async () => {
+  const wrapper = mount(Field, {
+    props: {
+      maxlength: 4,
+      modelValue: '',
+    },
+  });
+
+  const input = wrapper.find('input');
+  await input.trigger('focus');
+
+  input.element.value = '1😀😀😀😀';
+  input.element.selectionEnd = 9;
+  input.trigger('input');
+
+  expect(wrapper.emitted('update:modelValue')[0][0]).toEqual('1😀😀😀');
+  expect(input.element.value).toEqual('1😀😀😀');
 });

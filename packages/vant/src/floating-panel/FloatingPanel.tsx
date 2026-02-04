@@ -28,6 +28,7 @@ export const floatingPanelProps = {
   height: makeNumericProp(0),
   anchors: makeArrayProp<number>(),
   duration: makeNumericProp(0.3),
+  magnetic: truthProp,
   contentDraggable: truthProp,
   lockScroll: Boolean,
   safeAreaInsetBottom: truthProp,
@@ -130,7 +131,13 @@ export default defineComponent({
     const onTouchend = () => {
       maxScroll = -1;
       dragging.value = false;
-      height.value = closest(anchors.value, height.value);
+
+      if (props.magnetic) {
+        height.value = closest(anchors.value, height.value);
+      } else {
+        const { min, max } = boundary.value;
+        height.value = Math.max(min, Math.min(max, height.value));
+      }
 
       if (height.value !== -startY) {
         emit('heightChange', { height: height.value });
@@ -172,7 +179,11 @@ export default defineComponent({
         onTouchcancel={onTouchend}
       >
         {renderHeader()}
-        <div class={bem('content')} ref={contentRef}>
+        <div
+          class={bem('content')}
+          ref={contentRef}
+          style={{ paddingBottom: addUnit(boundary.value.max - height.value) }}
+        >
           {slots.default?.()}
         </div>
       </div>

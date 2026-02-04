@@ -29,7 +29,7 @@ app.use(CellGroup);
   <van-cell-group inset>
     <van-field
       v-model="username"
-      name="用户名"
+      name="username"
       label="用户名"
       placeholder="用户名"
       :rules="[{ required: true, message: '请填写用户名' }]"
@@ -37,7 +37,7 @@ app.use(CellGroup);
     <van-field
       v-model="password"
       type="password"
-      name="密码"
+      name="password"
       label="密码"
       placeholder="密码"
       :rules="[{ required: true, message: '请填写密码' }]"
@@ -354,9 +354,10 @@ export default {
   placeholder="点击选择城市"
   @click="showPicker = true"
 />
-<van-popup v-model:show="showPicker" position="bottom">
+<van-popup v-model:show="showPicker" destroy-on-close position="bottom">
   <van-picker
     :columns="columns"
+    :model-value="pickerValue"
     @confirm="onConfirm"
     @cancel="showPicker = false"
   />
@@ -369,6 +370,7 @@ import { ref } from 'vue';
 export default {
   setup() {
     const result = ref('');
+    const pickerValue = ref([]);
     const showPicker = ref(false);
     const columns = [
       { text: '杭州', value: 'Hangzhou' },
@@ -378,13 +380,15 @@ export default {
       { text: '湖州', value: 'Huzhou' },
     ];
 
-    const onConfirm = ({ selectedOptions }) => {
+    const onConfirm = ({ selectedValues, selectedOptions }) => {
       result.value = selectedOptions[0]?.text;
+      pickerValue.value = selectedValues;
       showPicker.value = false;
     };
 
     return {
       result,
+      pickerValue,
       columns,
       onConfirm,
       showPicker,
@@ -407,8 +411,12 @@ export default {
   placeholder="点击选择时间"
   @click="showPicker = true"
 />
-<van-popup v-model:show="showPicker" position="bottom">
-  <van-date-picker @confirm="onConfirm" @cancel="showPicker = false" />
+<van-popup v-model:show="showPicker" destroy-on-close position="bottom">
+  <van-date-picker
+    :model-value="pickerValue"
+    @confirm="onConfirm"
+    @cancel="showPicker = false"
+  />
 </van-popup>
 ```
 
@@ -419,13 +427,16 @@ export default {
   setup() {
     const result = ref('');
     const showPicker = ref(false);
+    const pickerValue = ref([]);
     const onConfirm = ({ selectedValues }) => {
       result.value = selectedValues.join('/');
+      pickerValue.value = selectedValues;
       showPicker.value = false;
     };
 
     return {
       result,
+      pickerValue,
       onConfirm,
       showPicker,
     };
@@ -447,9 +458,10 @@ export default {
   placeholder="点击选择省市区"
   @click="showArea = true"
 />
-<van-popup v-model:show="showArea" position="bottom">
+<van-popup v-model:show="showArea" destroy-on-close position="bottom">
   <van-area
     :area-list="areaList"
+    :model-value="pickerValue"
     @confirm="onConfirm"
     @cancel="showArea = false"
   />
@@ -464,7 +476,11 @@ export default {
   setup() {
     const result = ref('');
     const showArea = ref(false);
-    const onConfirm = ({ selectedOptions }) => {
+    const pickerValue = ref('');
+    const onConfirm = ({ selectedValues, selectedOptions }) => {
+      pickerValue.value = selectedValues.length
+        ? selectedValues[selectedValues.length - 1]
+        : '';
       showArea.value = false;
       result.value = selectedOptions.map((item) => item.text).join('/');
     };
@@ -472,6 +488,7 @@ export default {
     return {
       result,
       areaList,
+      pickerValue,
       showArea,
       onConfirm,
     };

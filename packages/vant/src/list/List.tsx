@@ -22,7 +22,7 @@ import {
 // Composables
 import { useRect, useScrollParent, useEventListener } from '@vant/use';
 import { useExpose } from '../composables/use-expose';
-import { useTabStatus } from '../composables/use-tab-status';
+import { useAllTabStatus } from '../composables/use-tab-status';
 
 // Components
 import { Loading } from '../loading';
@@ -41,7 +41,10 @@ export const listProps = {
   scroller: Object as PropType<Element>,
   errorText: String,
   direction: makeStringProp<ListDirection>('down'),
-  loadingText: String,
+  loadingText: {
+    type: String as PropType<string | null>,
+    default: '',
+  },
   finishedText: String,
   immediateCheck: truthProp,
 };
@@ -60,7 +63,7 @@ export default defineComponent({
     const loading = ref(props.loading);
     const root = ref<HTMLElement>();
     const placeholder = ref<HTMLElement>();
-    const tabStatus = useTabStatus();
+    const tabStatus = useAllTabStatus();
     const scrollParent = useScrollParent(root);
     const scroller = computed(() => props.scroller || scrollParent.value);
 
@@ -139,13 +142,13 @@ export default defineComponent({
       if (loading.value && !props.finished && !props.disabled) {
         return (
           <div class={bem('loading')}>
-            {slots.loading ? (
-              slots.loading()
-            ) : (
-              <Loading class={bem('loading-icon')}>
-                {props.loadingText || t('loading')}
-              </Loading>
-            )}
+            {slots.loading
+              ? slots.loading()
+              : props.loadingText != null && (
+                  <Loading class={bem('loading-icon')}>
+                    {props.loadingText || t('loading')}
+                  </Loading>
+                )}
           </div>
         );
       }

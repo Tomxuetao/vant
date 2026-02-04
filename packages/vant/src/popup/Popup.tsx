@@ -50,6 +50,7 @@ export const popupProps = extend({}, popupSharedProps, {
   iconPrefix: String,
   closeOnPopstate: Boolean,
   closeIconPosition: makeStringProp<PopupCloseIconPosition>('top-right'),
+  destroyOnClose: Boolean,
   safeAreaInsetTop: Boolean,
   safeAreaInsetBottom: Boolean,
 });
@@ -134,16 +135,23 @@ export default defineComponent({
 
     const renderOverlay = () => {
       if (props.overlay) {
+        const overlayProps = extend(
+          {
+            show: props.show,
+            class: props.overlayClass,
+            zIndex: zIndex.value,
+            duration: props.duration,
+            customStyle: props.overlayStyle,
+            role: props.closeOnClickOverlay ? 'button' : undefined,
+            tabindex: props.closeOnClickOverlay ? 0 : undefined,
+          },
+          props.overlayProps,
+        );
+
         return (
           <Overlay
             v-slots={{ default: slots['overlay-content'] }}
-            show={props.show}
-            class={props.overlayClass}
-            zIndex={zIndex.value}
-            duration={props.duration}
-            customStyle={props.overlayStyle}
-            role={props.closeOnClickOverlay ? 'button' : undefined}
-            tabindex={props.closeOnClickOverlay ? 0 : undefined}
+            {...overlayProps}
             {...useScopeId()}
             onClick={onClickOverlay}
           />
@@ -186,11 +194,22 @@ export default defineComponent({
     const onKeydown = (event: KeyboardEvent) => emit('keydown', event);
 
     const renderPopup = lazyRender(() => {
-      const { round, position, safeAreaInsetTop, safeAreaInsetBottom } = props;
+      const {
+        destroyOnClose,
+        round,
+        position,
+        safeAreaInsetTop,
+        safeAreaInsetBottom,
+        show,
+      } = props;
+
+      if (!show && destroyOnClose) {
+        return;
+      }
 
       return (
         <div
-          v-show={props.show}
+          v-show={show}
           ref={popupRef}
           style={style.value}
           role="dialog"
